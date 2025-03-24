@@ -11,15 +11,15 @@ v: 3
 area: AREA
 workgroup: WG Working Group
 keyword:
- - next generation
- - unicorn
+ - JSON
+ - schema
 venue:
   group: WG
   type: Working Group
   mail: WG@example.com
   arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  github: json-structure/core
+  latest: https://json-structure.github.io/core
 
 author:
   - 
@@ -200,9 +200,9 @@ A literal `null` (without quotes).
 
 Extended types impose additional semantic constraints on the underlying JSON types. These types are used to represent binary data, high-precision numeric values, date and time information, and structured data.
 
-Large integer and decimal types are used to represent high-precision numeric values that exceed the range of IEEE 754 double-precision format, which is the foundation for the `number` type in JSON. Per {{RFC8259}} Section 6, interoperable JSON numbers have a range of -2⁵³ to 2⁵³–1, which is less than the range of 64-bit and 128-bit values. Therefore, the `int64`, `uint64`, `int128`, `uint128`, and `decimal` types are represented as strings to preserve precision.
+Large integer and decimal types are used to represent high-precision numeric values that exceed the range of IEEE 754 double-precision format, which is the foundation for the `number` type in JSON. Per {{ Section 6 of RFC8259 }}, interoperable JSON numbers have a range of -2⁵³ to 2⁵³–1, which is less than the range of 64-bit and 128-bit values. Therefore, the `int64`, `uint64`, `int128`, `uint128`, and `decimal` types are represented as strings to preserve precision.
 
-The syntax for strings representing large integer and decimal types is based on the {{RFC8259}} Section 6 syntax for integers and decimals:
+The syntax for strings representing large integer and decimal types is based on the {{ Section 6 of RFC8259 }} syntax for integers and decimals:
 
 - integer = `[minus] int`
 - decimal = `[minus] int frac`
@@ -275,7 +275,7 @@ A 64-bit signed integer.
 
 - Base type: `string`
 - Constraints:
-  - The string MUST conform to the {{RFC8259}} Section 6 definition for the `[minus] int` syntax.
+  - The string MUST conform to the {{ Section 6 of RFC8259 }} definition for the `[minus] int` syntax.
   - The string value MUST represent a 64-bit integer in the range -2⁶³ to 2⁶³–1.
 
 #### `uint64` {#uint64}
@@ -284,7 +284,7 @@ A 64-bit unsigned integer.
 
 - Base type: `string`
 - Constraints:
-  - The string MUST conform to the {{RFC8259}} Section 6 definition for the `int` syntax.
+  - The string MUST conform to the {{ Section 6 of RFC8259 }} definition for the `int` syntax.
   - The string value MUST represent a 64-bit integer in the range 0 to 2⁶⁴–1.
 
 #### `int128` {#int128}
@@ -293,7 +293,7 @@ A 128-bit signed integer.
 
 - Base type: `string`
 - Constraints:
-  - The string MUST conform to the {{RFC8259}} Section 6 definition for the `[minus] int` syntax.
+  - The string MUST conform to the {{ Section 6 of RFC8259 }} definition for the `[minus] int` syntax.
   - The string value MUST represent a 128-bit integer in the range -2¹²⁷ to 2¹²⁷–1.
 
 #### `uint128` {#uint128}
@@ -302,7 +302,7 @@ A 128-bit unsigned integer.
 
 - Base type: `string`
 - Constraints:
-  - The string MUST conform to the {{RFC8259}} Section 6 definition for the `int` syntax.
+  - The string MUST conform to the {{ Section 6 of RFC8259 }} definition for the `int` syntax.
   - The string value MUST represent a 128-bit integer in the range 0 to 2¹²⁸–1.
 
 #### `float8` {#float8}
@@ -339,7 +339,7 @@ A decimal number supporting high-precision values.
 
 - Base type: `string`
 - Constraints:
-  - The string value MUST conform to the {{RFC8259}} Section 6 definition for the `[minus] int frac` syntax.
+  - The string value MUST conform to the {{ Section 6 of RFC8259 }} definition for the `[minus] int frac` syntax.
   - Defaults: 34 significant digits and 7 fractional digits, which is the maximum precision supported by the IEEE 754 decimal128 format.
 - Annotations:
   - The `precision` keyword MAY be used to specify the total number of significant digits.
