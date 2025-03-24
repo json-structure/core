@@ -22,7 +22,7 @@ venue:
   latest: https://json-structure.github.io/core
 
 author:
-  - 
+  -
     fullname: Clemens Vasters
     organization: Microsoft Corporation
     email: clemensv@microsoft.com
@@ -42,29 +42,29 @@ normative:
 
 
 informative:
-  JSTRUCT-ALTNAMES: 
+  JSTRUCT-ALTNAMES:
     title: "JSON Structure Alternate Names"
-    author: 
+    author:
       - fullname: Clemens Vasters
     target: https://json-structure.github.io/altername-names
-  JSTRUCT-COMPOSITION: 
+  JSTRUCT-COMPOSITION:
     title: "JSON Structure Conditional Composition"
-    author: 
+    author:
       - fullname: Clemens Vasters
     target: https://json-structure.github.io/conditional-composition
   JSTRUCT-IMPORT:
     title: "JSON Structure Import"
-    author: 
+    author:
       - fullname: Clemens Vasters
     target: https://json-structure.github.io/import
   JSTRUCT-UNITS:
     title: "JSON Structure Units"
-    author: 
+    author:
       - fullname: Clemens Vasters
     target: https://json-structure.github.io/units
-  JSTRUCT-VALIDATION: 
+  JSTRUCT-VALIDATION:
     title: "JSON Structure Validation"
-    author: 
+    author:
       - fullname: Clemens Vasters
     target: https://json-structure.github.io/validation
 
@@ -533,7 +533,7 @@ Example:
   "additionalProperties": false
 }
 ~~~
- 
+
 #### `array` {#array}
 
 An `array` type is used to define an ordered collection of elements. It's
@@ -557,7 +557,7 @@ type or a locally declared compound type.
   "items": { "type": "string" }
 }
 ~~~
- 
+
 #### `set` {#set}
 
 The `set` type is used to define an unordered collection of unique elements.
@@ -666,7 +666,7 @@ The root object MAY contain the following OPTIONAL keywords:
 - `$root`: A JSON Pointer that designates a type as the root type for instances.
 - `definitions`: The root of the type declaration namespace hierarchy.
 - `type`: A type declaration for the root type of the document. Mutually
-  exclusive with `$root`. 
+  exclusive with `$root`.
 - if `type` is present, all annotations and constraints applicable to this
   declared root type are also permitted at the root level.
 - `name`: A string that defines the name of the root type. Required if `type` is
@@ -712,7 +712,7 @@ Example with `$root`:
             "properties": {
                 "name": { "type": "string" }
             }
-        }        
+        }
     }
 }
 ~~~
@@ -1525,7 +1525,7 @@ that references a parent schema.
   - The `$uses` keyword MUST only be used in instance documents.
   - The value of `$uses` MUST be a set of strings that are either:
      - add-in names advertised in the `$offers` keyword of the schema document
-       referenced by the `$schema` keyword of the instance document or 
+       referenced by the `$schema` keyword of the instance document or
      - JSON Pointers to add-in schema definitions in the same meta-schema
        document.
 
