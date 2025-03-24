@@ -68,68 +68,68 @@ Copyright Notice
 
 Table of Contents
 
-   1.  1.  Introduction
-   2.  2.  Conventions
-   3.  3.  JSON Structure Core Specification
-     3.1.  3.1.  Schema Elements
-       3.1.1.  3.1.1.  Schema
-       3.1.2.  3.1.2.  Non-Schema
-       3.1.3.  3.1.3.  Meta-Schemas
-     3.2.  3.2.  Data Types
-       3.2.1.  3.2.1.  JSON Primitive Types
-       3.2.2.  3.2.2.  Extended Primitive Types
-       3.2.3.  3.2.3.  Compound Types
-     3.3.  3.3.  Document Structure
-       3.3.1.  3.3.1.  Namespaces
-       3.3.2.  3.3.2. $schema Keyword
-       3.3.3.  3.3.3. $id Keyword
-       3.3.4.  3.3.4. $root Keyword
-       3.3.5.  3.3.5. definitions Keyword
-       3.3.6.  3.3.6. $ref Keyword
-       3.3.7.  3.3.7.  Cross-references
-     3.4.  3.4.  Type System Rules
-       3.4.1.  3.4.1.  Schema Declarations
-       3.4.2.  3.4.2.  Reusable Types
-       3.4.3.  3.4.3.  Type References
-       3.4.4.  3.4.4.  Dynamic Structures
-     3.5.  3.5.  Composition Rules
-       3.5.1.  3.5.1.  Unions
-       3.5.2.  3.5.2.  Prohibition of Top-Level Unions
-     3.6.  3.6.  Identifier Rules
-     3.7.  3.7.  Structural Keywords
-       3.7.1.  3.7.1.  The type Keyword
-       3.7.2.  3.7.2.  The properties Keyword
-       3.7.3.  3.7.3.  The required Keyword
-       3.7.4.  3.7.4.  The items Keyword
-       3.7.5.  3.7.5.  The values Keyword
-       3.7.6.  3.7.6.  The const Keyword
-       3.7.7.  3.7.7.  The enum Keyword
-       3.7.8.  3.7.8.  The additionalProperties Keyword
-     3.8.  3.8.  Type Annotation Keywords
-       3.8.1.  3.8.1.  The maxLength Keyword
-       3.8.2.  3.8.2.  The precision Keyword
-       3.8.3.  3.8.3.  The scale Keyword
-       3.8.4.  3.8.4.  The contentEncoding Keyword
-       3.8.5.  3.8.5.  The contentCompression Keyword
-       3.8.6.  3.8.6.  The contentMediaType Keyword
-     3.9.  3.9.  Documentation Keywords
-       3.9.1.  3.9.1.  The description Keyword
-       3.9.2.  3.9.2.  The examples Keyword
-     3.10. 3.10.  Extensions and Add-Ins
-       3.10.1.  3.10.1.  The abstract Keyword
-       3.10.2.  3.10.2.  The $extends Keyword
-       3.10.3.  3.10.3.  The $offers Keyword
-       3.10.4.  3.10.4.  The $uses Keyword
-   4.  4.  Reserved Keywords
-   5.  5.  Security Considerations
-   6.  6.  IANA Considerations
+   1.  Introduction
+   2.  Conventions
+   3.  JSON Structure Core Specification
+     3.1.  Schema Elements
+       3.1.1.  Schema
+       3.1.2.  Non-Schema
+       3.1.3.  Meta-Schemas
+     3.2.  Data Types
+       3.2.1.  JSON Primitive Types
+       3.2.2.  Extended Primitive Types
+       3.2.3.  Compound Types
+     3.3.  Document Structure
+       3.3.1.  Namespaces
+       3.3.2.  $schema Keyword
+       3.3.3.  $id Keyword
+       3.3.4.  $root Keyword
+       3.3.5.  definitions Keyword
+       3.3.6.  $ref Keyword
+       3.3.7.  Cross-references
+     3.4.  Type System Rules
+       3.4.1.  Schema Declarations
+       3.4.2.  Reusable Types
+       3.4.3.  Type References
+       3.4.4.  Dynamic Structures
+     3.5.  Composition Rules
+       3.5.1.  Unions
+       3.5.2.  Prohibition of Top-Level Unions
+     3.6.  Identifier Rules
+     3.7.  Structural Keywords
+       3.7.1.  The type Keyword
+       3.7.2.  The properties Keyword
+       3.7.3.  The required Keyword
+       3.7.4.  The items Keyword
+       3.7.5.  The values Keyword
+       3.7.6.  The const Keyword
+       3.7.7.  The enum Keyword
+       3.7.8.  The additionalProperties Keyword
+     3.8.  Type Annotation Keywords
+       3.8.1.  The maxLength Keyword
+       3.8.2.  The precision Keyword
+       3.8.3.  The scale Keyword
+       3.8.4.  The contentEncoding Keyword
+       3.8.5.  The contentCompression Keyword
+       3.8.6.  The contentMediaType Keyword
+     3.9.  Documentation Keywords
+       3.9.1.  The description Keyword
+       3.9.2.  The examples Keyword
+     3.10. Extensions and Add-Ins
+       3.10.1.  The abstract Keyword
+       3.10.2.  The $extends Keyword
+       3.10.3.  The $offers Keyword
+       3.10.4.  The $uses Keyword
+   4.  Reserved Keywords
+   5.  Security Considerations
+   6.  IANA Considerations
    7.  References
      7.1.  Normative References
      7.2.  Informative References
    Acknowledgments
    Author's Address
 
-1.  1.  Introduction
+1.  Introduction
 
    This document specifies _JSON Structure_, a data structure definition
    language that enforces strict typing, modularity, and determinism.
@@ -167,7 +167,7 @@ Table of Contents
    (Section 3.10) features and can be applied to meta-schemas, schemas,
    and JSON document instances.
 
-2.  2.  Conventions
+2.  Conventions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -175,11 +175,11 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  3.  JSON Structure Core Specification
+3.  JSON Structure Core Specification
 
-3.1.  3.1.  Schema Elements
+3.1.  Schema Elements
 
-3.1.1.  3.1.1.  Schema
+3.1.1.  Schema
 
    A "schema" is a JSON object that describes, constrains, and
    interprets a JSON node.
@@ -242,7 +242,7 @@ Table of Contents
    requires a type (Section 3.7.1) keyword or a Section 3.3.6 keyword to
    be a schema.
 
-3.1.2.  3.1.2.  Non-Schema
+3.1.2.  Non-Schema
 
    Non-schemas are objects that do not declare or refer to a type.  The
    root of a schema document (Section 3.3) is a non-schema unless it
@@ -251,7 +251,7 @@ Table of Contents
    A namespace is a non-schema that contains type declarations and other
    namespaces.
 
-3.1.3.  3.1.3.  Meta-Schemas
+3.1.3.  Meta-Schemas
 
    A meta-schema is a schema document that defines the structure and
    constraints of another schema document.  Meta-schemas are used to
@@ -269,7 +269,7 @@ Table of Contents
    defined in the [JSTRUCT-IMPORT] extension specification is used to
    import all definitions from the foundational meta-schema.
 
-3.2.  3.2.  Data Types
+3.2.  Data Types
 
    The data types that can be used with the type keyword are categorized
    into JSON Primitive Types, Extended Types, Compound Types, and
@@ -282,11 +282,11 @@ Table of Contents
    extended types have a well-defined representation in JSON primitive
    types.
 
-3.2.1.  3.2.1.  JSON Primitive Types
+3.2.1.  JSON Primitive Types
 
    These types map directly to the underlying JSON representation:
 
-3.2.1.1.  3.2.1.1. string
+3.2.1.1.  string
 
    A sequence of Unicode characters enclosed in double quotes.
 
@@ -298,7 +298,7 @@ Table of Contents
       keyword is to inform consumers of the maximum space required to
       store the string.
 
-3.2.1.2.  3.2.1.2. number
+3.2.1.2.  number
 
    A numeric literal without quotes.
 
@@ -310,19 +310,19 @@ Table of Contents
    numbers (base-2), in spite of JSON number leaning on the IEEE754
    standard as a reference for the value space.
 
-3.2.1.3.  3.2.1.3. boolean
+3.2.1.3.  boolean
 
    A literal true or false (without quotes).
 
    *  Base type: boolean Section 3 of [RFC8259]
 
-3.2.1.4.  3.2.1.4. null
+3.2.1.4.  null
 
    A literal null (without quotes).
 
    *  Base type: null Section 3 of [RFC8259]
 
-3.2.2.  3.2.2.  Extended Primitive Types
+3.2.2.  Extended Primitive Types
 
    Extended types impose additional semantic constraints on the
    underlying JSON types.  These types are used to represent binary
@@ -344,7 +344,7 @@ Table of Contents
 
    *  decimal = [minus] int frac
 
-3.2.2.1.  3.2.2.1. binary
+3.2.2.1.  binary
 
    A binary value.  The default encoding is base64.  The type annotation
    keywords contentEncoding, contentCompression, and contentMediaType
@@ -359,7 +359,7 @@ Table of Contents
          encoding specified in the contentEncoding keyword.  The default
          encoding is base64.
 
-3.2.2.2.  3.2.2.2. int8
+3.2.2.2.  int8
 
    An 8-bit signed integer.
 
@@ -371,7 +371,7 @@ Table of Contents
 
       -  No decimal points or quotes are allowed.
 
-3.2.2.3.  3.2.2.3. uint8
+3.2.2.3.  uint8
 
    An 8-bit unsigned integer.
 
@@ -383,7 +383,7 @@ Table of Contents
 
       -  No decimal points or quotes are allowed.
 
-3.2.2.4.  3.2.2.4. int16
+3.2.2.4.  int16
 
    A 16-bit signed integer.
 
@@ -395,7 +395,7 @@ Table of Contents
 
       -  No decimal points or quotes are allowed.
 
-3.2.2.5.  3.2.2.5. uint16
+3.2.2.5.  uint16
 
    A 16-bit unsigned integer.
 
@@ -407,7 +407,7 @@ Table of Contents
 
       -  No decimal points or quotes are allowed.
 
-3.2.2.6.  3.2.2.6. int32
+3.2.2.6.  int32
 
    A 32-bit signed integer.
 
@@ -419,7 +419,7 @@ Table of Contents
 
       -  No decimal points or quotes are allowed.
 
-3.2.2.7.  3.2.2.7. uint32
+3.2.2.7.  uint32
 
    A 32-bit unsigned integer.
 
@@ -431,7 +431,7 @@ Table of Contents
 
       -  No decimal points or quotes are allowed.
 
-3.2.2.8.  3.2.2.8. int64
+3.2.2.8.  int64
 
    A 64-bit signed integer.
 
@@ -445,7 +445,7 @@ Table of Contents
       -  The string value MUST represent a 64-bit integer in the range
          -2⁶³ to 2⁶³–1.
 
-3.2.2.9.  3.2.2.9. uint64
+3.2.2.9.  uint64
 
    A 64-bit unsigned integer.
 
@@ -459,7 +459,7 @@ Table of Contents
       -  The string value MUST represent a 64-bit integer in the range 0
          to 2⁶⁴–1.
 
-3.2.2.10.  3.2.2.10. int128
+3.2.2.10.  int128
 
    A 128-bit signed integer.
 
@@ -473,7 +473,7 @@ Table of Contents
       -  The string value MUST represent a 128-bit integer in the range
          -2¹²⁷ to 2¹²⁷–1.
 
-3.2.2.11.  3.2.2.11. uint128
+3.2.2.11.  uint128
 
    A 128-bit unsigned integer.
 
@@ -487,7 +487,7 @@ Table of Contents
       -  The string value MUST represent a 128-bit integer in the range
          0 to 2¹²⁸–1.
 
-3.2.2.12.  3.2.2.12. float8
+3.2.2.12.  float8
 
    An 8-bit floating-point number.
 
@@ -499,7 +499,7 @@ Table of Contents
          bits), which are 3 bits of significand and 4 bits of exponent,
          with a range of approximately ±3.4×10³.
 
-3.2.2.13.  3.2.2.13. float
+3.2.2.13.  float
 
    A single-precision floating-point number.
 
@@ -516,7 +516,7 @@ Table of Contents
    need to encode IEEE754 values precisely, store the IEE754 binary32
    value as an int32 or uint32 number.
 
-3.2.2.14.  3.2.2.14. double
+3.2.2.14.  double
 
    A double-precision floating-point number.
 
@@ -533,7 +533,7 @@ Table of Contents
    need to encode IEEE754 values precisely, store the IEE754 binary64
    value as an int64 or uint64 number.
 
-3.2.2.15.  3.2.2.15. decimal
+3.2.2.15.  decimal
 
    A decimal number supporting high-precision values.
 
@@ -556,7 +556,7 @@ Table of Contents
       -  The scale keyword MAY be used to specify the number of
          fractional digits.
 
-3.2.2.16.  3.2.2.16. date
+3.2.2.16.  date
 
    A date in YYYY-MM-DD form.
 
@@ -567,7 +567,7 @@ Table of Contents
       -  The string value MUST conform to the [RFC3339] full-date
          format.
 
-3.2.2.17.  3.2.2.17. datetime
+3.2.2.17.  datetime
 
    A date and time value with time zone offset.
 
@@ -578,7 +578,7 @@ Table of Contents
       -  The string value MUST conform to the [RFC3339] date-time
          format.
 
-3.2.2.18.  3.2.2.18. time
+3.2.2.18.  time
 
    A time-of-day value.
 
@@ -588,7 +588,7 @@ Table of Contents
 
       -  The string value MUST conform to the [RFC3339] time format.
 
-3.2.2.19.  3.2.2.19. duration
+3.2.2.19.  duration
 
    A time duration.
 
@@ -598,7 +598,7 @@ Table of Contents
 
       -  The string value MUST conform to the [RFC3339] duration format.
 
-3.2.2.20.  3.2.2.20. uuid
+3.2.2.20.  uuid
 
    A universally unique identifier.
 
@@ -608,7 +608,7 @@ Table of Contents
 
       -  The string value MUST conform to the [RFC4122] UUID format.
 
-3.2.2.21.  3.2.2.21. uri
+3.2.2.21.  uri
 
    A URI reference, relative or absolute.
 
@@ -619,7 +619,7 @@ Table of Contents
       -  The string value MUST conform to the [RFC3986] uri-reference
          format.
 
-3.2.2.22.  3.2.2.22. jsonpointer
+3.2.2.22.  jsonpointer
 
    A JSON Pointer reference.
 
@@ -630,12 +630,12 @@ Table of Contents
       -  The string value MUST conform to the [RFC6901] JSON Pointer
          format.
 
-3.2.3.  3.2.3.  Compound Types
+3.2.3.  Compound Types
 
    Compound types are used to structure related data elements.  JSON
    Structure supports the following compound types:
 
-3.2.3.1.  3.2.3.1. object
+3.2.3.1.  object
 
    The object type is used to define structured data with named
    properties.  It's represented as a JSON object, which is an unordered
@@ -670,7 +670,7 @@ Table of Contents
      "additionalProperties": false
    }
 
-3.2.3.2.  3.2.3.2. array
+3.2.3.2.  array
 
    An array type is used to define an ordered collection of elements.
    It's represented as a JSON array, which is an ordered list of values.
@@ -690,7 +690,7 @@ Table of Contents
      "items": { "type": "string" }
    }
 
-3.2.3.3.  3.2.3.3. set
+3.2.3.3.  set
 
    The set type is used to define an unordered collection of unique
    elements.  It's represented as a JSON array where all elements are
@@ -711,7 +711,7 @@ Table of Contents
      "items": { "type": "string" }
    }
 
-3.2.3.4.  3.2.3.4. map
+3.2.3.4.  map
 
    The map type is used to define dynamic key–value pairs.  It's
    represented as a JSON object where the keys are strings and the
@@ -729,7 +729,7 @@ Table of Contents
      "values": { "$ref": "#/StringType" }
    }
 
-3.2.3.5.  3.2.3.5. tuple
+3.2.3.5.  tuple
 
    The tuple type is used to define an ordered collection of elements
    with a specific length.  It's represented as a JSON array where each
@@ -758,7 +758,7 @@ Table of Contents
 
    ["Alice", 42]
 
-3.2.3.6.  3.2.3.6. any
+3.2.3.6.  any
 
    The any type is used to define a type that can be any JSON value,
    including primitive types, compound types, and extended types.
@@ -769,7 +769,7 @@ Table of Contents
      "type": "any"
    }
 
-3.3.  3.3.  Document Structure
+3.3.  Document Structure
 
    A JSON Structure document is a JSON object that contains schemas
    (Section 3.1.1)
@@ -802,7 +802,7 @@ Table of Contents
    *  name: A string that defines the name of the root type.  Required
       if type is present.
 
-3.3.1.  3.3.1.  Namespaces
+3.3.1.  Namespaces
 
    A "namespace" is a JSON object that provides a scope for type
    declarations or other namespaces.  Namespaces MAY be nested within
@@ -864,7 +864,7 @@ Table of Contents
        }
    }
 
-3.3.2.  3.3.2. $schema Keyword
+3.3.2.  $schema Keyword
 
    The value of the REQUIRED $schema keyword MUST be an absolute URI.
    The keyword has different functions in JSON Structure documents and
@@ -896,7 +896,7 @@ Table of Contents
    document such that its types become available for use in the current
    document.
 
-3.3.3.  3.3.3. $id Keyword
+3.3.3.  $id Keyword
 
    The REQUIRED $id keyword is used to assign a unique identifier to a
    JSON Structure document.  The value of $id MUST be an absolute URI.
@@ -920,7 +920,7 @@ Table of Contents
        }
    }
 
-3.3.4.  3.3.4. $root Keyword
+3.3.4.  $root Keyword
 
    The OPTIONAL $root keyword is used to designate any type defined in
    the document as the root type for JSON nodes described by this schema
@@ -950,7 +950,7 @@ Table of Contents
      }
    }
 
-3.3.5.  3.3.5. definitions Keyword
+3.3.5.  definitions Keyword
 
    The definitions keyword defines a namespace hierarchy for reusable
    type declarations.  The keyword MUST be used at the root level of the
@@ -983,7 +983,7 @@ Table of Contents
        }
    }
 
-3.3.6.  3.3.6. $ref Keyword
+3.3.6.  $ref Keyword
 
    References to type declarations within the same document MUST use a
    schema containing a single property with the name $ref as the value
@@ -1027,7 +1027,7 @@ Table of Contents
    $ref is NOT permitted in other attributes and MUST NOT be used inside
    the type of the root object.
 
-3.3.7.  3.3.7.  Cross-references
+3.3.7.  Cross-references
 
    In JSON Structure documents, the $schema keyword references the meta-
    schema of this specification.  In JSON documents, the $schema keyword
@@ -1041,9 +1041,9 @@ Table of Contents
    exception and provides a mechanism for importing definitions from
    external schemas.
 
-3.4.  3.4.  Type System Rules
+3.4.  Type System Rules
 
-3.4.1.  3.4.1.  Schema Declarations
+3.4.1.  Schema Declarations
 
    *  Every schema element MUST declare a type referring to a primitive,
       compound, or reusable type.
@@ -1071,7 +1071,7 @@ Table of Contents
 
       -  *Extended Compounds:* map, set.
 
-3.4.2.  3.4.2.  Reusable Types
+3.4.2.  Reusable Types
 
    *  Reusable types MUST be defined in the definitions section.
 
@@ -1079,7 +1079,7 @@ Table of Contents
       name within its namespace.  The same name MAY appear in different
       namespaces.
 
-3.4.3.  3.4.3.  Type References
+3.4.3.  Type References
 
    *  Use $ref to reference types declared in the same document.
 
@@ -1087,7 +1087,7 @@ Table of Contents
 
    *  $ref MAY include a description attribute for additional context.
 
-3.4.4.  3.4.4.  Dynamic Structures
+3.4.4.  Dynamic Structures
 
    *  Use the map type for dynamic key–value pairs.  The object type
       requires at least one property and cannot model fully dynamic
@@ -1097,13 +1097,13 @@ Table of Contents
       or set MUST reference a reusable type, a primitive type, or a
       locally declared compound type.
 
-3.5.  3.5.  Composition Rules
+3.5.  Composition Rules
 
    This section defines the rules for composing schemas.  Further,
    OPTIONAL composition rules are defined in the [JSTRUCT-COMPOSITION]
    extension specification.
 
-3.5.1.  3.5.1.  Unions
+3.5.1.  Unions
 
    *  Type unions are formed as sets of primitive types and type
       references.  It is NOT permitted to define a compound type inline
@@ -1145,7 +1145,7 @@ Table of Contents
      "type": ["string", { "type": "object", "properties": { "name": { "type": "string" } } } ]
    }
 
-3.5.2.  3.5.2.  Prohibition of Top-Level Unions
+3.5.2.  Prohibition of Top-Level Unions
 
    *  The root of a JSON Structure document MUST NOT be an array.
 
@@ -1153,7 +1153,7 @@ Table of Contents
       instance, the $root keyword MUST be used to designate a type union
       as the root type.
 
-3.6.  3.6.  Identifier Rules
+3.6.  Identifier Rules
 
    All property names and type names MUST conform to the regular
    expression [A-Za-z_][A-Za-z0-9_]*. They MUST begin with a letter or
@@ -1166,9 +1166,9 @@ Table of Contents
    If names need to contain characters outside of this range, consider
    using the [JSTRUCT-ALTNAMES] extension specification to define those.
 
-3.7.  3.7.  Structural Keywords
+3.7.  Structural Keywords
 
-3.7.1.  3.7.1.  The type Keyword
+3.7.1.  The type Keyword
 
    Declares the type of a schema element as a primitive or compound
    type.  The type keyword MUST be present in every schema element.  For
@@ -1181,7 +1181,7 @@ Table of Contents
      "type": "string"
    }
 
-3.7.2.  3.7.2.  The properties Keyword
+3.7.2.  The properties Keyword
 
    properties defines the properties of an object type.
 
@@ -1198,7 +1198,7 @@ Table of Contents
      }
    }
 
-3.7.3.  3.7.3.  The required Keyword
+3.7.3.  The required Keyword
 
    required defines the required properties of an object type.  The
    required keyword MUST only be used in schemas of type object.
@@ -1242,7 +1242,7 @@ Table of Contents
      "required": [["name", "fins"], ["name", "legs"]]
    }
 
-3.7.4.  3.7.4.  The items Keyword
+3.7.4.  The items Keyword
 
    Defines the schema for elements in an array or set type.  The value
    is a type reference or a primitive type name or a locally declared
@@ -1260,7 +1260,7 @@ Table of Contents
      "items": { "type": "string" }
    }
 
-3.7.5.  3.7.5.  The values Keyword
+3.7.5.  The values Keyword
 
    Defines the schema for values in a map type.
 
@@ -1274,7 +1274,7 @@ Table of Contents
      "values": { "type": "string" }
    }
 
-3.7.6.  3.7.6.  The const Keyword
+3.7.6.  The const Keyword
 
    Constrains the values of the JSON node described by the schema to a
    single, specific value.  The const keyword MUST appear only in
@@ -1288,7 +1288,7 @@ Table of Contents
      "const": "example"
    }
 
-3.7.7.  3.7.7.  The enum Keyword
+3.7.7.  The enum Keyword
 
    Constrains a schema to match one of a specific set of values.  The
    enum keyword MUST appear only in schemas with a primitive type, and
@@ -1305,7 +1305,7 @@ Table of Contents
    It is NOT permitted to use enum in conjunction with a type union in
    type.
 
-3.7.8.  3.7.8.  The additionalProperties Keyword
+3.7.8.  The additionalProperties Keyword
 
    additionalProperties defines whether additional properties are
    allowed in an object type and, optionally, what their schema is.  The
@@ -1323,13 +1323,13 @@ Table of Contents
      "additionalProperties": false
    }
 
-3.8.  3.8.  Type Annotation Keywords
+3.8.  Type Annotation Keywords
 
    Type annotation keywords provide additional metadata about the
    underlying type.  These keywords are used for documentation and
    validation of additional constraints on types.
 
-3.8.1.  3.8.1.  The maxLength Keyword
+3.8.1.  The maxLength Keyword
 
    Specifies the maximum allowed length for a string.  The maxLength
    keyword MUST be used only with string types, and the string’s length
@@ -1346,7 +1346,7 @@ Table of Contents
      "maxLength": 255
    }
 
-3.8.2.  3.8.2.  The precision Keyword
+3.8.2.  The precision Keyword
 
    Specifies the total number of significant digits for numeric values.
    The precision keyword is used as an annotation for number or decimal
@@ -1359,7 +1359,7 @@ Table of Contents
      "precision": 10
    }
 
-3.8.3.  3.8.3.  The scale Keyword
+3.8.3.  The scale Keyword
 
    Specifies the number of digits to the right of the decimal point for
    numeric values.  The scale keyword is used as an annotation for
@@ -1372,7 +1372,7 @@ Table of Contents
      "scale": 2
    }
 
-3.8.4.  3.8.4.  The contentEncoding Keyword
+3.8.4.  The contentEncoding Keyword
 
    Specifies the encoding of a binary value.  The contentEncoding
    keyword is used as an annotation for binary types.
@@ -1396,7 +1396,7 @@ Table of Contents
      "encoding": "base64"
    }
 
-3.8.5.  3.8.5.  The contentCompression Keyword
+3.8.5.  The contentCompression Keyword
 
    Specifies the compression algorithm used for a binary value before
    encoding.  The contentCompression keyword is used as an annotation
@@ -1424,7 +1424,7 @@ Table of Contents
      "compression": "gzip"
    }
 
-3.8.6.  3.8.6.  The contentMediaType Keyword
+3.8.6.  The contentMediaType Keyword
 
    Specifies the media type of a binary value.  The contentMediaType
    keyword is used as an annotation for binary types.
@@ -1440,12 +1440,12 @@ Table of Contents
      "mediaType": "image/png"
    }
 
-3.9.  3.9.  Documentation Keywords
+3.9.  Documentation Keywords
 
    Documentation keywords provide descriptive information for schema
    elements.  They are OPTIONAL but RECOMMENDED for clarity.
 
-3.9.1.  3.9.1.  The description Keyword
+3.9.1.  The description Keyword
 
    Provides a human-readable description of a schema element.  The
    description keyword SHOULD be used to document any schema element.
@@ -1461,7 +1461,7 @@ Table of Contents
    provides an extension to define several concurrent descriptions in
    multiple languages.
 
-3.9.2.  3.9.2.  The examples Keyword
+3.9.2.  The examples Keyword
 
    Provides example instance values that conform to the schema.  The
    examples keyword SHOULD be used to document potential instance
@@ -1474,7 +1474,7 @@ Table of Contents
      "examples": ["example1", "example2"]
    }
 
-3.10.  3.10.  Extensions and Add-Ins
+3.10.  Extensions and Add-Ins
 
    The abstract and $extends keywords enable controlled type extension,
    supporting basic object-oriented-programming-style inheritance while
@@ -1576,7 +1576,7 @@ Table of Contents
      "instructions": "Leave at the back door"
    }
 
-3.10.1.  3.10.1.  The abstract Keyword
+3.10.1.  The abstract Keyword
 
    The abstract keyword declares a type as abstract.  This prohibits its
    direct use in any type declaration or as the type of a schema
@@ -1601,7 +1601,7 @@ Table of Contents
 
       -  Abstract types MAY extend other abstract types via $extends.
 
-3.10.2.  3.10.2.  The $extends Keyword
+3.10.2.  The $extends Keyword
 
    The $extends keyword merges all properties from an abstract base type
    into the extending type.
@@ -1623,7 +1623,7 @@ Table of Contents
       -  The extending type MUST merge the abstract type’s properties
          and constraints and MUST NOT redefine any inherited property.
 
-3.10.3.  3.10.3.  The $offers Keyword
+3.10.3.  The $offers Keyword
 
    The $offers keyword is used to advertise add-in types that are
    available for use in a schema document.  The $offers keyword is a map
@@ -1645,7 +1645,7 @@ Table of Contents
 
       -  The keys in the $offers map MUST be unique.
 
-3.10.4.  3.10.4.  The $uses Keyword
+3.10.4.  The $uses Keyword
 
    The $uses keyword is used to apply add-in types to a schema _in an
    instance document_ that references the schema.  The keyword MAY be
@@ -1667,7 +1667,7 @@ Table of Contents
          o  JSON Pointers to add-in schema definitions in the same meta-
             schema document.
 
-4.  4.  Reserved Keywords
+4.  Reserved Keywords
 
    The following keywords are reserved in JSON Structure and MUST NOT be
    used as custom annotations or extension keywords:
@@ -1722,7 +1722,7 @@ Table of Contents
 
    *  values
 
-5.  5.  Security Considerations
+5.  Security Considerations
 
    JSON Structure documents are self-contained and MUST NOT allow
    external references except for the $schema and $addins keywords.
@@ -1730,7 +1730,7 @@ Table of Contents
    same document to eliminate security vulnerabilities related to
    external schema inclusion.
 
-6.  6.  IANA Considerations
+6.  IANA Considerations
 
    This document has no IANA actions.
 
