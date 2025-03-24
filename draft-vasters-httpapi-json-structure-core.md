@@ -46,27 +46,27 @@ informative:
     title: "JSON Structure Alternate Names"
     author: 
       - fullname: Clemens Vasters
-    target: https://github.com/json-structure/altername-names
+    target: https://json-structure.github.io/altername-names
   JSTRUCT-COMPOSITION: 
     title: "JSON Structure Conditional Composition"
     author: 
       - fullname: Clemens Vasters
-    target: https://github.com/json-structure/conditional-composition
+    target: https://json-structure.github.io/conditional-composition
   JSTRUCT-IMPORT:
     title: "JSON Structure Import"
     author: 
       - fullname: Clemens Vasters
-    target: https://github.com/json-structure/import
+    target: https://json-structure.github.io/import
   JSTRUCT-UNITS:
     title: "JSON Structure Units"
     author: 
       - fullname: Clemens Vasters
-    target: https://github.com/json-structure/units
+    target: https://json-structure.github.io/units
   JSTRUCT-VALIDATION: 
     title: "JSON Structure Validation"
     author: 
       - fullname: Clemens Vasters
-    target: https://github.com/json-structure/validation
+    target: https://json-structure.github.io/validation
 
 
 --- abstract
