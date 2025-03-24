@@ -46,7 +46,7 @@ informative:
     title: "JSON Structure Alternate Names"
     author:
       - fullname: Clemens Vasters
-    target: https://json-structure.github.io/altername-names
+    target: https://json-structure.github.io/alternate-names
   JSTRUCT-COMPOSITION:
     title: "JSON Structure Conditional Composition"
     author:
