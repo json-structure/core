@@ -2,14 +2,14 @@
 
 
 
-WG Working Group                                              C. Vasters
+Building Blocks for HTTP APIs                                 C. Vasters
 Internet-Draft                                     Microsoft Corporation
 Intended status: Informational                             24 March 2025
 Expires: 25 September 2025
 
 
                           JSON Structure Core
-               draft-vasters-httpapi-json-structure-core
+            draft-vasters-httpapi-json-structure-core-latest
 
 Abstract
 
@@ -24,13 +24,15 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at https://json-
-   structure.github.io/core.  Status information for this document may
-   be found at https://datatracker.ietf.org/doc/draft-vasters-httpapi-
-   json-structure/.
+   structure.github.io/core/draft-vasters-httpapi-json-structure-
+   core.html.  Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-vasters-httpapi-json-
+   structure-core/.
 
-   Discussion of this document takes place on the WG Working Group
-   mailing list (mailto:WG@example.com), which is archived at
-   https://example.com/WG.
+   Discussion of this document takes place on the Building Blocks for
+   HTTP APIs mailing list (mailto:httpapi@ietf.org), which is archived
+   at https://mailarchive.ietf.org/arch/browse/httpapi/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/httpapi/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/json-structure/core.
@@ -1802,7 +1804,7 @@ Table of Contents
 
    [JSTRUCT-ALTNAMES]
               Vasters, C., "JSON Structure Alternate Names", n.d.,
-              <https://json-structure.github.io/altername-names>.
+              <https://json-structure.github.io/alternate-names>.
 
    [JSTRUCT-COMPOSITION]
               Vasters, C., "JSON Structure Conditional Composition",
