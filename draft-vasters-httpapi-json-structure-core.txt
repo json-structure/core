@@ -23,8 +23,8 @@ About This Document
 
    This note is to be removed before publishing as an RFC.
 
-   The latest revision of this draft can be found at
-   https://example.com/LATEST.  Status information for this document may
+   The latest revision of this draft can be found at https://json-
+   structure.github.io/core.  Status information for this document may
    be found at https://datatracker.ietf.org/doc/draft-vasters-httpapi-
    json-structure/.
 
@@ -33,7 +33,7 @@ About This Document
    https://example.com/WG.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/USER/REPO.
+   https://github.com/json-structure/core.
 
 Status of This Memo
 
@@ -332,13 +332,14 @@ Table of Contents
    Large integer and decimal types are used to represent high-precision
    numeric values that exceed the range of IEEE 754 double-precision
    format, which is the foundation for the number type in JSON.  Per
-   [RFC8259] Section 6, interoperable JSON numbers have a range of -2⁵³
-   to 2⁵³–1, which is less than the range of 64-bit and 128-bit values.
-   Therefore, the int64, uint64, int128, uint128, and decimal types are
-   represented as strings to preserve precision.
+   Section 6 of [RFC8259], interoperable JSON numbers have a range of
+   -2⁵³ to 2⁵³–1, which is less than the range of 64-bit and 128-bit
+   values.  Therefore, the int64, uint64, int128, uint128, and decimal
+   types are represented as strings to preserve precision.
 
    The syntax for strings representing large integer and decimal types
-   is based on the [RFC8259] Section 6 syntax for integers and decimals:
+   is based on the Section 6 of [RFC8259] syntax for integers and
+   decimals:
 
    *  integer = [minus] int
 
@@ -439,8 +440,8 @@ Table of Contents
 
    *  Constraints:
 
-      -  The string MUST conform to the [RFC8259] Section 6 definition
-         for the [minus] int syntax.
+      -  The string MUST conform to the Section 6 of [RFC8259]
+         definition for the [minus] int syntax.
 
       -  The string value MUST represent a 64-bit integer in the range
          -2⁶³ to 2⁶³–1.
@@ -453,8 +454,8 @@ Table of Contents
 
    *  Constraints:
 
-      -  The string MUST conform to the [RFC8259] Section 6 definition
-         for the int syntax.
+      -  The string MUST conform to the Section 6 of [RFC8259]
+         definition for the int syntax.
 
       -  The string value MUST represent a 64-bit integer in the range 0
          to 2⁶⁴–1.
@@ -467,8 +468,8 @@ Table of Contents
 
    *  Constraints:
 
-      -  The string MUST conform to the [RFC8259] Section 6 definition
-         for the [minus] int syntax.
+      -  The string MUST conform to the Section 6 of [RFC8259]
+         definition for the [minus] int syntax.
 
       -  The string value MUST represent a 128-bit integer in the range
          -2¹²⁷ to 2¹²⁷–1.
@@ -481,8 +482,8 @@ Table of Contents
 
    *  Constraints:
 
-      -  The string MUST conform to the [RFC8259] Section 6 definition
-         for the int syntax.
+      -  The string MUST conform to the Section 6 of [RFC8259]
+         definition for the int syntax.
 
       -  The string value MUST represent a 128-bit integer in the range
          0 to 2¹²⁸–1.
@@ -541,7 +542,7 @@ Table of Contents
 
    *  Constraints:
 
-      -  The string value MUST conform to the [RFC8259] Section 6
+      -  The string value MUST conform to the Section 6 of [RFC8259]
          definition for the [minus] int frac syntax.
 
       -  Defaults: 34 significant digits and 7 fractional digits, which
@@ -1801,24 +1802,24 @@ Table of Contents
 
    [JSTRUCT-ALTNAMES]
               Vasters, C., "JSON Structure Alternate Names", n.d.,
-              <https://github.com/json-structure/altername-names>.
+              <https://json-structure.github.io/altername-names>.
 
    [JSTRUCT-COMPOSITION]
               Vasters, C., "JSON Structure Conditional Composition",
-              n.d., <https://github.com/json-structure/conditional-
+              n.d., <https://json-structure.github.io/conditional-
               composition>.
 
    [JSTRUCT-IMPORT]
               Vasters, C., "JSON Structure Import", n.d.,
-              <https://github.com/json-structure/import>.
+              <https://json-structure.github.io/import>.
 
    [JSTRUCT-UNITS]
               Vasters, C., "JSON Structure Units", n.d.,
-              <https://github.com/json-structure/units>.
+              <https://json-structure.github.io/units>.
 
    [JSTRUCT-VALIDATION]
               Vasters, C., "JSON Structure Validation", n.d.,
-              <https://github.com/json-structure/validation>.
+              <https://json-structure.github.io/validation>.
 
 Acknowledgments
 

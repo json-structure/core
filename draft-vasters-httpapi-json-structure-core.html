@@ -7,14 +7,14 @@
 <title>JSON Structure Core</title>
 <meta content="Clemens Vasters" name="author">
 <meta content="
-       This document specifies  JSON Structure , a data structure definition
-language that enforces strict typing, modularity, and determinism.  JSON
-Structure Core  describes JSON-encoded data such that mapping to and from
-programming languages and databases and other data formats is straightforward. 
+       This document specifies  JSON Structure , a data structure definition language
+that enforces strict typing, modularity, and determinism.  JSON Structure Core 
+describes JSON-encoded data such that mapping to and from programming languages
+and databases and other data formats is straightforward. 
     " name="description">
 <meta content="xml2rfc 3.28.0" name="generator">
-<meta content="next generation" name="keyword">
-<meta content="unicorn" name="keyword">
+<meta content="JSON" name="keyword">
+<meta content="schema" name="keyword">
 <meta content="draft-vasters-httpapi-json-structure-core" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.28.0
@@ -1083,10 +1083,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">JSON Structure Core</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document specifies <em>JSON Structure</em>, a data structure definition
-language that enforces strict typing, modularity, and determinism. <em>JSON
-Structure Core</em> describes JSON-encoded data such that mapping to and from
-programming languages and databases and other data formats is straightforward.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document specifies <em>JSON Structure</em>, a data structure definition language
+that enforces strict typing, modularity, and determinism. <em>JSON Structure Core</em>
+describes JSON-encoded data such that mapping to and from programming languages
+and databases and other data formats is straightforward.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1094,14 +1094,14 @@ programming languages and databases and other data formats is straightforward.<a
       </h2>
 <p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
 <p id="section-note.1-2">
-        The latest revision of this draft can be found at <span><a href="https://example.com/LATEST">https://example.com/LATEST</a></span>.
+        The latest revision of this draft can be found at <span><a href="https://json-structure.github.io/core">https://json-structure.github.io/core</a></span>.
         Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-vasters-httpapi-json-structure/">https://datatracker.ietf.org/doc/draft-vasters-httpapi-json-structure/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
 <p id="section-note.1-3">
         Discussion of this document takes place on the
         WG Working Group mailing list (<span><a href="mailto:WG@example.com">mailto:WG@example.com</a></span>),
         which is archived at <span><a href="https://example.com/WG">https://example.com/WG</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
 <p id="section-note.1-4">Source for this draft and an issue tracker can be found at
-        <span><a href="https://github.com/USER/REPO">https://github.com/USER/REPO</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+        <span><a href="https://github.com/json-structure/core">https://github.com/json-structure/core</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1362,27 +1362,44 @@ programming languages and databases and other data formats is straightforward.<a
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">This document specifies <em>JSON Structure</em>, a data structure definition language that enforces strict typing, modularity, and determinism. <em>JSON Structure</em> documents (schemas) describe JSON-encoded data such that mapping JSON encoded data to and from programming languages and databases and other data formats becomes straightforward.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2"><em>JSON Structure</em> is extensible, allowing additional features to be layered on top. The core language is a data-definition language. The "validation" and "conditional composition" extension specification add rules that allow for complex pattern matching of <em>JSON Structure</em> documents against JSON data for validation purposes.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">Complementing <em>JSON Structure</em> are a set of extension specifications that extend the core schema language with additional, OPTIONAL features:<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-1">This document specifies <em>JSON Structure</em>, a data structure definition language
+that enforces strict typing, modularity, and determinism. <em>JSON Structure</em>
+documents (schemas) describe JSON-encoded data such that mapping JSON encoded
+data to and from programming languages and databases and other data formats
+becomes straightforward.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2"><em>JSON Structure</em> is extensible, allowing additional features to be layered on
+top. The core language is a data-definition language. The "validation" and
+"conditional composition" extension specification add rules that allow for
+complex pattern matching of <em>JSON Structure</em> documents against JSON data for
+validation purposes.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">Complementing <em>JSON Structure</em> are a set of extension specifications that extend
+the core schema language with additional, OPTIONAL features:<a href="#section-1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-1-4.1">
-          <p id="section-1-4.1.1"><span>[<a href="#JSTRUCT-ALTNAMES" class="cite xref">JSTRUCT-ALTNAMES</a>]</span>: Provides a mechanism for declaring alternate names and symbols for types and properties, including for the purposes of internationalization.<a href="#section-1-4.1.1" class="pilcrow">¶</a></p>
+          <p id="section-1-4.1.1"><span>[<a href="#JSTRUCT-ALTNAMES" class="cite xref">JSTRUCT-ALTNAMES</a>]</span>: Provides a mechanism for declaring alternate names and
+symbols for types and properties, including for the purposes of
+internationalization.<a href="#section-1-4.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-4.2">
-          <p id="section-1-4.2.1"><span>[<a href="#JSTRUCT-UNITS" class="cite xref">JSTRUCT-UNITS</a>]</span>: Defines keywords for specifying symbols, scientific units, and currency codes on types and properties.<a href="#section-1-4.2.1" class="pilcrow">¶</a></p>
+          <p id="section-1-4.2.1"><span>[<a href="#JSTRUCT-UNITS" class="cite xref">JSTRUCT-UNITS</a>]</span>: Defines keywords for specifying symbols, scientific units,
+and currency codes on types and properties.<a href="#section-1-4.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-4.3">
-          <p id="section-1-4.3.1"><span>[<a href="#JSTRUCT-COMPOSITION" class="cite xref">JSTRUCT-COMPOSITION</a>]</span>: Defines a set of conditional composition rules for evaluating schemas.<a href="#section-1-4.3.1" class="pilcrow">¶</a></p>
+          <p id="section-1-4.3.1"><span>[<a href="#JSTRUCT-COMPOSITION" class="cite xref">JSTRUCT-COMPOSITION</a>]</span>: Defines a set of conditional composition rules for
+evaluating schemas.<a href="#section-1-4.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-4.4">
-          <p id="section-1-4.4.1"><span>[<a href="#JSTRUCT-VALIDATION" class="cite xref">JSTRUCT-VALIDATION</a>]</span>: Specifies extensions to the core schema language for declaring validation rules.<a href="#section-1-4.4.1" class="pilcrow">¶</a></p>
+          <p id="section-1-4.4.1"><span>[<a href="#JSTRUCT-VALIDATION" class="cite xref">JSTRUCT-VALIDATION</a>]</span>: Specifies extensions to the core schema language for
+declaring validation rules.<a href="#section-1-4.4.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-4.5">
-          <p id="section-1-4.5.1"><span>[<a href="#JSTRUCT-IMPORT" class="cite xref">JSTRUCT-IMPORT</a>]</span>: Defines a mechanism for importing external schemas and definitions into a schema document.<a href="#section-1-4.5.1" class="pilcrow">¶</a></p>
+          <p id="section-1-4.5.1"><span>[<a href="#JSTRUCT-IMPORT" class="cite xref">JSTRUCT-IMPORT</a>]</span>: Defines a mechanism for importing external schemas and
+definitions into a schema document.<a href="#section-1-4.5.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-1-5">These extension specifications are enabled by the extensibility (<a href="#extensions-and-add-ins" class="auto internal xref">Section 3.10</a>) features and can be applied to meta-schemas, schemas, and JSON document instances.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-5">These extension specifications are enabled by the extensibility
+(<a href="#extensions-and-add-ins" class="auto internal xref">Section 3.10</a>) features and can be applied to meta-schemas,
+schemas, and JSON document instances.<a href="#section-1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions">
@@ -1412,7 +1429,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-schema">
 <a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-schema" class="section-name selfRef">Schema</a>
           </h4>
-<p id="section-3.1.1-1">A "schema" is a JSON object that describes, constrains, and interprets a JSON node.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-1">A "schema" is a JSON object that describes, constrains, and interprets a JSON
+node.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-2">This schema constrains a JSON node to be of type <code>string</code>:<a href="#section-3.1.1-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.1.1-3">
 <pre>
@@ -1422,7 +1440,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre><a href="#section-3.1.1-3" class="pilcrow">¶</a>
 </div>
-<p id="section-3.1.1-4">In the case of a schema that references a compound type (<code>object</code>, <code>set</code>, <code>array</code>, <code>map</code>), the schema further describes the structure of the compound type. Such a schema is a "type declaration" as it yields a new type that can be referenced by other schemas if placed into a namespace (<a href="#namespaces" class="auto internal xref">Section 3.3.1</a>).<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-4">In the case of a schema that references a compound type (<code>object</code>, <code>set</code>,
+<code>array</code>, <code>map</code>), the schema further describes the structure of the compound
+type. Such a schema is a "type declaration" as it yields a new type that can be
+referenced by other schemas if placed into a namespace (<a href="#namespaces" class="auto internal xref">Section 3.3.1</a>).<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.1.1-5">
 <pre>
 {
@@ -1434,15 +1455,32 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre><a href="#section-3.1.1-5" class="pilcrow">¶</a>
 </div>
-<p id="section-3.1.1-6">All schemas have an associated name that serves as an identifier. In the example above where the schema is a root object, the name is the value of the <code>name</code> property.<a href="#section-3.1.1-6" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-7">When the schema is placed into a namespace (<a href="#namespaces" class="auto internal xref">Section 3.3.1</a>) or embedded into a properties (<a href="#properties-keyword" class="auto internal xref">Section 3.7.2</a>) section of an <code>object</code> type, the name is the key under which the schema is stored.<a href="#section-3.1.1-7" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-6">All schemas have an associated name that serves as an identifier. In the example
+above where the schema is a root object, the name is the value of the <code>name</code>
+property.<a href="#section-3.1.1-6" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-7">When the schema is placed into a namespace (<a href="#namespaces" class="auto internal xref">Section 3.3.1</a>) or embedded into a
+properties (<a href="#properties-keyword" class="auto internal xref">Section 3.7.2</a>) section of an <code>object</code> type, the name is the
+key under which the schema is stored.<a href="#section-3.1.1-7" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-8">Further rules for schemas are defined in section 3.4 (<a href="#type-system-rules" class="auto internal xref">Section 3.4</a>).<a href="#section-3.1.1-8" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-9">A "schema document" is a schema that represents the root of a schema hierarchy and is the container format in which schemas are stored on disk or exchanged. A schema document MAY contain multiple type declarations and namespaces. The structure of schema documents is defined in section 3.3 (<a href="#document-structure" class="auto internal xref">Section 3.3</a>).<a href="#section-3.1.1-9" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-10">JSON Structure Core is extensible. All keywords that are not explicitly defined in this document MAY be used for custom annotations and extensions. This also applies to keywords that begin with the <code>$</code> character. A complete list of reserved keywords is provided in section 3.11 (<a href="#reserved-keywords" class="auto internal xref">Section 4</a>).<a href="#section-3.1.1-10" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-11">The semantics of keywords defined in this document MAY be expanded by extension specifications, but the core semantics of the keywords defined in this document MUST NOT be altered.<a href="#section-3.1.1-11" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-12">Be mindful that the use of custom keywords and annotations might conflict with future versions of this specification or other extensions and that the authors of this specification will not go out of their way to avoid such conflicts.<a href="#section-3.1.1-12" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-9">A "schema document" is a schema that represents the root of a schema hierarchy
+and is the container format in which schemas are stored on disk or exchanged. A
+schema document MAY contain multiple type declarations and namespaces. The
+structure of schema documents is defined in section 3.3
+(<a href="#document-structure" class="auto internal xref">Section 3.3</a>).<a href="#section-3.1.1-9" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-10">JSON Structure Core is extensible. All keywords that are not explicitly defined
+in this document MAY be used for custom annotations and extensions. This also
+applies to keywords that begin with the <code>$</code> character. A complete list of
+reserved keywords is provided in section 3.11 (<a href="#reserved-keywords" class="auto internal xref">Section 4</a>).<a href="#section-3.1.1-10" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-11">The semantics of keywords defined in this document MAY be expanded by extension
+specifications, but the core semantics of the keywords defined in this document
+MUST NOT be altered.<a href="#section-3.1.1-11" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-12">Be mindful that the use of custom keywords and annotations might conflict with
+future versions of this specification or other extensions and that the authors
+of this specification will not go out of their way to avoid such conflicts.<a href="#section-3.1.1-12" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-13">Section 3.10 (<a href="#extensions-and-add-ins" class="auto internal xref">Section 3.10</a>) details the extensibility features.<a href="#section-3.1.1-13" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-14">Formally, a schema is a constrained non-schema (<a href="#non-schema" class="auto internal xref">Section 3.1.2</a>) that requires a type (<a href="#type-keyword" class="auto internal xref">Section 3.7.1</a>) keyword or a <a href="#ref-keyword" class="auto internal xref">Section 3.3.6</a> keyword to be a schema.<a href="#section-3.1.1-14" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-14">Formally, a schema is a constrained non-schema (<a href="#non-schema" class="auto internal xref">Section 3.1.2</a>) that requires a
+type (<a href="#type-keyword" class="auto internal xref">Section 3.7.1</a>) keyword or a <a href="#ref-keyword" class="auto internal xref">Section 3.3.6</a> keyword to be a
+schema.<a href="#section-3.1.1-14" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="non-schema">
@@ -1450,8 +1488,11 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-non-schema">
 <a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-non-schema" class="section-name selfRef">Non-Schema</a>
           </h4>
-<p id="section-3.1.2-1">Non-schemas are objects that do not declare or refer to a type. The root of a schema document (<a href="#document-structure" class="auto internal xref">Section 3.3</a>) is a non-schema unless it contains a <code>type</code> keyword.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.1.2-2">A namespace is a non-schema that contains type declarations and other namespaces.<a href="#section-3.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-1">Non-schemas are objects that do not declare or refer to a type. The root of a
+schema document (<a href="#document-structure" class="auto internal xref">Section 3.3</a>) is a non-schema unless it contains a
+<code>type</code> keyword.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-2">A namespace is a non-schema that contains type declarations and other
+namespaces.<a href="#section-3.1.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="meta-schemas">
@@ -1459,9 +1500,18 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-meta-schemas">
 <a href="#section-3.1.3" class="section-number selfRef">3.1.3. </a><a href="#name-meta-schemas" class="section-name selfRef">Meta-Schemas</a>
           </h4>
-<p id="section-3.1.3-1">A meta-schema is a schema document that defines the structure and constraints of another schema document. Meta-schemas are used to validate schema documents and to ensure that schemas are well-formed and conform to the JSON Structure Core specification.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.1.3-2">The meta-schemas for JSON Structure Core and the extension specifications are enumerated in the Appendix: Metaschemas (<a href="#schema" class="auto internal xref">Section 3.1.1</a>).<a href="#section-3.1.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.1.3-3">Meta-schemas can extend existing meta-schemas by adding new keywords or constraints. The <code>$schema</code> keyword is used to reference the meta-schema that a schema document conforms to, the <code>$id</code> keyword is used to define the identifier of the new meta-schema, and the <code>$import</code> keyword defined in the <span>[<a href="#JSTRUCT-IMPORT" class="cite xref">JSTRUCT-IMPORT</a>]</span> extension specification is used to import all definitions from the foundational meta-schema.<a href="#section-3.1.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-1">A meta-schema is a schema document that defines the structure and constraints of
+another schema document. Meta-schemas are used to validate schema documents and
+to ensure that schemas are well-formed and conform to the JSON Structure Core
+specification.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-2">The meta-schemas for JSON Structure Core and the extension specifications are
+enumerated in the Appendix: Metaschemas (<a href="#schema" class="auto internal xref">Section 3.1.1</a>).<a href="#section-3.1.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-3">Meta-schemas can extend existing meta-schemas by adding new keywords or
+constraints. The <code>$schema</code> keyword is used to reference the meta-schema that a
+schema document conforms to, the <code>$id</code> keyword is used to define the identifier
+of the new meta-schema, and the <code>$import</code> keyword defined in the
+<span>[<a href="#JSTRUCT-IMPORT" class="cite xref">JSTRUCT-IMPORT</a>]</span> extension specification is used to import all definitions
+from the foundational meta-schema.<a href="#section-3.1.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1471,8 +1521,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-data-types">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-data-types" class="section-name selfRef">Data Types</a>
         </h3>
-<p id="section-3.2-1">The data types that can be used with the <code>type</code> keyword are categorized into JSON Primitive Types, Extended Types, Compound Types, and compound reusable types <a href="#reusable-types" class="auto internal xref">Section 3.4.2</a>.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">While JSON Structure builds on the JSON data type model, it introduces a rich set of types to represent structured data more accurately and to allow more precise integration with common data types used in programming languages and data formats. All these extended types have a well-defined representation in JSON primitive types.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-1">The data types that can be used with the <code>type</code> keyword are categorized into
+JSON Primitive Types, Extended Types, Compound Types, and compound reusable
+types <a href="#reusable-types" class="auto internal xref">Section 3.4.2</a>.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">While JSON Structure builds on the JSON data type model, it introduces a rich
+set of types to represent structured data more accurately and to allow more
+precise integration with common data types used in programming languages and
+data formats. All these extended types have a well-defined representation in
+JSON primitive types.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 <div id="json-primitive-types">
 <section id="section-3.2.1">
           <h4 id="name-json-primitive-types">
@@ -1490,7 +1546,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.1.1-2.1.1">Base type: <code>string</code> <span><a href="https://rfc-editor.org/rfc/rfc8259#section-7" class="relref">Section 7</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span><a href="#section-3.2.1.1-2.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-3.2.1.1-2.2">
-                <p id="section-3.2.1.1-2.2.1">Annotations: The <code>maxLength</code> keyword can be used on a schema with the <code>string</code> type to specify the maximum length of the string. By default, the maximum length is unlimited. The purpose of the keyword is to inform consumers of the maximum space required to store the string.<a href="#section-3.2.1.1-2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-3.2.1.1-2.2.1">Annotations: The <code>maxLength</code> keyword can be used on a schema with the <code>string</code>
+type to specify the maximum length of the string. By default, the maximum
+length is unlimited. The purpose of the keyword is to inform consumers of the
+maximum space required to store the string.<a href="#section-3.2.1.1-2.2.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </section>
@@ -1506,7 +1565,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.1.2-2.1.1">Base type: <code>number</code> <span><a href="https://rfc-editor.org/rfc/rfc8259#section-6" class="relref">Section 6</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span><a href="#section-3.2.1.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
-<p id="section-3.2.1.2-3">Note that the <code>number</code> representation in JSON is a textual representation of a decimal number (base-10) and therefore cannot accurately represent all possible values of IEE754 floating-point numbers (base-2), in spite of JSON <code>number</code> leaning on the IEEE754 standard as a reference for the value space.<a href="#section-3.2.1.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2.1.2-3">Note that the <code>number</code> representation in JSON is a textual representation of a
+decimal number (base-10) and therefore cannot accurately represent all possible
+values of IEE754 floating-point numbers (base-2), in spite of JSON <code>number</code>
+leaning on the IEEE754 standard as a reference for the value space.<a href="#section-3.2.1.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="boolean">
@@ -1542,9 +1604,17 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-extended-primitive-types">
 <a href="#section-3.2.2" class="section-number selfRef">3.2.2. </a><a href="#name-extended-primitive-types" class="section-name selfRef">Extended Primitive Types</a>
           </h4>
-<p id="section-3.2.2-1">Extended types impose additional semantic constraints on the underlying JSON types. These types are used to represent binary data, high-precision numeric values, date and time information, and structured data.<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.2-2">Large integer and decimal types are used to represent high-precision numeric values that exceed the range of IEEE 754 double-precision format, which is the foundation for the <code>number</code> type in JSON. Per <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> Section 6, interoperable JSON numbers have a range of -2⁵³ to 2⁵³–1, which is less than the range of 64-bit and 128-bit values. Therefore, the <code>int64</code>, <code>uint64</code>, <code>int128</code>, <code>uint128</code>, and <code>decimal</code> types are represented as strings to preserve precision.<a href="#section-3.2.2-2" class="pilcrow">¶</a></p>
-<p id="section-3.2.2-3">The syntax for strings representing large integer and decimal types is based on the <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> Section 6 syntax for integers and decimals:<a href="#section-3.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2.2-1">Extended types impose additional semantic constraints on the underlying JSON
+types. These types are used to represent binary data, high-precision numeric
+values, date and time information, and structured data.<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.2-2">Large integer and decimal types are used to represent high-precision numeric
+values that exceed the range of IEEE 754 double-precision format, which is the
+foundation for the <code>number</code> type in JSON. Per <span><a href="https://rfc-editor.org/rfc/rfc8259#section-6" class="relref">Section 6</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span>,
+interoperable JSON numbers have a range of -2⁵³ to 2⁵³–1, which is less than the
+range of 64-bit and 128-bit values. Therefore, the <code>int64</code>, <code>uint64</code>, <code>int128</code>,
+<code>uint128</code>, and <code>decimal</code> types are represented as strings to preserve precision.<a href="#section-3.2.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2.2-3">The syntax for strings representing large integer and decimal types is based on
+the <span><a href="https://rfc-editor.org/rfc/rfc8259#section-6" class="relref">Section 6</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> syntax for integers and decimals:<a href="#section-3.2.2-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2-4.1">
               <p id="section-3.2.2-4.1.1">integer = <code>[minus] int</code><a href="#section-3.2.2-4.1.1" class="pilcrow">¶</a></p>
@@ -1558,7 +1628,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <h5 id="name-binary">
 <a href="#section-3.2.2.1" class="section-number selfRef">3.2.2.1. </a><a href="#name-binary" class="section-name selfRef"><code>binary</code></a>
             </h5>
-<p id="section-3.2.2.1-1">A binary value. The default encoding is base64. The type annotation keywords <code>contentEncoding</code>, <code>contentCompression</code>, and <code>contentMediaType</code> can be used to specify the encoding, compression, and media type of the binary data.<a href="#section-3.2.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.2.1-1">A binary value. The default encoding is base64. The type annotation keywords
+<code>contentEncoding</code>, <code>contentCompression</code>, and <code>contentMediaType</code> can be used to
+specify the encoding, compression, and media type of the binary data.<a href="#section-3.2.2.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.1-2.1">
                 <p id="section-3.2.2.1-2.1.1">Base type: <code>string</code><a href="#section-3.2.2.1-2.1.1" class="pilcrow">¶</a></p>
@@ -1567,7 +1639,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.2.1-2.2.1">Constraints:<a href="#section-3.2.2.1-2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.1-2.2.2.1">
-                    <p id="section-3.2.2.1-2.2.2.1.1">The string value MUST be an encoded binary value, with the encoding specified in the <code>contentEncoding</code> keyword. The default encoding is base64.<a href="#section-3.2.2.1-2.2.2.1.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.1-2.2.2.1.1">The string value MUST be an encoded binary value, with the encoding
+specified in the <code>contentEncoding</code> keyword. The default encoding is base64.<a href="#section-3.2.2.1-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
@@ -1732,7 +1805,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.2.8-2.2.1">Constraints:<a href="#section-3.2.2.8-2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.8-2.2.2.1">
-                    <p id="section-3.2.2.8-2.2.2.1.1">The string MUST conform to the <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> Section 6 definition for the <code>[minus] int</code> syntax.<a href="#section-3.2.2.8-2.2.2.1.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.8-2.2.2.1.1">The string MUST conform to the <span><a href="https://rfc-editor.org/rfc/rfc8259#section-6" class="relref">Section 6</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> definition for the
+<code>[minus] int</code> syntax.<a href="#section-3.2.2.8-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="normal" id="section-3.2.2.8-2.2.2.2">
                     <p id="section-3.2.2.8-2.2.2.2.1">The string value MUST represent a 64-bit integer in the range -2⁶³ to 2⁶³–1.<a href="#section-3.2.2.8-2.2.2.2.1" class="pilcrow">¶</a></p>
@@ -1756,7 +1830,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.2.9-2.2.1">Constraints:<a href="#section-3.2.2.9-2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.9-2.2.2.1">
-                    <p id="section-3.2.2.9-2.2.2.1.1">The string MUST conform to the <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> Section 6 definition for the <code>int</code> syntax.<a href="#section-3.2.2.9-2.2.2.1.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.9-2.2.2.1.1">The string MUST conform to the <span><a href="https://rfc-editor.org/rfc/rfc8259#section-6" class="relref">Section 6</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> definition for the
+<code>int</code> syntax.<a href="#section-3.2.2.9-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="normal" id="section-3.2.2.9-2.2.2.2">
                     <p id="section-3.2.2.9-2.2.2.2.1">The string value MUST represent a 64-bit integer in the range 0 to 2⁶⁴–1.<a href="#section-3.2.2.9-2.2.2.2.1" class="pilcrow">¶</a></p>
@@ -1780,10 +1855,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.2.10-2.2.1">Constraints:<a href="#section-3.2.2.10-2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.10-2.2.2.1">
-                    <p id="section-3.2.2.10-2.2.2.1.1">The string MUST conform to the <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> Section 6 definition for the <code>[minus] int</code> syntax.<a href="#section-3.2.2.10-2.2.2.1.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.10-2.2.2.1.1">The string MUST conform to the <span><a href="https://rfc-editor.org/rfc/rfc8259#section-6" class="relref">Section 6</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> definition for the
+<code>[minus] int</code> syntax.<a href="#section-3.2.2.10-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="normal" id="section-3.2.2.10-2.2.2.2">
-                    <p id="section-3.2.2.10-2.2.2.2.1">The string value MUST represent a 128-bit integer in the range -2¹²⁷ to 2¹²⁷–1.<a href="#section-3.2.2.10-2.2.2.2.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.10-2.2.2.2.1">The string value MUST represent a 128-bit integer in the range -2¹²⁷ to
+2¹²⁷–1.<a href="#section-3.2.2.10-2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
@@ -1804,7 +1881,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.2.11-2.2.1">Constraints:<a href="#section-3.2.2.11-2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.11-2.2.2.1">
-                    <p id="section-3.2.2.11-2.2.2.1.1">The string MUST conform to the <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> Section 6 definition for the <code>int</code> syntax.<a href="#section-3.2.2.11-2.2.2.1.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.11-2.2.2.1.1">The string MUST conform to the <span><a href="https://rfc-editor.org/rfc/rfc8259#section-6" class="relref">Section 6</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> definition for the
+<code>int</code> syntax.<a href="#section-3.2.2.11-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="normal" id="section-3.2.2.11-2.2.2.2">
                     <p id="section-3.2.2.11-2.2.2.2.1">The string value MUST represent a 128-bit integer in the range 0 to 2¹²⁸–1.<a href="#section-3.2.2.11-2.2.2.2.1" class="pilcrow">¶</a></p>
@@ -1828,7 +1906,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.2.12-2.2.1">Constraints:<a href="#section-3.2.2.12-2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.12-2.2.2.1">
-                    <p id="section-3.2.2.12-2.2.2.1.1">Conforms to IEEE 754 single-precision value range limits (8 bits), which are 3 bits of significand and 4 bits of exponent, with a range of approximately ±3.4×10³.<a href="#section-3.2.2.12-2.2.2.1.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.12-2.2.2.1.1">Conforms to IEEE 754 single-precision value range limits (8 bits), which are
+3 bits of significand and 4 bits of exponent, with a range of approximately
+±3.4×10³.<a href="#section-3.2.2.12-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
@@ -1849,12 +1929,17 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.2.13-2.2.1">Constraints:<a href="#section-3.2.2.13-2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.13-2.2.2.1">
-                    <p id="section-3.2.2.13-2.2.2.1.1">Conforms to IEEE 754 single-precision value range limits (32 bits), which are 24 bits of significand and 8 bits of exponent, with a range of approximately ±3.4×10³⁸.<a href="#section-3.2.2.13-2.2.2.1.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.13-2.2.2.1.1">Conforms to IEEE 754 single-precision value range limits (32 bits), which
+are 24 bits of significand and 8 bits of exponent, with a range of
+approximately ±3.4×10³⁸.<a href="#section-3.2.2.13-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
             </ul>
-<p id="section-3.2.2.13-3">IEEE754 binary32 are base-2 encoded and therefore cannot represent all decimal numbers accurately, and vice versa. In cases where you need to encode IEEE754 values precisely, store the IEE754 binary32 value as an <code>int32</code> or <code>uint32</code> number.<a href="#section-3.2.2.13-3" class="pilcrow">¶</a></p>
+<p id="section-3.2.2.13-3">IEEE754 binary32 are base-2 encoded and therefore cannot represent all decimal
+numbers accurately, and vice versa. In cases where you need to encode IEEE754
+values precisely, store the IEE754 binary32 value as an <code>int32</code> or <code>uint32</code>
+number.<a href="#section-3.2.2.13-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="double">
@@ -1871,12 +1956,17 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.2.14-2.2.1">Constraints:<a href="#section-3.2.2.14-2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.14-2.2.2.1">
-                    <p id="section-3.2.2.14-2.2.2.1.1">Conforms to IEEE 754 double-precision value range limits (64 bits), which are 53 bits of significand and 11 bits of exponent, with a range of approximately ±1.7×10³⁰⁸.<a href="#section-3.2.2.14-2.2.2.1.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.14-2.2.2.1.1">Conforms to IEEE 754 double-precision value range limits (64 bits), which
+are 53 bits of significand and 11 bits of exponent, with a range of
+approximately ±1.7×10³⁰⁸.<a href="#section-3.2.2.14-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
             </ul>
-<p id="section-3.2.2.14-3">IEEE754 binary64 are base-2 encoded and therefore cannot represent all decimal numbers accurately, and vice versa. In cases where you need to encode IEEE754 values precisely, store the IEE754 binary64 value as an <code>int64</code> or <code>uint64</code> number.<a href="#section-3.2.2.14-3" class="pilcrow">¶</a></p>
+<p id="section-3.2.2.14-3">IEEE754 binary64 are base-2 encoded and therefore cannot represent all decimal
+numbers accurately, and vice versa. In cases where you need to encode IEEE754
+values precisely, store the IEE754 binary64 value as an <code>int64</code> or <code>uint64</code>
+number.<a href="#section-3.2.2.14-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="decimal">
@@ -1893,10 +1983,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.2.15-2.2.1">Constraints:<a href="#section-3.2.2.15-2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.15-2.2.2.1">
-                    <p id="section-3.2.2.15-2.2.2.1.1">The string value MUST conform to the <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> Section 6 definition for the <code>[minus] int frac</code> syntax.<a href="#section-3.2.2.15-2.2.2.1.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.15-2.2.2.1.1">The string value MUST conform to the <span><a href="https://rfc-editor.org/rfc/rfc8259#section-6" class="relref">Section 6</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> definition
+for the <code>[minus] int frac</code> syntax.<a href="#section-3.2.2.15-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="normal" id="section-3.2.2.15-2.2.2.2">
-                    <p id="section-3.2.2.15-2.2.2.2.1">Defaults: 34 significant digits and 7 fractional digits, which is the maximum precision supported by the IEEE 754 decimal128 format.<a href="#section-3.2.2.15-2.2.2.2.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.15-2.2.2.2.1">Defaults: 34 significant digits and 7 fractional digits, which is the
+maximum precision supported by the IEEE 754 decimal128 format.<a href="#section-3.2.2.15-2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
@@ -1904,7 +1996,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                 <p id="section-3.2.2.15-2.3.1">Annotations:<a href="#section-3.2.2.15-2.3.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.15-2.3.2.1">
-                    <p id="section-3.2.2.15-2.3.2.1.1">The <code>precision</code> keyword MAY be used to specify the total number of significant digits.<a href="#section-3.2.2.15-2.3.2.1.1" class="pilcrow">¶</a></p>
+                    <p id="section-3.2.2.15-2.3.2.1.1">The <code>precision</code> keyword MAY be used to specify the total number of
+significant digits.<a href="#section-3.2.2.15-2.3.2.1.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="normal" id="section-3.2.2.15-2.3.2.2">
                     <p id="section-3.2.2.15-2.3.2.2.1">The <code>scale</code> keyword MAY be used to specify the number of fractional digits.<a href="#section-3.2.2.15-2.3.2.2.1" class="pilcrow">¶</a></p>
@@ -2068,17 +2161,26 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-compound-types">
 <a href="#section-3.2.3" class="section-number selfRef">3.2.3. </a><a href="#name-compound-types" class="section-name selfRef">Compound Types</a>
           </h4>
-<p id="section-3.2.3-1">Compound types are used to structure related data elements. JSON Structure supports the following compound types:<a href="#section-3.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.3-1">Compound types are used to structure related data elements. JSON Structure
+supports the following compound types:<a href="#section-3.2.3-1" class="pilcrow">¶</a></p>
 <div id="object">
 <section id="section-3.2.3.1">
             <h5 id="name-object">
 <a href="#section-3.2.3.1" class="section-number selfRef">3.2.3.1. </a><a href="#name-object" class="section-name selfRef"><code>object</code></a>
             </h5>
-<p id="section-3.2.3.1-1">The <code>object</code> type is used to define structured data with named properties. It's represented as a JSON object, which is an unordered collection of key–value pairs.<a href="#section-3.2.3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.1-2">The <code>object</code> type MUST include a <code>name</code> attribute that defines the name of the type.<a href="#section-3.2.3.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.1-3">The <code>object</code> type MUST include a <code>properties</code> attribute that defines the properties of the object. The <code>properties</code> attribute MUST be a JSON object where each key is a property name and each value is a schema definition for the property. The object MUST contain at least one property definition.<a href="#section-3.2.3.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.1-4">The <code>object</code> type MAY include a <code>required</code> attribute that defines the required properties of the object.<a href="#section-3.2.3.1-4" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.1-5">The <code>object</code> type MAY include an <code>additionalProperties</code> attribute that defines whether additional properties are allowed and/or what their schema is.<a href="#section-3.2.3.1-5" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.1-1">The <code>object</code> type is used to define structured data with named properties. It's
+represented as a JSON object, which is an unordered collection of key–value
+pairs.<a href="#section-3.2.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.1-2">The <code>object</code> type MUST include a <code>name</code> attribute that defines the name of the
+type.<a href="#section-3.2.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.1-3">The <code>object</code> type MUST include a <code>properties</code> attribute that defines the
+properties of the object. The <code>properties</code> attribute MUST be a JSON object where
+each key is a property name and each value is a schema definition for the
+property. The object MUST contain at least one property definition.<a href="#section-3.2.3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.1-4">The <code>object</code> type MAY include a <code>required</code> attribute that defines the required
+properties of the object.<a href="#section-3.2.3.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.1-5">The <code>object</code> type MAY include an <code>additionalProperties</code> attribute that defines
+whether additional properties are allowed and/or what their schema is.<a href="#section-3.2.3.1-5" class="pilcrow">¶</a></p>
 <p id="section-3.2.3.1-6">Example:<a href="#section-3.2.3.1-6" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.2.3.1-7">
 <pre>
@@ -2101,8 +2203,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <h5 id="name-array">
 <a href="#section-3.2.3.2" class="section-number selfRef">3.2.3.2. </a><a href="#name-array" class="section-name selfRef"><code>array</code></a>
             </h5>
-<p id="section-3.2.3.2-1">An <code>array</code> type is used to define an ordered collection of elements. It's represented as a JSON array, which is an ordered list of values.<a href="#section-3.2.3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.2-2">The <code>items</code> attribute of an array MUST reference a reusable type or a primitive type or a locally declared compound type.<a href="#section-3.2.3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.2-1">An <code>array</code> type is used to define an ordered collection of elements. It's
+represented as a JSON array, which is an ordered list of values.<a href="#section-3.2.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.2-2">The <code>items</code> attribute of an array MUST reference a reusable type or a primitive
+type or a locally declared compound type.<a href="#section-3.2.3.2-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.3.2-3"><strong>Examples:</strong><a href="#section-3.2.3.2-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.2.3.2-4">
 <pre>
@@ -2127,8 +2231,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <h5 id="name-set">
 <a href="#section-3.2.3.3" class="section-number selfRef">3.2.3.3. </a><a href="#name-set" class="section-name selfRef"><code>set</code></a>
             </h5>
-<p id="section-3.2.3.3-1">The <code>set</code> type is used to define an unordered collection of unique elements. It's represented as a JSON array where all elements are unique.<a href="#section-3.2.3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.3-2">The <code>items</code> attribute of a <code>set</code> MUST reference a reusable type or a primitive type or a locally declared compound type.<a href="#section-3.2.3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.3-1">The <code>set</code> type is used to define an unordered collection of unique elements.
+It's represented as a JSON array where all elements are unique.<a href="#section-3.2.3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.3-2">The <code>items</code> attribute of a <code>set</code> MUST reference a reusable type or a primitive
+type or a locally declared compound type.<a href="#section-3.2.3.3-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.3.3-3">Example:<a href="#section-3.2.3.3-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.2.3.3-4">
 <pre>
@@ -2153,9 +2259,11 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <h5 id="name-map">
 <a href="#section-3.2.3.4" class="section-number selfRef">3.2.3.4. </a><a href="#name-map" class="section-name selfRef"><code>map</code></a>
             </h5>
-<p id="section-3.2.3.4-1">The <code>map</code> type is used to define dynamic key–value pairs. It's represented as a JSON object where the keys are strings and the values are of a specific type.<a href="#section-3.2.3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.4-1">The <code>map</code> type is used to define dynamic key–value pairs. It's represented as a
+JSON object where the keys are strings and the values are of a specific type.<a href="#section-3.2.3.4-1" class="pilcrow">¶</a></p>
 <p id="section-3.2.3.4-2">All keys in a <code>map</code> MUST conform to the identifier rules (<a href="#identifier-rules" class="auto internal xref">Section 3.6</a>).<a href="#section-3.2.3.4-2" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.4-3">The <code>values</code> attribute of a <code>map</code> MUST reference a reusable type or a primitive type or a locally declared compound type.<a href="#section-3.2.3.4-3" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.4-3">The <code>values</code> attribute of a <code>map</code> MUST reference a reusable type or a primitive
+type or a locally declared compound type.<a href="#section-3.2.3.4-3" class="pilcrow">¶</a></p>
 <p id="section-3.2.3.4-4">Example:<a href="#section-3.2.3.4-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.2.3.4-5">
 <pre>
@@ -2172,9 +2280,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <h5 id="name-tuple">
 <a href="#section-3.2.3.5" class="section-number selfRef">3.2.3.5. </a><a href="#name-tuple" class="section-name selfRef"><code>tuple</code></a>
             </h5>
-<p id="section-3.2.3.5-1">The <code>tuple</code> type is used to define an ordered collection of elements with a specific length. It's represented as a JSON array where each element is of a specific type.<a href="#section-3.2.3.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.5-2">The elements are defined using a <code>properties</code> map as <a href="#object" class="auto internal xref">Section 3.2.3.1</a> type and each element is named. All declared properties of a <code>tuple</code> are implicitly required.<a href="#section-3.2.3.5-2" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.5-3">A <code>tuple</code> type MUST include a <code>name</code> attribute that defines the name of the type.<a href="#section-3.2.3.5-3" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.5-1">The <code>tuple</code> type is used to define an ordered collection of elements with a
+specific length. It's represented as a JSON array where each element is of a
+specific type.<a href="#section-3.2.3.5-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.5-2">The elements are defined using a <code>properties</code> map as <a href="#object" class="auto internal xref">Section 3.2.3.1</a> type and each element is named. All declared properties of
+a <code>tuple</code> are implicitly required.<a href="#section-3.2.3.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.5-3">A <code>tuple</code> type MUST include a <code>name</code> attribute that defines the name of the
+type.<a href="#section-3.2.3.5-3" class="pilcrow">¶</a></p>
 <p id="section-3.2.3.5-4">Example:<a href="#section-3.2.3.5-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.2.3.5-5">
 <pre>
@@ -2201,7 +2313,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <h5 id="name-any">
 <a href="#section-3.2.3.6" class="section-number selfRef">3.2.3.6. </a><a href="#name-any" class="section-name selfRef"><code>any</code></a>
             </h5>
-<p id="section-3.2.3.6-1">The <code>any</code> type is used to define a type that can be any JSON value, including primitive types, compound types, and extended types.<a href="#section-3.2.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.6-1">The <code>any</code> type is used to define a type that can be any JSON value, including
+primitive types, compound types, and extended types.<a href="#section-3.2.3.6-1" class="pilcrow">¶</a></p>
 <p id="section-3.2.3.6-2">Example:<a href="#section-3.2.3.6-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.2.3.6-3">
 <pre>
@@ -2229,10 +2342,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.3-4.1.1"><code>$id</code>: A URI that is the unique identifier for this schema document.<a href="#section-3.3-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.3-4.2">
-            <p id="section-3.3-4.2.1"><code>$schema</code>: A string that identifies the version of the JSON Structure specification used.<a href="#section-3.3-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.3-4.2.1"><code>$schema</code>: A string that identifies the version of the JSON Structure
+specification used.<a href="#section-3.3-4.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-3.3-5">The presence of both keywords identifies the document as a JSON Structure document.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
+<p id="section-3.3-5">The presence of both keywords identifies the document as a JSON Structure
+document.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
 <p id="section-3.3-6">The root object MAY contain the following OPTIONAL keywords:<a href="#section-3.3-6" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.3-7.1">
@@ -2242,13 +2357,16 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.3-7.2.1"><code>definitions</code>: The root of the type declaration namespace hierarchy.<a href="#section-3.3-7.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.3-7.3">
-            <p id="section-3.3-7.3.1"><code>type</code>: A type declaration for the root type of the document. Mutually exclusive with <code>$root</code>.<a href="#section-3.3-7.3.1" class="pilcrow">¶</a></p>
+            <p id="section-3.3-7.3.1"><code>type</code>: A type declaration for the root type of the document. Mutually
+exclusive with <code>$root</code>.<a href="#section-3.3-7.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.3-7.4">
-            <p id="section-3.3-7.4.1">if <code>type</code> is present, all annotations and constraints applicable to this declared root type are also permitted at the root level.<a href="#section-3.3-7.4.1" class="pilcrow">¶</a></p>
+            <p id="section-3.3-7.4.1">if <code>type</code> is present, all annotations and constraints applicable to this
+declared root type are also permitted at the root level.<a href="#section-3.3-7.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.3-7.5">
-            <p id="section-3.3-7.5.1"><code>name</code>: A string that defines the name of the root type. Required if <code>type</code> is present.<a href="#section-3.3-7.5.1" class="pilcrow">¶</a></p>
+            <p id="section-3.3-7.5.1"><code>name</code>: A string that defines the name of the root type. Required if <code>type</code> is
+present.<a href="#section-3.3-7.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <div id="namespaces">
@@ -2256,9 +2374,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-namespaces">
 <a href="#section-3.3.1" class="section-number selfRef">3.3.1. </a><a href="#name-namespaces" class="section-name selfRef">Namespaces</a>
           </h4>
-<p id="section-3.3.1-1">A "namespace" is a JSON object that provides a scope for type declarations or other namespaces. Namespaces MAY be nested within other namespaces.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.3.1-2">The <code>definitions</code> keyword forms the root of the namespace hierarchy for reusable type definitions. All type declarations immediately under the <code>definitions</code> keyword are in the root namespace. A <code>type</code> definition at the root is placed into the root namespace as if it were a type declaration under <code>definitions</code>.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.3.1-3">Any object in the <code>definitions</code> map that is not a type declaration is a namespace.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-1">A "namespace" is a JSON object that provides a scope for type declarations or
+other namespaces. Namespaces MAY be nested within other namespaces.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-2">The <code>definitions</code> keyword forms the root of the namespace hierarchy for reusable
+type definitions. All type declarations immediately under the <code>definitions</code>
+keyword are in the root namespace. A <code>type</code> definition at the root is placed
+into the root namespace as if it were a type declaration under <code>definitions</code>.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-3">Any object in the <code>definitions</code> map that is not a type declaration is a
+namespace.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-4">Example with inline <code>type</code>:<a href="#section-3.3.1-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.3.1-5">
 <pre>
@@ -2319,16 +2442,20 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-schema-keyword">
 <a href="#section-3.3.2" class="section-number selfRef">3.3.2. </a><a href="#name-schema-keyword" class="section-name selfRef"><code>$schema</code> Keyword</a>
           </h4>
-<p id="section-3.3.2-1">The value of the REQUIRED <code>$schema</code> keyword MUST be an absolute URI. The keyword has different functions in JSON Structure documents and JSON documents.<a href="#section-3.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.2-1">The value of the REQUIRED <code>$schema</code> keyword MUST be an absolute URI. The keyword
+has different functions in JSON Structure documents and JSON documents.<a href="#section-3.3.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.3.2-2.1">
-              <p id="section-3.3.2-2.1.1">In JSON Structure documents, the <code>$schema</code> keyword references a meta-schema that this document conforms to.<a href="#section-3.3.2-2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3.3.2-2.1.1">In JSON Structure documents, the <code>$schema</code> keyword references a meta-schema
+that this document conforms to.<a href="#section-3.3.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.3.2-2.2">
-              <p id="section-3.3.2-2.2.1">In JSON documents, the <code>$schema</code> keyword references a JSON schema document that defines the structure of the JSON document.<a href="#section-3.3.2-2.2.1" class="pilcrow">¶</a></p>
+              <p id="section-3.3.2-2.2.1">In JSON documents, the <code>$schema</code> keyword references a JSON schema document
+that defines the structure of the JSON document.<a href="#section-3.3.2-2.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
-<p id="section-3.3.2-3">The value of <code>$schema</code> corresponds to the <code>$id</code> of the meta-schema or schema document.<a href="#section-3.3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.3.2-3">The value of <code>$schema</code> corresponds to the <code>$id</code> of the meta-schema or schema
+document.<a href="#section-3.3.2-3" class="pilcrow">¶</a></p>
 <p id="section-3.3.2-4">The <code>$schema</code> keyword MUST be used at the root level of the document.<a href="#section-3.3.2-4" class="pilcrow">¶</a></p>
 <p id="section-3.3.2-5">Example:<a href="#section-3.3.2-5" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.3.2-6">
@@ -2343,7 +2470,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre><a href="#section-3.3.2-6" class="pilcrow">¶</a>
 </div>
-<p id="section-3.3.2-7">Use of the keyword <code>$schema</code> does NOT import the referenced schema document such that its types become available for use in the current document.<a href="#section-3.3.2-7" class="pilcrow">¶</a></p>
+<p id="section-3.3.2-7">Use of the keyword <code>$schema</code> does NOT import the referenced schema document such
+that its types become available for use in the current document.<a href="#section-3.3.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="id-keyword">
@@ -2351,8 +2479,11 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-id-keyword">
 <a href="#section-3.3.3" class="section-number selfRef">3.3.3. </a><a href="#name-id-keyword" class="section-name selfRef"><code>$id</code> Keyword</a>
           </h4>
-<p id="section-3.3.3-1">The REQUIRED <code>$id</code> keyword is used to assign a unique identifier to a JSON Structure document. The value of <code>$id</code> MUST be an absolute URI. It SHOULD be a resolvable URI (a URL).<a href="#section-3.3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3.3-2">The <code>$id</code> keyword is used to identify a schema document in references like <code>$schema</code>.<a href="#section-3.3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3.3-1">The REQUIRED <code>$id</code> keyword is used to assign a unique identifier to a JSON
+Structure document. The value of <code>$id</code> MUST be an absolute URI. It SHOULD be a
+resolvable URI (a URL).<a href="#section-3.3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.3-2">The <code>$id</code> keyword is used to identify a schema document in references like
+<code>$schema</code>.<a href="#section-3.3.3-2" class="pilcrow">¶</a></p>
 <p id="section-3.3.3-3">The <code>$id</code> keyword MUST only be used once in a document, at the root level.<a href="#section-3.3.3-3" class="pilcrow">¶</a></p>
 <p id="section-3.3.3-4">Example:<a href="#section-3.3.3-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.3.3-5">
@@ -2375,8 +2506,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-root-keyword">
 <a href="#section-3.3.4" class="section-number selfRef">3.3.4. </a><a href="#name-root-keyword" class="section-name selfRef"><code>$root</code> Keyword</a>
           </h4>
-<p id="section-3.3.4-1">The OPTIONAL <code>$root</code> keyword is used to designate any type defined in the document as the root type for JSON nodes described by this schema document. The value of <code>$root</code> MUST be a valid JSON Pointer that resolves to an existing type definition inside the <code>definitions</code> object.<a href="#section-3.3.4-1" class="pilcrow">¶</a></p>
-<p id="section-3.3.4-2">The <code>$root</code> keyword MUST only be used once in a document, at the root level. Its use is mutually exclusive with the <code>type</code> keyword.<a href="#section-3.3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.3.4-1">The OPTIONAL <code>$root</code> keyword is used to designate any type defined in the
+document as the root type for JSON nodes described by this schema document. The
+value of <code>$root</code> MUST be a valid JSON Pointer that resolves to an existing type
+definition inside the <code>definitions</code> object.<a href="#section-3.3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.4-2">The <code>$root</code> keyword MUST only be used once in a document, at the root level. Its
+use is mutually exclusive with the <code>type</code> keyword.<a href="#section-3.3.4-2" class="pilcrow">¶</a></p>
 <p id="section-3.3.4-3">Example:<a href="#section-3.3.4-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.3.4-4">
 <pre>
@@ -2405,9 +2540,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-definitions-keyword">
 <a href="#section-3.3.5" class="section-number selfRef">3.3.5. </a><a href="#name-definitions-keyword" class="section-name selfRef"><code>definitions</code> Keyword</a>
           </h4>
-<p id="section-3.3.5-1">The <code>definitions</code> keyword defines a namespace hierarchy for reusable type declarations. The keyword MUST be used at the root level of the document.<a href="#section-3.3.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.3.5-2">The value of the <code>definitions</code> keyword MUST be a map of types and namespaces. The namespace at the root level of the <code>definitions</code> keyword is the root namespace.<a href="#section-3.3.5-2" class="pilcrow">¶</a></p>
-<p id="section-3.3.5-3">A namespace is a JSON object that provides a scope for type declarations or other namespaces. Any JSON object under the <code>definitions</code> keyword that is not a type definition (containing the <code>type</code> attribute) is considered a namespace.<a href="#section-3.3.5-3" class="pilcrow">¶</a></p>
+<p id="section-3.3.5-1">The <code>definitions</code> keyword defines a namespace hierarchy for reusable type
+declarations. The keyword MUST be used at the root level of the document.<a href="#section-3.3.5-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.5-2">The value of the <code>definitions</code> keyword MUST be a map of types and namespaces.
+The namespace at the root level of the <code>definitions</code> keyword is the root
+namespace.<a href="#section-3.3.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.3.5-3">A namespace is a JSON object that provides a scope for type declarations or
+other namespaces. Any JSON object under the <code>definitions</code> keyword that is not a
+type definition (containing the <code>type</code> attribute) is considered a namespace.<a href="#section-3.3.5-3" class="pilcrow">¶</a></p>
 <p id="section-3.3.5-4">Example:<a href="#section-3.3.5-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.3.5-5">
 <pre>
@@ -2435,7 +2575,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-ref-keyword">
 <a href="#section-3.3.6" class="section-number selfRef">3.3.6. </a><a href="#name-ref-keyword" class="section-name selfRef"><code>$ref</code> Keyword</a>
           </h4>
-<p id="section-3.3.6-1">References to type declarations within the same document MUST use a schema containing a single property with the name <code>$ref</code> as the value of <code>type</code>. The value of <code>$ref</code> MUST be a valid JSON Pointer that resolves to an existing type definition.<a href="#section-3.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.6-1">References to type declarations within the same document MUST use a schema
+containing a single property with the name <code>$ref</code> as the value of <code>type</code>. The
+value of <code>$ref</code> MUST be a valid JSON Pointer that resolves to an existing type
+definition.<a href="#section-3.3.6-1" class="pilcrow">¶</a></p>
 <p id="section-3.3.6-2">Example:<a href="#section-3.3.6-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.3.6-3">
 <pre>
@@ -2469,8 +2612,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre><a href="#section-3.3.6-3" class="pilcrow">¶</a>
 </div>
-<p id="section-3.3.6-4">The <code>$ref</code> keyword is only permitted inside the <code>type</code> attribute value of a schema definition, including in type unions.<a href="#section-3.3.6-4" class="pilcrow">¶</a></p>
-<p id="section-3.3.6-5"><code>$ref</code> is NOT permitted in other attributes and MUST NOT be used inside the <code>type</code> of the root object.<a href="#section-3.3.6-5" class="pilcrow">¶</a></p>
+<p id="section-3.3.6-4">The <code>$ref</code> keyword is only permitted inside the <code>type</code> attribute value of a
+schema definition, including in type unions.<a href="#section-3.3.6-4" class="pilcrow">¶</a></p>
+<p id="section-3.3.6-5"><code>$ref</code> is NOT permitted in other attributes and MUST NOT be used inside the
+<code>type</code> of the root object.<a href="#section-3.3.6-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="cross-references">
@@ -2478,8 +2623,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-cross-references">
 <a href="#section-3.3.7" class="section-number selfRef">3.3.7. </a><a href="#name-cross-references" class="section-name selfRef">Cross-references</a>
           </h4>
-<p id="section-3.3.7-1">In JSON Structure documents, the <code>$schema</code> keyword references the meta-schema of this specification. In JSON documents, the <code>$schema</code> keyword references the schema document that defines the structure of the JSON document. The value of <code>$schema</code> is a URI. Ideally, the URI SHOULD be a resolvable URL to a schema document, but it's primarily an identifier. As an identifier, it can be used as a lookup key in a cache or schema-registry.<a href="#section-3.3.7-1" class="pilcrow">¶</a></p>
-<p id="section-3.3.7-2">The OPTIONAL <span>[<a href="#JSTRUCT-IMPORT" class="cite xref">JSTRUCT-IMPORT</a>]</span> extension specification is the exception and provides a mechanism for importing definitions from external schemas.<a href="#section-3.3.7-2" class="pilcrow">¶</a></p>
+<p id="section-3.3.7-1">In JSON Structure documents, the <code>$schema</code> keyword references the meta-schema of
+this specification. In JSON documents, the <code>$schema</code> keyword references the
+schema document that defines the structure of the JSON document. The value of
+<code>$schema</code> is a URI. Ideally, the URI SHOULD be a resolvable URL to a schema
+document, but it's primarily an identifier. As an identifier, it can be used as
+a lookup key in a cache or schema-registry.<a href="#section-3.3.7-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.7-2">The OPTIONAL <span>[<a href="#JSTRUCT-IMPORT" class="cite xref">JSTRUCT-IMPORT</a>]</span> extension specification is the exception and
+provides a mechanism for importing definitions from external schemas.<a href="#section-3.3.7-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2496,13 +2647,17 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </h4>
 <ul class="normal">
 <li class="normal" id="section-3.4.1-1.1">
-              <p id="section-3.4.1-1.1.1">Every schema element MUST declare a <code>type</code> referring to a primitive, compound, or reusable type.<a href="#section-3.4.1-1.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3.4.1-1.1.1">Every schema element MUST declare a <code>type</code> referring to a primitive, compound,
+or reusable type.<a href="#section-3.4.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.4.1-1.2">
-              <p id="section-3.4.1-1.2.1">To reference a reusable type, the <code>type</code> attribute MUST be a schema with a single <code>$ref</code> property resolving to an existing type declaration.<a href="#section-3.4.1-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-3.4.1-1.2.1">To reference a reusable type, the <code>type</code> attribute MUST be a schema with a
+single <code>$ref</code> property resolving to an existing type declaration.<a href="#section-3.4.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.4.1-1.3">
-              <p id="section-3.4.1-1.3.1">Compound types SHOULD be declared in the <code>definitions</code> section as reusable types. Inline compound types in arrays, maps, unions, or property definitions MUST NOT be referenced externally.<a href="#section-3.4.1-1.3.1" class="pilcrow">¶</a></p>
+              <p id="section-3.4.1-1.3.1">Compound types SHOULD be declared in the <code>definitions</code> section as reusable
+types. Inline compound types in arrays, maps, unions, or property definitions
+MUST NOT be referenced externally.<a href="#section-3.4.1-1.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.4.1-1.4">
               <p id="section-3.4.1-1.4.1">Primitive and compound type declarations are confined to this specification.<a href="#section-3.4.1-1.4.1" class="pilcrow">¶</a></p>
@@ -2514,7 +2669,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                   <p id="section-3.4.1-1.5.2.1.1"><strong>JSON Primitives:</strong> <code>string</code>, <code>number</code>, <code>boolean</code>, <code>null</code>.<a href="#section-3.4.1-1.5.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.4.1-1.5.2.2">
-                  <p id="section-3.4.1-1.5.2.2.1"><strong>Extended Primitives:</strong> <code>int32</code>, <code>uint32</code>, <code>int64</code>, <code>uint64</code>, <code>int128</code>, <code>uint128</code>, <code>float</code>, <code>double</code>, <code>decimal</code>, <code>date</code>, <code>datetime</code>, <code>time</code>, <code>duration</code>, <code>uuid</code>, <code>uri</code>, <code>binary</code>, <code>jsonpointer</code>.<a href="#section-3.4.1-1.5.2.2.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.4.1-1.5.2.2.1"><strong>Extended Primitives:</strong> <code>int32</code>, <code>uint32</code>, <code>int64</code>, <code>uint64</code>, <code>int128</code>,
+<code>uint128</code>, <code>float</code>, <code>double</code>, <code>decimal</code>, <code>date</code>, <code>datetime</code>, <code>time</code>,
+<code>duration</code>, <code>uuid</code>, <code>uri</code>, <code>binary</code>, <code>jsonpointer</code>.<a href="#section-3.4.1-1.5.2.2.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.4.1-1.5.2.3">
                   <p id="section-3.4.1-1.5.2.3.1"><strong>JSON Compounds:</strong> <code>object</code>, <code>array</code>.<a href="#section-3.4.1-1.5.2.3.1" class="pilcrow">¶</a></p>
@@ -2537,7 +2694,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
               <p id="section-3.4.2-1.1.1">Reusable types MUST be defined in the <code>definitions</code> section.<a href="#section-3.4.2-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.4.2-1.2">
-              <p id="section-3.4.2-1.2.1">Each declaration in <code>definitions</code> MUST have a unique, case-sensitive name within its namespace. The same name MAY appear in different namespaces.<a href="#section-3.4.2-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-3.4.2-1.2.1">Each declaration in <code>definitions</code> MUST have a unique, case-sensitive name
+within its namespace. The same name MAY appear in different namespaces.<a href="#section-3.4.2-1.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </section>
@@ -2567,10 +2725,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </h4>
 <ul class="normal">
 <li class="normal" id="section-3.4.4-1.1">
-              <p id="section-3.4.4-1.1.1">Use the <code>map</code> type for dynamic key–value pairs. The <code>object</code> type requires at least one property and cannot model fully dynamic properties with <code>additionalProperties</code>.<a href="#section-3.4.4-1.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3.4.4-1.1.1">Use the <code>map</code> type for dynamic key–value pairs. The <code>object</code> type requires at
+least one property and cannot model fully dynamic properties with
+<code>additionalProperties</code>.<a href="#section-3.4.4-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.4.4-1.2">
-              <p id="section-3.4.4-1.2.1">The <code>values</code> attribute of a <code>map</code> and the <code>items</code> attribute of an <code>array</code> or <code>set</code> MUST reference a reusable type, a primitive type, or a locally declared compound type.<a href="#section-3.4.4-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-3.4.4-1.2.1">The <code>values</code> attribute of a <code>map</code> and the <code>items</code> attribute of an <code>array</code> or
+<code>set</code> MUST reference a reusable type, a primitive type, or a locally declared
+compound type.<a href="#section-3.4.4-1.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </section>
@@ -2582,7 +2744,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-composition-rules">
 <a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-composition-rules" class="section-name selfRef">Composition Rules</a>
         </h3>
-<p id="section-3.5-1">This section defines the rules for composing schemas. Further, OPTIONAL composition rules are defined in the <span>[<a href="#JSTRUCT-COMPOSITION" class="cite xref">JSTRUCT-COMPOSITION</a>]</span> extension specification.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+<p id="section-3.5-1">This section defines the rules for composing schemas. Further, OPTIONAL
+composition rules are defined in the <span>[<a href="#JSTRUCT-COMPOSITION" class="cite xref">JSTRUCT-COMPOSITION</a>]</span> extension
+specification.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
 <div id="unions">
 <section id="section-3.5.1">
           <h4 id="name-unions">
@@ -2590,16 +2754,21 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </h4>
 <ul class="normal">
 <li class="normal" id="section-3.5.1-1.1">
-              <p id="section-3.5.1-1.1.1">Type unions are formed as sets of primitive types and type references. It is NOT permitted to define a compound type inline inside a union.<a href="#section-3.5.1-1.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3.5.1-1.1.1">Type unions are formed as sets of primitive types and type references. It is
+NOT permitted to define a compound type inline inside a union.<a href="#section-3.5.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.5.1-1.2">
-              <p id="section-3.5.1-1.2.1">A type union is a composite type reference and not a standalone compound type and is therefore not named.<a href="#section-3.5.1-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-3.5.1-1.2.1">A type union is a composite type reference and not a standalone compound type
+and is therefore not named.<a href="#section-3.5.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.5.1-1.3">
-              <p id="section-3.5.1-1.3.1">The JSON node described by a schema with a type union MUST conform to at least one of the types in the union.<a href="#section-3.5.1-1.3.1" class="pilcrow">¶</a></p>
+              <p id="section-3.5.1-1.3.1">The JSON node described by a schema with a type union MUST conform to at least
+one of the types in the union.<a href="#section-3.5.1-1.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.5.1-1.4">
-              <p id="section-3.5.1-1.4.1">If the JSON node described by a schema with a type union conforms to more than one type in the union, the JSON node MUST be considered to be of the first matching type in the union.<a href="#section-3.5.1-1.4.1" class="pilcrow">¶</a></p>
+              <p id="section-3.5.1-1.4.1">If the JSON node described by a schema with a type union conforms to more than
+one type in the union, the JSON node MUST be considered to be of the first
+matching type in the union.<a href="#section-3.5.1-1.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 <p id="section-3.5.1-2"><strong>Examples:</strong><a href="#section-3.5.1-2" class="pilcrow">¶</a></p>
@@ -2647,7 +2816,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
               <p id="section-3.5.2-1.1.1">The root of a JSON Structure document MUST NOT be an array.<a href="#section-3.5.2-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.5.2-1.2">
-              <p id="section-3.5.2-1.2.1">If a type union is desired as the type of the root of a document instance, the <code>$root</code> keyword MUST be used to designate a type union as the root type.<a href="#section-3.5.2-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-3.5.2-1.2.1">If a type union is desired as the type of the root of a document instance, the
+<code>$root</code> keyword MUST be used to designate a type union as the root type.<a href="#section-3.5.2-1.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 </section>
@@ -2659,9 +2829,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-identifier-rules">
 <a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-identifier-rules" class="section-name selfRef">Identifier Rules</a>
         </h3>
-<p id="section-3.6-1">All property names and type names MUST conform to the regular expression <code>[A-Za-z_][A-Za-z0-9_]*</code>. They MUST begin with a letter or underscore and MAY contain letters, digits, and underscores. Keys and type names are case-sensitive.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
-<p id="section-3.6-2"><code>map</code> keys MAY additionally contain the characters <code>.</code> and <code>-</code> and MAY begin with a digit.<a href="#section-3.6-2" class="pilcrow">¶</a></p>
-<p id="section-3.6-3">If names need to contain characters outside of this range, consider using the <span>[<a href="#JSTRUCT-ALTNAMES" class="cite xref">JSTRUCT-ALTNAMES</a>]</span> extension specification to define those.<a href="#section-3.6-3" class="pilcrow">¶</a></p>
+<p id="section-3.6-1">All property names and type names MUST conform to the regular expression
+<code>[A-Za-z_][A-Za-z0-9_]*</code>. They MUST begin with a letter or underscore and MAY
+contain letters, digits, and underscores. Keys and type names are
+case-sensitive.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
+<p id="section-3.6-2"><code>map</code> keys MAY additionally contain the characters <code>.</code> and <code>-</code> and MAY begin
+with a digit.<a href="#section-3.6-2" class="pilcrow">¶</a></p>
+<p id="section-3.6-3">If names need to contain characters outside of this range, consider using the
+<span>[<a href="#JSTRUCT-ALTNAMES" class="cite xref">JSTRUCT-ALTNAMES</a>]</span> extension specification to define those.<a href="#section-3.6-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="structural-keywords">
@@ -2674,7 +2849,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-type-keyword">
 <a href="#section-3.7.1" class="section-number selfRef">3.7.1. </a><a href="#name-the-type-keyword" class="section-name selfRef">The <code>type</code> Keyword</a>
           </h4>
-<p id="section-3.7.1-1">Declares the type of a schema element as a primitive or compound type. The <code>type</code> keyword MUST be present in every schema element. For unions, the value of <code>type</code> MUST be an array of type references or primitive type names.<a href="#section-3.7.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.7.1-1">Declares the type of a schema element as a primitive or compound type. The
+<code>type</code> keyword MUST be present in every schema element. For unions, the value of
+<code>type</code> MUST be an array of type references or primitive type names.<a href="#section-3.7.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.7.1-2"><strong>Example</strong>:<a href="#section-3.7.1-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.7.1-3">
 <pre>
@@ -2691,7 +2868,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-3.7.2" class="section-number selfRef">3.7.2. </a><a href="#name-the-properties-keyword" class="section-name selfRef">The <code>properties</code> Keyword</a>
           </h4>
 <p id="section-3.7.2-1"><code>properties</code> defines the properties of an <code>object</code> type.<a href="#section-3.7.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.7.2-2">The <code>properties</code> keyword MUST contain a map of property names mapped to schema definitions.<a href="#section-3.7.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.7.2-2">The <code>properties</code> keyword MUST contain a map of property names mapped to schema
+definitions.<a href="#section-3.7.2-2" class="pilcrow">¶</a></p>
 <p id="section-3.7.2-3"><strong>Example</strong>:<a href="#section-3.7.2-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.7.2-4">
 <pre>
@@ -2711,9 +2889,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-required-keyword">
 <a href="#section-3.7.3" class="section-number selfRef">3.7.3. </a><a href="#name-the-required-keyword" class="section-name selfRef">The <code>required</code> Keyword</a>
           </h4>
-<p id="section-3.7.3-1"><code>required</code> defines the required properties of an <code>object</code> type. The <code>required</code> keyword MUST only be used in schemas of type <code>object</code>.<a href="#section-3.7.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.7.3-2">The value of the <code>required</code> keyword is a simple array of property names or an array of arrays of property names.<a href="#section-3.7.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.7.3-3">An array of arrays is used to define alternative sets of required properties. When alternative sets are used, exactly one of the sets MUST match the properties of the object, meaning they are mutually exclusive.<a href="#section-3.7.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.7.3-1"><code>required</code> defines the required properties of an <code>object</code> type. The <code>required</code>
+keyword MUST only be used in schemas of type <code>object</code>.<a href="#section-3.7.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.7.3-2">The value of the <code>required</code> keyword is a simple array of property names or an
+array of arrays of property names.<a href="#section-3.7.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.7.3-3">An array of arrays is used to define alternative sets of required properties.
+When alternative sets are used, exactly one of the sets MUST match the
+properties of the object, meaning they are mutually exclusive.<a href="#section-3.7.3-3" class="pilcrow">¶</a></p>
 <p id="section-3.7.3-4">Property names in the <code>required</code> array MUST be present in <code>properties</code>.<a href="#section-3.7.3-4" class="pilcrow">¶</a></p>
 <p id="section-3.7.3-5">Example:<a href="#section-3.7.3-5" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.7.3-6">
@@ -2729,7 +2911,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </pre><a href="#section-3.7.3-6" class="pilcrow">¶</a>
 </div>
 <p id="section-3.7.3-7">Example with alternative sets:<a href="#section-3.7.3-7" class="pilcrow">¶</a></p>
-<p id="section-3.7.3-8">Because the <code>name</code> property is required in both sets, the <code>name</code> property is required in all objects. The <code>fins</code> property is required in the first set, and the <code>legs</code> property is required in the second set. That means that an object MUST have either <code>fins</code> or <code>legs</code> but not both.<a href="#section-3.7.3-8" class="pilcrow">¶</a></p>
+<p id="section-3.7.3-8">Because the <code>name</code> property is required in both sets, the <code>name</code> property is
+required in all objects. The <code>fins</code> property is required in the first set, and
+the <code>legs</code> property is required in the second set. That means that an object
+MUST have either <code>fins</code> or <code>legs</code> but not both.<a href="#section-3.7.3-8" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.7.3-9">
 <pre>
 {
@@ -2751,7 +2936,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-items-keyword">
 <a href="#section-3.7.4" class="section-number selfRef">3.7.4. </a><a href="#name-the-items-keyword" class="section-name selfRef">The <code>items</code> Keyword</a>
           </h4>
-<p id="section-3.7.4-1">Defines the schema for elements in an <code>array</code> or <code>set</code> type. The value is a type reference or a primitive type name or a locally declared compound type.<a href="#section-3.7.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.7.4-1">Defines the schema for elements in an <code>array</code> or <code>set</code> type. The value is a type
+reference or a primitive type name or a locally declared compound type.<a href="#section-3.7.4-1" class="pilcrow">¶</a></p>
 <p id="section-3.7.4-2">Examples:<a href="#section-3.7.4-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.7.4-3">
 <pre>
@@ -2777,7 +2963,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-3.7.5" class="section-number selfRef">3.7.5. </a><a href="#name-the-values-keyword" class="section-name selfRef">The <code>values</code> Keyword</a>
           </h4>
 <p id="section-3.7.5-1">Defines the schema for values in a <code>map</code> type.<a href="#section-3.7.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.7.5-2">The <code>values</code> keyword MUST reference a reusable type or a primitive type or a locally declared compound type.<a href="#section-3.7.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.7.5-2">The <code>values</code> keyword MUST reference a reusable type or a primitive type or a
+locally declared compound type.<a href="#section-3.7.5-2" class="pilcrow">¶</a></p>
 <p id="section-3.7.5-3">Example:<a href="#section-3.7.5-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.7.5-4">
 <pre>
@@ -2794,7 +2981,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-const-keyword">
 <a href="#section-3.7.6" class="section-number selfRef">3.7.6. </a><a href="#name-the-const-keyword" class="section-name selfRef">The <code>const</code> Keyword</a>
           </h4>
-<p id="section-3.7.6-1">Constrains the values of the JSON node described by the schema to a single, specific value. The <code>const</code> keyword MUST appear only in schemas with a primitive <code>type</code>, and the instance value MUST match the provided constant exactly.<a href="#section-3.7.6-1" class="pilcrow">¶</a></p>
+<p id="section-3.7.6-1">Constrains the values of the JSON node described by the schema to a single,
+specific value. The <code>const</code> keyword MUST appear only in schemas with a primitive
+<code>type</code>, and the instance value MUST match the provided constant exactly.<a href="#section-3.7.6-1" class="pilcrow">¶</a></p>
 <p id="section-3.7.6-2"><strong>Example</strong>:<a href="#section-3.7.6-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.7.6-3">
 <pre>
@@ -2811,7 +3000,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-enum-keyword">
 <a href="#section-3.7.7" class="section-number selfRef">3.7.7. </a><a href="#name-the-enum-keyword" class="section-name selfRef">The <code>enum</code> Keyword</a>
           </h4>
-<p id="section-3.7.7-1">Constrains a schema to match one of a specific set of values. The <code>enum</code> keyword MUST appear only in schemas with a primitive <code>type</code>, and all values in the enum array MUST match that type. Values MUST be unique.<a href="#section-3.7.7-1" class="pilcrow">¶</a></p>
+<p id="section-3.7.7-1">Constrains a schema to match one of a specific set of values. The <code>enum</code> keyword
+MUST appear only in schemas with a primitive <code>type</code>, and all values in the enum
+array MUST match that type. Values MUST be unique.<a href="#section-3.7.7-1" class="pilcrow">¶</a></p>
 <p id="section-3.7.7-2"><strong>Example</strong>:<a href="#section-3.7.7-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.7.7-3">
 <pre>
@@ -2829,7 +3020,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-additionalproperties-ke">
 <a href="#section-3.7.8" class="section-number selfRef">3.7.8. </a><a href="#name-the-additionalproperties-ke" class="section-name selfRef">The <code>additionalProperties</code> Keyword</a>
           </h4>
-<p id="section-3.7.8-1"><code>additionalProperties</code> defines whether additional properties are allowed in an <code>object</code> type and, optionally, what their schema is. The value MUST be a boolean or a schema. If set to <code>false</code>, no additional properties are allowed. If provided with a schema, each additional property MUST conform to it.<a href="#section-3.7.8-1" class="pilcrow">¶</a></p>
+<p id="section-3.7.8-1"><code>additionalProperties</code> defines whether additional properties are allowed in an
+<code>object</code> type and, optionally, what their schema is. The value MUST be a boolean
+or a schema. If set to <code>false</code>, no additional properties are allowed. If
+provided with a schema, each additional property MUST conform to it.<a href="#section-3.7.8-1" class="pilcrow">¶</a></p>
 <p id="section-3.7.8-2"><strong>Example</strong>:<a href="#section-3.7.8-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.7.8-3">
 <pre>
@@ -2851,14 +3045,19 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-type-annotation-keywords">
 <a href="#section-3.8" class="section-number selfRef">3.8. </a><a href="#name-type-annotation-keywords" class="section-name selfRef">Type Annotation Keywords</a>
         </h3>
-<p id="section-3.8-1">Type annotation keywords provide additional metadata about the underlying type. These keywords are used for documentation and validation of additional constraints on types.<a href="#section-3.8-1" class="pilcrow">¶</a></p>
+<p id="section-3.8-1">Type annotation keywords provide additional metadata about the underlying type.
+These keywords are used for documentation and validation of additional
+constraints on types.<a href="#section-3.8-1" class="pilcrow">¶</a></p>
 <div id="maxlength-keyword">
 <section id="section-3.8.1">
           <h4 id="name-the-maxlength-keyword">
 <a href="#section-3.8.1" class="section-number selfRef">3.8.1. </a><a href="#name-the-maxlength-keyword" class="section-name selfRef">The <code>maxLength</code> Keyword</a>
           </h4>
-<p id="section-3.8.1-1">Specifies the maximum allowed length for a string. The <code>maxLength</code> keyword MUST be used only with <code>string</code> types, and the string’s length MUST not exceed this value.<a href="#section-3.8.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.8.1-2">The purpose of <code>maxLength</code> is to provide a known storage constraint on the maximum length of a string. The value MAY be used for validation.<a href="#section-3.8.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.8.1-1">Specifies the maximum allowed length for a string. The <code>maxLength</code> keyword MUST
+be used only with <code>string</code> types, and the string’s length MUST not exceed this
+value.<a href="#section-3.8.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.8.1-2">The purpose of <code>maxLength</code> is to provide a known storage constraint on the
+maximum length of a string. The value MAY be used for validation.<a href="#section-3.8.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.8.1-3"><strong>Example</strong>:<a href="#section-3.8.1-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.8.1-4">
 <pre>
@@ -2875,7 +3074,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-precision-keyword">
 <a href="#section-3.8.2" class="section-number selfRef">3.8.2. </a><a href="#name-the-precision-keyword" class="section-name selfRef">The <code>precision</code> Keyword</a>
           </h4>
-<p id="section-3.8.2-1">Specifies the total number of significant digits for numeric values. The <code>precision</code> keyword is used as an annotation for <code>number</code> or <code>decimal</code> types.<a href="#section-3.8.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.8.2-1">Specifies the total number of significant digits for numeric values. The
+<code>precision</code> keyword is used as an annotation for <code>number</code> or <code>decimal</code> types.<a href="#section-3.8.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.8.2-2"><strong>Example</strong>:<a href="#section-3.8.2-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.8.2-3">
 <pre>
@@ -2892,7 +3092,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-scale-keyword">
 <a href="#section-3.8.3" class="section-number selfRef">3.8.3. </a><a href="#name-the-scale-keyword" class="section-name selfRef">The <code>scale</code> Keyword</a>
           </h4>
-<p id="section-3.8.3-1">Specifies the number of digits to the right of the decimal point for numeric values. The <code>scale</code> keyword is used as an annotation for <code>number</code> or <code>decimal</code> types to constrain the fractional part.<a href="#section-3.8.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.8.3-1">Specifies the number of digits to the right of the decimal point for numeric
+values. The <code>scale</code> keyword is used as an annotation for <code>number</code> or <code>decimal</code>
+types to constrain the fractional part.<a href="#section-3.8.3-1" class="pilcrow">¶</a></p>
 <p id="section-3.8.3-2"><strong>Example</strong>:<a href="#section-3.8.3-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.8.3-3">
 <pre>
@@ -2909,7 +3111,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-contentencoding-keyword">
 <a href="#section-3.8.4" class="section-number selfRef">3.8.4. </a><a href="#name-the-contentencoding-keyword" class="section-name selfRef">The <code>contentEncoding</code> Keyword</a>
           </h4>
-<p id="section-3.8.4-1">Specifies the encoding of a binary value. The <code>contentEncoding</code> keyword is used as an annotation for <code>binary</code> types.<a href="#section-3.8.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.8.4-1">Specifies the encoding of a binary value. The <code>contentEncoding</code> keyword is used
+as an annotation for <code>binary</code> types.<a href="#section-3.8.4-1" class="pilcrow">¶</a></p>
 <p id="section-3.8.4-2">The permitted values for <code>contentEncoding</code> are defined in <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>]</span>:<a href="#section-3.8.4-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.8.4-3.1">
@@ -2944,20 +3147,25 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-contentcompression-keyw">
 <a href="#section-3.8.5" class="section-number selfRef">3.8.5. </a><a href="#name-the-contentcompression-keyw" class="section-name selfRef">The <code>contentCompression</code> Keyword</a>
           </h4>
-<p id="section-3.8.5-1">Specifies the compression algorithm used for a binary value before encoding. The <code>contentCompression</code> keyword is used as an annotation for <code>binary</code> types.<a href="#section-3.8.5-1" class="pilcrow">¶</a></p>
+<p id="section-3.8.5-1">Specifies the compression algorithm used for a binary value before encoding. The
+<code>contentCompression</code> keyword is used as an annotation for <code>binary</code> types.<a href="#section-3.8.5-1" class="pilcrow">¶</a></p>
 <p id="section-3.8.5-2">The permitted values for <code>contentCompression</code> are:<a href="#section-3.8.5-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.8.5-3.1">
-              <p id="section-3.8.5-3.1.1"><code>gzip</code>: The binary value is compressed using the gzip algorithm. See <span>[<a href="#RFC1952" class="cite xref">RFC1952</a>]</span>.<a href="#section-3.8.5-3.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3.8.5-3.1.1"><code>gzip</code>: The binary value is compressed using the gzip algorithm. See
+<span>[<a href="#RFC1952" class="cite xref">RFC1952</a>]</span>.<a href="#section-3.8.5-3.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.8.5-3.2">
-              <p id="section-3.8.5-3.2.1"><code>deflate</code>: The binary value is compressed using the deflate algorithm. See <span>[<a href="#RFC1951" class="cite xref">RFC1951</a>]</span>.<a href="#section-3.8.5-3.2.1" class="pilcrow">¶</a></p>
+              <p id="section-3.8.5-3.2.1"><code>deflate</code>: The binary value is compressed using the deflate algorithm. See
+<span>[<a href="#RFC1951" class="cite xref">RFC1951</a>]</span>.<a href="#section-3.8.5-3.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.8.5-3.3">
-              <p id="section-3.8.5-3.3.1"><code>zlib</code>: The binary value is compressed using the zlib algorithm. See <span>[<a href="#RFC1950" class="cite xref">RFC1950</a>]</span>.<a href="#section-3.8.5-3.3.1" class="pilcrow">¶</a></p>
+              <p id="section-3.8.5-3.3.1"><code>zlib</code>: The binary value is compressed using the zlib algorithm. See
+<span>[<a href="#RFC1950" class="cite xref">RFC1950</a>]</span>.<a href="#section-3.8.5-3.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.8.5-3.4">
-              <p id="section-3.8.5-3.4.1"><code>brotli</code>: The binary value is compressed using the brotli algorithm. See <span>[<a href="#RFC7932" class="cite xref">RFC7932</a>]</span>.<a href="#section-3.8.5-3.4.1" class="pilcrow">¶</a></p>
+              <p id="section-3.8.5-3.4.1"><code>brotli</code>: The binary value is compressed using the brotli algorithm. See
+<span>[<a href="#RFC7932" class="cite xref">RFC7932</a>]</span>.<a href="#section-3.8.5-3.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 <p id="section-3.8.5-4"><strong>Example</strong>:<a href="#section-3.8.5-4" class="pilcrow">¶</a></p>
@@ -2977,8 +3185,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-contentmediatype-keywor">
 <a href="#section-3.8.6" class="section-number selfRef">3.8.6. </a><a href="#name-the-contentmediatype-keywor" class="section-name selfRef">The <code>contentMediaType</code> Keyword</a>
           </h4>
-<p id="section-3.8.6-1">Specifies the media type of a binary value. The <code>contentMediaType</code> keyword is used as an annotation for <code>binary</code> types.<a href="#section-3.8.6-1" class="pilcrow">¶</a></p>
-<p id="section-3.8.6-2">The value of <code>contentMediaType</code> MUST be a valid media type as defined in <span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#section-3.8.6-2" class="pilcrow">¶</a></p>
+<p id="section-3.8.6-1">Specifies the media type of a binary value. The <code>contentMediaType</code> keyword is
+used as an annotation for <code>binary</code> types.<a href="#section-3.8.6-1" class="pilcrow">¶</a></p>
+<p id="section-3.8.6-2">The value of <code>contentMediaType</code> MUST be a valid media type as defined in
+<span>[<a href="#RFC6838" class="cite xref">RFC6838</a>]</span>.<a href="#section-3.8.6-2" class="pilcrow">¶</a></p>
 <p id="section-3.8.6-3"><strong>Example</strong>:<a href="#section-3.8.6-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.8.6-4">
 <pre>
@@ -2998,13 +3208,15 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-documentation-keywords">
 <a href="#section-3.9" class="section-number selfRef">3.9. </a><a href="#name-documentation-keywords" class="section-name selfRef">Documentation Keywords</a>
         </h3>
-<p id="section-3.9-1">Documentation keywords provide descriptive information for schema elements. They are OPTIONAL but RECOMMENDED for clarity.<a href="#section-3.9-1" class="pilcrow">¶</a></p>
+<p id="section-3.9-1">Documentation keywords provide descriptive information for schema elements. They
+are OPTIONAL but RECOMMENDED for clarity.<a href="#section-3.9-1" class="pilcrow">¶</a></p>
 <div id="description-keyword">
 <section id="section-3.9.1">
           <h4 id="name-the-description-keyword">
 <a href="#section-3.9.1" class="section-number selfRef">3.9.1. </a><a href="#name-the-description-keyword" class="section-name selfRef">The <code>description</code> Keyword</a>
           </h4>
-<p id="section-3.9.1-1">Provides a human-readable description of a schema element. The <code>description</code> keyword SHOULD be used to document any schema element.<a href="#section-3.9.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.9.1-1">Provides a human-readable description of a schema element. The <code>description</code>
+keyword SHOULD be used to document any schema element.<a href="#section-3.9.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.9.1-2"><strong>Example</strong>:<a href="#section-3.9.1-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.9.1-3">
 <pre>
@@ -3014,7 +3226,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre><a href="#section-3.9.1-3" class="pilcrow">¶</a>
 </div>
-<p id="section-3.9.1-4">For multi-lingual descriptions, the <span>[<a href="#JSTRUCT-ALTNAMES" class="cite xref">JSTRUCT-ALTNAMES</a>]</span> companion provides an extension to define several concurrent descriptions in multiple languages.<a href="#section-3.9.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.9.1-4">For multi-lingual descriptions, the <span>[<a href="#JSTRUCT-ALTNAMES" class="cite xref">JSTRUCT-ALTNAMES</a>]</span> companion provides an
+extension to define several concurrent descriptions in multiple languages.<a href="#section-3.9.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="examples-keyword">
@@ -3022,7 +3235,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-examples-keyword">
 <a href="#section-3.9.2" class="section-number selfRef">3.9.2. </a><a href="#name-the-examples-keyword" class="section-name selfRef">The <code>examples</code> Keyword</a>
           </h4>
-<p id="section-3.9.2-1">Provides example instance values that conform to the schema. The <code>examples</code> keyword SHOULD be used to document potential instance values.<a href="#section-3.9.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.9.2-1">Provides example instance values that conform to the schema. The <code>examples</code>
+keyword SHOULD be used to document potential instance values.<a href="#section-3.9.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.9.2-2"><strong>Example</strong>:<a href="#section-3.9.2-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.9.2-3">
 <pre>
@@ -3041,8 +3255,15 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-extensions-and-add-ins">
 <a href="#section-3.10" class="section-number selfRef">3.10. </a><a href="#name-extensions-and-add-ins" class="section-name selfRef">Extensions and Add-Ins</a>
         </h3>
-<p id="section-3.10-1">The <code>abstract</code> and <code>$extends</code> keywords enable controlled type extension, supporting basic object-oriented-programming-style inheritance while not permitting subtype polymorphism where a sub-type value can be assigned a base-typed property. This approach avoids validation complexities and mapping issues between JSON schemas, programming types, and databases.<a href="#section-3.10-1" class="pilcrow">¶</a></p>
-<p id="section-3.10-2">An <em>extensible type</em> is declared as <code>abstract</code> and serves as a base for extensions. For example, a base type <em>Address</em> MAY be extended by <em>StreetAddress</em> and <em>PostOfficeBoxAddress</em> via <code>$extends</code>, but <em>Address</em> cannot be used directly.<a href="#section-3.10-2" class="pilcrow">¶</a></p>
+<p id="section-3.10-1">The <code>abstract</code> and <code>$extends</code> keywords enable controlled type extension,
+supporting basic object-oriented-programming-style inheritance while not
+permitting subtype polymorphism where a sub-type value can be assigned a
+base-typed property. This approach avoids validation complexities and mapping
+issues between JSON schemas, programming types, and databases.<a href="#section-3.10-1" class="pilcrow">¶</a></p>
+<p id="section-3.10-2">An <em>extensible type</em> is declared as <code>abstract</code> and serves as a base for
+extensions. For example, a base type <em>Address</em> MAY be extended by
+<em>StreetAddress</em> and <em>PostOfficeBoxAddress</em> via <code>$extends</code>, but <em>Address</em> cannot
+be used directly.<a href="#section-3.10-2" class="pilcrow">¶</a></p>
 <p id="section-3.10-3">Example:<a href="#section-3.10-3" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.10-4">
 <pre>
@@ -3076,7 +3297,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre><a href="#section-3.10-4" class="pilcrow">¶</a>
 </div>
-<p id="section-3.10-5">A <em>add-in type</em> is declared as <code>abstract</code> and <code>$extends</code> a specific type that does not need to be abstract. For example, an add-in type <em>DeliveryInstructions</em> might be applied to any <em>StreetAddress</em> types in a document:<a href="#section-3.10-5" class="pilcrow">¶</a></p>
+<p id="section-3.10-5">A <em>add-in type</em> is declared as <code>abstract</code> and <code>$extends</code> a specific type that
+does not need to be abstract. For example, an add-in type <em>DeliveryInstructions</em>
+might be applied to any <em>StreetAddress</em> types in a document:<a href="#section-3.10-5" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.10-6">
 <pre>
 {
@@ -3108,9 +3331,16 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 }
 </pre><a href="#section-3.10-6" class="pilcrow">¶</a>
 </div>
-<p id="section-3.10-7">Add-in types are options that a document author can enable for a schema. The definitions of add-in types are not part of the main schema by default, but are injected into the designated schema type when the document author chooses to use them.<a href="#section-3.10-7" class="pilcrow">¶</a></p>
-<p id="section-3.10-8">Add-in types are advertised in the schema document through the <code>$offers</code> keyword, which is a map that defines add-in names for add-in schema definitions that exist in the document.<a href="#section-3.10-8" class="pilcrow">¶</a></p>
-<p id="section-3.10-9">Add-ins are applied to a schema by referencing the add-in name in the <code>$uses</code> keyword that is available only in instance documents. The <code>$uses</code> keyword is a set of add-in names that are applied to the schema for the document.<a href="#section-3.10-9" class="pilcrow">¶</a></p>
+<p id="section-3.10-7">Add-in types are options that a document author can enable for a schema. The
+definitions of add-in types are not part of the main schema by default, but are
+injected into the designated schema type when the document author chooses to use
+them.<a href="#section-3.10-7" class="pilcrow">¶</a></p>
+<p id="section-3.10-8">Add-in types are advertised in the schema document through the <code>$offers</code>
+keyword, which is a map that defines add-in names for add-in schema definitions
+that exist in the document.<a href="#section-3.10-8" class="pilcrow">¶</a></p>
+<p id="section-3.10-9">Add-ins are applied to a schema by referencing the add-in name in the <code>$uses</code>
+keyword that is available only in instance documents. The <code>$uses</code> keyword is a
+set of add-in names that are applied to the schema for the document.<a href="#section-3.10-9" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.10-10">
 <pre>
 {
@@ -3129,8 +3359,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-abstract-keyword">
 <a href="#section-3.10.1" class="section-number selfRef">3.10.1. </a><a href="#name-the-abstract-keyword" class="section-name selfRef">The <code>abstract</code> Keyword</a>
           </h4>
-<p id="section-3.10.1-1">The <code>abstract</code> keyword declares a type as abstract. This prohibits its direct use in any type declaration or as the type of a schema element. Abstract types are used as base types for extension via <code>$extends</code> or as add-in types via <code>$addins</code>.<a href="#section-3.10.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.10.1-2">Abstract types implicitly permit additional properties (<code>additionalProperties</code> is always <code>true</code>).<a href="#section-3.10.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.10.1-1">The <code>abstract</code> keyword declares a type as abstract. This prohibits its direct
+use in any type declaration or as the type of a schema element. Abstract types
+are used as base types for extension via <code>$extends</code> or as add-in types via
+<code>$addins</code>.<a href="#section-3.10.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.10.1-2">Abstract types implicitly permit additional properties (<code>additionalProperties</code>
+is always <code>true</code>).<a href="#section-3.10.1-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.10.1-3.1">
               <p id="section-3.10.1-3.1.1"><strong>Value</strong>: A boolean (<code>true</code> or <code>false</code>).<a href="#section-3.10.1-3.1.1" class="pilcrow">¶</a></p>
@@ -3139,13 +3373,16 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
               <p id="section-3.10.1-3.2.1"><strong>Rules</strong>:<a href="#section-3.10.1-3.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.10.1-3.2.2.1">
-                  <p id="section-3.10.1-3.2.2.1.1">The <code>abstract</code> keyword MUST only be used in schemas of type <code>object</code> and <code>tuple</code>.<a href="#section-3.10.1-3.2.2.1.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.10.1-3.2.2.1.1">The <code>abstract</code> keyword MUST only be used in schemas of type <code>object</code> and
+<code>tuple</code>.<a href="#section-3.10.1-3.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.10.1-3.2.2.2">
-                  <p id="section-3.10.1-3.2.2.2.1">Abstract types MUST NOT be used as the type of a schema element or referenced via <code>$ref</code>.<a href="#section-3.10.1-3.2.2.2.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.10.1-3.2.2.2.1">Abstract types MUST NOT be used as the type of a schema element or
+referenced via <code>$ref</code>.<a href="#section-3.10.1-3.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.10.1-3.2.2.3">
-                  <p id="section-3.10.1-3.2.2.3.1">The <code>additionalProperties</code> keyword MUST NOT be used on abstract types (its value is implicitly <code>true</code>).<a href="#section-3.10.1-3.2.2.3.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.10.1-3.2.2.3.1">The <code>additionalProperties</code> keyword MUST NOT be used on abstract types (its
+value is implicitly <code>true</code>).<a href="#section-3.10.1-3.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.10.1-3.2.2.4">
                   <p id="section-3.10.1-3.2.2.4.1">Abstract types MAY extend other abstract types via <code>$extends</code>.<a href="#section-3.10.1-3.2.2.4.1" class="pilcrow">¶</a></p>
@@ -3160,8 +3397,11 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-extends-keyword">
 <a href="#section-3.10.2" class="section-number selfRef">3.10.2. </a><a href="#name-the-extends-keyword" class="section-name selfRef">The <code>$extends</code> Keyword</a>
           </h4>
-<p id="section-3.10.2-1">The <code>$extends</code> keyword merges all properties from an abstract base type into the extending type.<a href="#section-3.10.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.10.2-2">If the type using <code>$extends</code> is marked as <code>abstract</code> and referenced via <code>$addins</code>, the composite type <em>replaces</em> the base type in the type model of the document.<a href="#section-3.10.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.10.2-1">The <code>$extends</code> keyword merges all properties from an abstract base type into the
+extending type.<a href="#section-3.10.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.10.2-2">If the type using <code>$extends</code> is marked as <code>abstract</code> and referenced via
+<code>$addins</code>, the composite type <em>replaces</em> the base type in the type model of the
+document.<a href="#section-3.10.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.10.2-3.1">
               <p id="section-3.10.2-3.1.1"><strong>Value</strong>: A JSON Pointer to an abstract type.<a href="#section-3.10.2-3.1.1" class="pilcrow">¶</a></p>
@@ -3170,13 +3410,16 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
               <p id="section-3.10.2-3.2.1"><strong>Rules</strong>:<a href="#section-3.10.2-3.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.10.2-3.2.2.1">
-                  <p id="section-3.10.2-3.2.2.1.1">The <code>$extends</code> keyword MUST only be used in schemas of type <code>object</code> and <code>tuple</code>.<a href="#section-3.10.2-3.2.2.1.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.10.2-3.2.2.1.1">The <code>$extends</code> keyword MUST only be used in schemas of type <code>object</code> and
+<code>tuple</code>.<a href="#section-3.10.2-3.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.10.2-3.2.2.2">
-                  <p id="section-3.10.2-3.2.2.2.1">The value of <code>$extends</code> MUST be a valid JSON Pointer that points to an abstract type within the same document.<a href="#section-3.10.2-3.2.2.2.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.10.2-3.2.2.2.1">The value of <code>$extends</code> MUST be a valid JSON Pointer that points to an
+abstract type within the same document.<a href="#section-3.10.2-3.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.10.2-3.2.2.3">
-                  <p id="section-3.10.2-3.2.2.3.1">The extending type MUST merge the abstract type’s properties and constraints and MUST NOT redefine any inherited property.<a href="#section-3.10.2-3.2.2.3.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.10.2-3.2.2.3.1">The extending type MUST merge the abstract type’s properties and constraints
+and MUST NOT redefine any inherited property.<a href="#section-3.10.2-3.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
               </ul>
 </li>
@@ -3188,7 +3431,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-offers-keyword">
 <a href="#section-3.10.3" class="section-number selfRef">3.10.3. </a><a href="#name-the-offers-keyword" class="section-name selfRef">The <code>$offers</code> Keyword</a>
           </h4>
-<p id="section-3.10.3-1">The <code>$offers</code> keyword is used to advertise add-in types that are available for use in a schema document. The <code>$offers</code> keyword is a map of add-in names to add-in schema definitions.<a href="#section-3.10.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.10.3-1">The <code>$offers</code> keyword is used to advertise add-in types that are available for
+use in a schema document. The <code>$offers</code> keyword is a map of add-in names to
+add-in schema definitions.<a href="#section-3.10.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.10.3-2.1">
               <p id="section-3.10.3-2.1.1"><strong>Value</strong>: A map of add-in names to add-in schema definitions.<a href="#section-3.10.3-2.1.1" class="pilcrow">¶</a></p>
@@ -3197,10 +3442,15 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
               <p id="section-3.10.3-2.2.1"><strong>Rules</strong>:<a href="#section-3.10.3-2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.10.3-2.2.2.1">
-                  <p id="section-3.10.3-2.2.2.1.1">The <code>$offers</code> keyword MUST only be used in the root object of a schema document.<a href="#section-3.10.3-2.2.2.1.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.10.3-2.2.2.1.1">The <code>$offers</code> keyword MUST only be used in the root object of a schema
+document.<a href="#section-3.10.3-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.10.3-2.2.2.2">
-                  <p id="section-3.10.3-2.2.2.2.1">The value of <code>$offers</code> MUST be a map where each key is a string and each value is a JSON Pointer to an add-in schema definition in the same document or a set of JSON Pointers to add-in schema definitions in the same document. If the value is a set, the add-in name selects all add-in schema definitions at the same time.<a href="#section-3.10.3-2.2.2.2.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.10.3-2.2.2.2.1">The value of <code>$offers</code> MUST be a map where each key is a string and each
+value is a JSON Pointer to an add-in schema definition in the same document
+or a set of JSON Pointers to add-in schema definitions in the same document.
+If the value is a set, the add-in name selects all add-in schema definitions
+at the same time.<a href="#section-3.10.3-2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.10.3-2.2.2.3">
                   <p id="section-3.10.3-2.2.2.3.1">The keys in the <code>$offers</code> map MUST be unique.<a href="#section-3.10.3-2.2.2.3.1" class="pilcrow">¶</a></p>
@@ -3215,10 +3465,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <h4 id="name-the-uses-keyword">
 <a href="#section-3.10.4" class="section-number selfRef">3.10.4. </a><a href="#name-the-uses-keyword" class="section-name selfRef">The <code>$uses</code> Keyword</a>
           </h4>
-<p id="section-3.10.4-1">The <code>$uses</code> keyword is used to apply add-in types to a schema <em>in an instance document</em> that references the schema. The keyword MAY be used in a meta-schema that references a parent schema.<a href="#section-3.10.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.10.4-1">The <code>$uses</code> keyword is used to apply add-in types to a schema <em>in an instance
+document</em> that references the schema. The keyword MAY be used in a meta-schema
+that references a parent schema.<a href="#section-3.10.4-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.10.4-2.1">
-              <p id="section-3.10.4-2.1.1"><strong>Value</strong>: A set of add-in names or JSON Pointers to add-in schema definitions in the same meta-schema document.<a href="#section-3.10.4-2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3.10.4-2.1.1"><strong>Value</strong>: A set of add-in names or JSON Pointers to add-in schema definitions
+in the same meta-schema document.<a href="#section-3.10.4-2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.10.4-2.2">
               <p id="section-3.10.4-2.2.1"><strong>Rules</strong>:<a href="#section-3.10.4-2.2.1" class="pilcrow">¶</a></p>
@@ -3230,10 +3483,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                   <p id="section-3.10.4-2.2.2.2.1">The value of <code>$uses</code> MUST be a set of strings that are either:<a href="#section-3.10.4-2.2.2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.10.4-2.2.2.2.2.1">
-                      <p id="section-3.10.4-2.2.2.2.2.1.1">add-in names advertised in the <code>$offers</code> keyword of the schema document referenced by the <code>$schema</code> keyword of the instance document or<a href="#section-3.10.4-2.2.2.2.2.1.1" class="pilcrow">¶</a></p>
+                      <p id="section-3.10.4-2.2.2.2.2.1.1">add-in names advertised in the <code>$offers</code> keyword of the schema document
+referenced by the <code>$schema</code> keyword of the instance document or<a href="#section-3.10.4-2.2.2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                     <li class="normal" id="section-3.10.4-2.2.2.2.2.2">
-                      <p id="section-3.10.4-2.2.2.2.2.2.1">JSON Pointers to add-in schema definitions in the same meta-schema document.<a href="#section-3.10.4-2.2.2.2.2.2.1" class="pilcrow">¶</a></p>
+                      <p id="section-3.10.4-2.2.2.2.2.2.1">JSON Pointers to add-in schema definitions in the same meta-schema
+document.<a href="#section-3.10.4-2.2.2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
                   </ul>
 </li>
@@ -3251,7 +3506,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-reserved-keywords">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-reserved-keywords" class="section-name selfRef">Reserved Keywords</a>
       </h2>
-<p id="section-4-1">The following keywords are reserved in JSON Structure and MUST NOT be used as custom annotations or extension keywords:<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">The following keywords are reserved in JSON Structure and MUST NOT be used as
+custom annotations or extension keywords:<a href="#section-4-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4-2.1">
           <p id="section-4-2.1.1"><code>definitions</code><a href="#section-4-2.1.1" class="pilcrow">¶</a></p>
@@ -3336,7 +3592,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-security-considerations">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-5-1">JSON Structure documents are self-contained and MUST NOT allow external references except for the <code>$schema</code> and <code>$addins</code> keywords. Implementations MUST ensure that all <code>$ref</code> pointers resolve within the same document to eliminate security vulnerabilities related to external schema inclusion.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">JSON Structure documents are self-contained and MUST NOT allow external
+references except for the <code>$schema</code> and <code>$addins</code> keywords. Implementations MUST
+ensure that all <code>$ref</code> pointers resolve within the same document to eliminate
+security vulnerabilities related to external schema inclusion.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -3421,23 +3680,23 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <dl class="references">
 <dt id="JSTRUCT-ALTNAMES">[JSTRUCT-ALTNAMES]</dt>
         <dd>
-<span class="refAuthor">Vasters, C.</span>, <span class="refTitle">"JSON Structure Alternate Names"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/json-structure/altername-names">https://github.com/json-structure/altername-names</a>&gt;</span>. </dd>
+<span class="refAuthor">Vasters, C.</span>, <span class="refTitle">"JSON Structure Alternate Names"</span>, <span>n.d.</span>, <span>&lt;<a href="https://json-structure.github.io/altername-names">https://json-structure.github.io/altername-names</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="JSTRUCT-COMPOSITION">[JSTRUCT-COMPOSITION]</dt>
         <dd>
-<span class="refAuthor">Vasters, C.</span>, <span class="refTitle">"JSON Structure Conditional Composition"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/json-structure/conditional-composition">https://github.com/json-structure/conditional-composition</a>&gt;</span>. </dd>
+<span class="refAuthor">Vasters, C.</span>, <span class="refTitle">"JSON Structure Conditional Composition"</span>, <span>n.d.</span>, <span>&lt;<a href="https://json-structure.github.io/conditional-composition">https://json-structure.github.io/conditional-composition</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="JSTRUCT-IMPORT">[JSTRUCT-IMPORT]</dt>
         <dd>
-<span class="refAuthor">Vasters, C.</span>, <span class="refTitle">"JSON Structure Import"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/json-structure/import">https://github.com/json-structure/import</a>&gt;</span>. </dd>
+<span class="refAuthor">Vasters, C.</span>, <span class="refTitle">"JSON Structure Import"</span>, <span>n.d.</span>, <span>&lt;<a href="https://json-structure.github.io/import">https://json-structure.github.io/import</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="JSTRUCT-UNITS">[JSTRUCT-UNITS]</dt>
         <dd>
-<span class="refAuthor">Vasters, C.</span>, <span class="refTitle">"JSON Structure Units"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/json-structure/units">https://github.com/json-structure/units</a>&gt;</span>. </dd>
+<span class="refAuthor">Vasters, C.</span>, <span class="refTitle">"JSON Structure Units"</span>, <span>n.d.</span>, <span>&lt;<a href="https://json-structure.github.io/units">https://json-structure.github.io/units</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="JSTRUCT-VALIDATION">[JSTRUCT-VALIDATION]</dt>
       <dd>
-<span class="refAuthor">Vasters, C.</span>, <span class="refTitle">"JSON Structure Validation"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/json-structure/validation">https://github.com/json-structure/validation</a>&gt;</span>. </dd>
+<span class="refAuthor">Vasters, C.</span>, <span class="refTitle">"JSON Structure Validation"</span>, <span>n.d.</span>, <span>&lt;<a href="https://json-structure.github.io/validation">https://json-structure.github.io/validation</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
