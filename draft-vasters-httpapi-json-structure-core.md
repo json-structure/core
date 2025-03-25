@@ -96,7 +96,7 @@ validation purposes.
 Complementing _JSON Structure_ are a set of extension specifications that extend
 the core schema language with additional, OPTIONAL features:
 
-- JSON Structure: Import_ {{JSTRUCT-IMPORT}}: Defines a mechanism for importing
+- _JSON Structure: Import_ {{JSTRUCT-IMPORT}}: Defines a mechanism for importing
   external schemas and definitions into a schema document.
 - _JSON Structure: Alternate Names and Descriptions_ {{JSTRUCT-ALTNAMES}}:
   Provides a mechanism for declaring multilingual descriptions, and alternate
