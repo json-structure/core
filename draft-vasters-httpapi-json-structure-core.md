@@ -1,5 +1,5 @@
 ---
-title: "JSON Structure Core"
+title: "JSON Structure: Core"
 category: info
 
 docname: draft-vasters-httpapi-json-structure-core-latest
@@ -95,17 +95,20 @@ validation purposes.
 Complementing _JSON Structure_ are a set of extension specifications that extend
 the core schema language with additional, OPTIONAL features:
 
-- {{JSTRUCT-ALTNAMES}}: Provides a mechanism for declaring alternate names and
-  symbols for types and properties, including for the purposes of
-  internationalization.
-- {{JSTRUCT-UNITS}}: Defines keywords for specifying symbols, scientific units,
-  and currency codes on types and properties.
-- {{JSTRUCT-COMPOSITION}}: Defines a set of conditional composition rules for
-  evaluating schemas.
-- {{JSTRUCT-VALIDATION}}: Specifies extensions to the core schema language for
-  declaring validation rules.
-- {{JSTRUCT-IMPORT}}: Defines a mechanism for importing external schemas and
-  definitions into a schema document.
+- JSON Structure: Import_ {{JSTRUCT-IMPORT}}: Defines a mechanism for importing
+  external schemas and definitions into a schema document.
+- _JSON Structure: Alternate Names and Descriptions_ {{JSTRUCT-ALTNAMES}}:
+  Provides a mechanism for declaring multilingual descriptions, and alternate
+  names and symbols for types and properties. 
+- _JSON Structure: Symbols, Scientific Units, and Currencies_ {{JSTRUCT-UNITS}}:
+  Defines annotation keywords for specifying symbols, scientific units, and
+  currency codes complementing type information.
+- _JSON Structure: Validation_ {{JSTRUCT-VALIDATION}}: Specifies extensions to
+  the core schema language for declaring validation rules for JSON data that
+  have no structural impact on the schema.
+- _JSON Structure: Composition_ {{JSTRUCT-COMPOSITION}}: Defines a set of
+  conditional composition rules for evaluating schemas.
+
 
 These extension specifications are enabled by the extensibility
 ({{extensions-and-add-ins}}) features and can be applied to meta-schemas,
