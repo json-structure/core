@@ -1575,7 +1575,7 @@ JSON Structure MAY be used to describe CBOR-encoded data structures. For
 encoding CBOR data structures, the data structure is first mapped to a JSON type
 model as described in this specification, with the exception that the {{binary}}
 primitive type is preserved as a byte array. The resulting mapping is converted
-into CBOR per the rules spelled out in {{Section 6.2 of RFC 8949}}.
+into CBOR per the rules spelled out in {{Section 6.2 of RFC8949}}.
 
 The decoding process is the reverse of the encoding process. The CBOR-encoded
 data structure is first decoded into a JSON type model, and then the JSON type
