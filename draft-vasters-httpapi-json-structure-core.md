@@ -39,6 +39,7 @@ normative:
   RFC6901:
   RFC7932:
   RFC8259:
+  RFC8949:
 
 
 informative:
@@ -692,7 +693,7 @@ Example with inline `type`:
 
 ~~~ json
 {
-    "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+    "$schema": "https://json-structure.github.io/meta/core/v0",
     "$id": "https://schemas.vasters.com/TypeName",
     "name": "TypeName",
     "type": "object",
@@ -706,7 +707,7 @@ Example with `$root`:
 
 ~~~ json
 {
-    "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+    "$schema": "https://json-structure.github.io/meta/core/v0",
     "$id": "https://schemas.vasters.com/TypeName",
     "$root": "#/definitions/TypeName",
     "definitions": {
@@ -724,7 +725,7 @@ Example with the root type in a namespace:
 
 ~~~ json
 {
-    "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+    "$schema": "https://json-structure.github.io/meta/core/v0",
     "$id": "https://schemas.vasters.com/TypeName",
     "$root": "#/definitions/Namespace/TypeName",
     "definitions": {
@@ -760,7 +761,7 @@ Example:
 
 ~~~ json
 {
-    "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+    "$schema": "https://json-structure.github.io/meta/core/v0",
     "name": "TypeName",
     "type": "object",
     "properties": {
@@ -787,7 +788,7 @@ Example:
 
 ~~~ json
 {
-    "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+    "$schema": "https://json-structure.github.io/meta/core/v0",
     "$id": "https://schemas.vasters.com/TypeName",
     "name": "TypeName",
     "type": "object",
@@ -811,7 +812,7 @@ Example:
 
 ~~~ json
 {
-  "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+  "$schema": "https://json-structure.github.io/meta/core/v0",
   "$id": "https://schemas.vasters.com/TypeName",
   "$root": "#/definitions/Namespace/TypeName",
   "definitions": {
@@ -845,7 +846,7 @@ Example:
 
 ~~~ json
 {
-    "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+    "$schema": "https://json-structure.github.io/meta/core/v0",
     "$id": "https://schemas.vasters.com/TypeName",
     "definitions": {
         "Namespace": {
@@ -872,7 +873,7 @@ Example:
 
 ~~~ json
 {
-  "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+  "$schema": "https://json-structure.github.io/meta/core/v0",
   "$id": "https://schemas.vasters.com/TypeName",
   "properties": {
       "name1": { "type": { "$ref": "#/definitions/Namespace/TypeName" }},
@@ -1373,7 +1374,7 @@ Example:
 
 ~~~ json
 {
-  "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+  "$schema": "https://json-structure.github.io/meta/core/v0",
   "definitions" : {
     "Address": {
       "abstract": true,
@@ -1408,7 +1409,7 @@ might be applied to any _StreetAddress_ types in a document:
 
 ~~~ json
 {
-    "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+    "$schema": "https://json-structure.github.io/meta/core/v0",
     "$id": "https://schemas.vasters.com/Addresses",
     "$root": "#/definitions/StreetAddress",
     "$offers": {
@@ -1562,6 +1563,28 @@ custom annotations or extension keywords:
 - `scale`
 - `type`
 - `values`
+
+# Media Type {#media-type}
+
+The media type for JSON Structure documents is `application/json-structure`.
+
+It is RECOMMENDED to append the structured syntax suffix `+json` to indicate
+unambiguously that the content is a JSON document, if the document is a JSON
+document. In spite of this specification being focused on JSON, the JSON
+Structure documents MAY be encoded using other serialization formats that can
+represent the same data structure, such as CBOR {{RFC8949}}.
+
+ - Type name: application
+ - Subtype name: json-structure
+ - Required parameters: none
+ - Optional parameters: none
+ - Encoding considerations: binary
+ - Security considerations: see {{security-considerations}}
+ - Interoperability considerations: none
+ - Published specification: this document
+ - Applications that use this media type: none
+ - Fragment identifier considerations: none
+ - Additional information: none
 
 # Security Considerations {#security-considerations}
 
