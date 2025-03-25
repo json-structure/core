@@ -8,7 +8,7 @@ Intended status: Informational                             24 March 2025
 Expires: 25 September 2025
 
 
-                          JSON Structure Core
+                          JSON Structure: Core
             draft-vasters-httpapi-json-structure-core-latest
 
 Abstract
@@ -123,11 +123,15 @@ Table of Contents
        3.10.3.  The $offers Keyword
        3.10.4.  The $uses Keyword
    4.  Reserved Keywords
-   5.  Security Considerations
-   6.  IANA Considerations
-   7.  References
-     7.1.  Normative References
-     7.2.  Informative References
+   5.  CBOR Type System Mapping
+   6.  Media Type
+   7.  Media Type Parameters
+     7.1.  schema Parameter
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Acknowledgments
    Author's Address
 
@@ -149,21 +153,25 @@ Table of Contents
    that extend the core schema language with additional, OPTIONAL
    features:
 
-   *  [JSTRUCT-ALTNAMES]: Provides a mechanism for declaring alternate
-      names and symbols for types and properties, including for the
-      purposes of internationalization.
+   *  JSON Structure: Import_ [JSTRUCT-IMPORT]: Defines a mechanism for
+      importing external schemas and definitions into a schema document.
 
-   *  [JSTRUCT-UNITS]: Defines keywords for specifying symbols,
-      scientific units, and currency codes on types and properties.
+   *  _JSON Structure: Alternate Names and Descriptions_
+      [JSTRUCT-ALTNAMES]: Provides a mechanism for declaring
+      multilingual descriptions, and alternate names and symbols for
+      types and properties.
 
-   *  [JSTRUCT-COMPOSITION]: Defines a set of conditional composition
-      rules for evaluating schemas.
+   *  _JSON Structure: Symbols, Scientific Units, and Currencies_
+      [JSTRUCT-UNITS]: Defines annotation keywords for specifying
+      symbols, scientific units, and currency codes complementing type
+      information.
 
-   *  [JSTRUCT-VALIDATION]: Specifies extensions to the core schema
-      language for declaring validation rules.
+   *  _JSON Structure: Validation_ [JSTRUCT-VALIDATION]: Specifies
+      extensions to the core schema language for declaring validation
+      rules for JSON data that have no structural impact on the schema.
 
-   *  [JSTRUCT-IMPORT]: Defines a mechanism for importing external
-      schemas and definitions into a schema document.
+   *  _JSON Structure: Composition_ [JSTRUCT-COMPOSITION]: Defines a set
+      of conditional composition rules for evaluating schemas.
 
    These extension specifications are enabled by the extensibility
    (Section 3.10) features and can be applied to meta-schemas, schemas,
@@ -823,7 +831,7 @@ Table of Contents
    Example with inline type:
 
    {
-       "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+       "$schema": "https://json-structure.github.io/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/TypeName",
        "name": "TypeName",
        "type": "object",
@@ -835,7 +843,7 @@ Table of Contents
    Example with $root:
 
    {
-       "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+       "$schema": "https://json-structure.github.io/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/TypeName",
        "$root": "#/definitions/TypeName",
        "definitions": {
@@ -851,7 +859,7 @@ Table of Contents
    Example with the root type in a namespace:
 
    {
-       "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+       "$schema": "https://json-structure.github.io/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/TypeName",
        "$root": "#/definitions/Namespace/TypeName",
        "definitions": {
@@ -887,7 +895,7 @@ Table of Contents
    Example:
 
    {
-       "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+       "$schema": "https://json-structure.github.io/meta/core/v0/#",
        "name": "TypeName",
        "type": "object",
        "properties": {
@@ -914,7 +922,7 @@ Table of Contents
    Example:
 
    {
-       "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+       "$schema": "https://json-structure.github.io/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/TypeName",
        "name": "TypeName",
        "type": "object",
@@ -937,7 +945,7 @@ Table of Contents
    Example:
 
    {
-     "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+     "$schema": "https://json-structure.github.io/meta/core/v0/#",
      "$id": "https://schemas.vasters.com/TypeName",
      "$root": "#/definitions/Namespace/TypeName",
      "definitions": {
@@ -971,7 +979,7 @@ Table of Contents
    Example:
 
    {
-       "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+       "$schema": "https://json-structure.github.io/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/TypeName",
        "definitions": {
            "Namespace": {
@@ -996,7 +1004,7 @@ Table of Contents
    Example:
 
    {
-     "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+     "$schema": "https://json-structure.github.io/meta/core/v0/#",
      "$id": "https://schemas.vasters.com/TypeName",
      "properties": {
          "name1": { "type": { "$ref": "#/definitions/Namespace/TypeName" }},
@@ -1494,7 +1502,7 @@ Table of Contents
    Example:
 
    {
-     "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+     "$schema": "https://json-structure.github.io/meta/core/v0/#",
      "definitions" : {
        "Address": {
          "abstract": true,
@@ -1528,7 +1536,7 @@ Table of Contents
    in a document:
 
    {
-       "$schema": "https://schemas.vasters.com/experimental/json-structure-core/v0",
+       "$schema": "https://json-structure.github.io/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/Addresses",
        "$root": "#/definitions/StreetAddress",
        "$offers": {
@@ -1725,7 +1733,81 @@ Table of Contents
 
    *  values
 
-5.  Security Considerations
+5.  CBOR Type System Mapping
+
+   CBOR [RFC8949] is a binary encoding of JSON-like data structures.
+   The CBOR type system is a superset of the JSON type system and adds
+   "binary strings" as its most substantial type system extension.
+   Otherwise, CBOR is structurally compatible with JSON.
+
+   JSON Structure MAY be used to describe CBOR-encoded data structures.
+   For encoding CBOR data structures, the data structure is first mapped
+   to a JSON type model as described in this specification, with the
+   exception that the Section 3.2.2.1 primitive type is preserved as a
+   byte array.  The resulting mapping is converted into CBOR per the
+   rules spelled out in Section 6.2 of [RFC8949].
+
+   The decoding process is the reverse of the encoding process.  The
+   CBOR-encoded data structure is first decoded into a JSON type model,
+   and then the JSON type model is validated against the JSON Structure
+   schema, with binary types validated as byte arrays.
+
+6.  Media Type
+
+   The media type for JSON Structure documents is application/json-
+   structure.
+
+   It is RECOMMENDED to append the structured syntax suffix +json to
+   indicate unambiguously that the content is a JSON document, if the
+   document is a JSON document.  In spite of this specification being
+   focused on JSON, the JSON Structure documents MAY be encoded using
+   other serialization formats that can represent the same data
+   structure, such as CBOR [RFC8949].
+
+   *  Type name: application
+
+   *  Subtype name: json-structure
+
+   *  Required parameters: none
+
+   *  Optional parameters: none
+
+   *  Encoding considerations: binary
+
+   *  Security considerations: see Section 8
+
+   *  Interoperability considerations: none
+
+   *  Published specification: this document
+
+   *  Applications that use this media type: none
+
+   *  Fragment identifier considerations: none
+
+   *  Additional information: none
+
+7.  Media Type Parameters
+
+   While the media type application/json-structure does not have any
+   parameters, this specification defines a parameter applicable to all
+   JSON documents.
+
+7.1.  schema Parameter
+
+   The schema parameter is used to reference a JSON Structure document
+   that defines the structure of the JSON document.  The value of the
+   schema parameter MUST be a URI that references and ideally resolves
+   to a JSON Structure document.
+
+   The schema parameter MAY be used in conjunction with the application/
+   json media type or the +json structured syntax suffix or any other
+   media type that is known to be encoded as JSON.
+
+   Example using the HTTP Content-Type header:
+
+   Content-Type: application/json; schema="https://schemas.vasters.com/TypeName"
+
+8.  Security Considerations
 
    JSON Structure documents are self-contained and MUST NOT allow
    external references except for the $schema and $addins keywords.
@@ -1733,13 +1815,19 @@ Table of Contents
    same document to eliminate security vulnerabilities related to
    external schema inclusion.
 
-6.  IANA Considerations
+9.  IANA Considerations
 
-   This document has no IANA actions.
+   IANA shall be requested to register the media type application/json-
+   structure as defined in this specification in the "Media Types"
+   registry.
 
-7.  References
+   IANA shall be requested to register the parameter schema for the
+   application/json media type in the "Media Type Structured Syntax
+   Suffixes" registry.
 
-7.1.  Normative References
+10.  References
+
+10.1.  Normative References
 
    [RFC1950]  Deutsch, P. and J. Gailly, "ZLIB Compressed Data Format
               Specification version 3.3", RFC 1950,
@@ -1800,7 +1888,12 @@ Table of Contents
               DOI 10.17487/RFC8259, December 2017,
               <https://www.rfc-editor.org/rfc/rfc8259>.
 
-7.2.  Informative References
+   [RFC8949]  Bormann, C. and P. Hoffman, "Concise Binary Object
+              Representation (CBOR)", STD 94, RFC 8949,
+              DOI 10.17487/RFC8949, December 2020,
+              <https://www.rfc-editor.org/rfc/rfc8949>.
+
+10.2.  Informative References
 
    [JSTRUCT-ALTNAMES]
               Vasters, C., "JSON Structure Alternate Names", n.d.,
