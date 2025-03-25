@@ -100,7 +100,7 @@ the core schema language with additional, OPTIONAL features:
   external schemas and definitions into a schema document.
 - _JSON Structure: Alternate Names and Descriptions_ {{JSTRUCT-ALTNAMES}}:
   Provides a mechanism for declaring multilingual descriptions, and alternate
-  names and symbols for types and properties. 
+  names and symbols for types and properties.
 - _JSON Structure: Symbols, Scientific Units, and Currencies_ {{JSTRUCT-UNITS}}:
   Defines annotation keywords for specifying symbols, scientific units, and
   currency codes complementing type information.
@@ -1564,6 +1564,24 @@ custom annotations or extension keywords:
 - `type`
 - `values`
 
+# CBOR Type System Mapping
+
+CBOR {{RFC8949}} is a binary encoding of JSON-like data structures. The CBOR
+type system is a superset of the JSON type system and adds "binary strings" as
+its most substantial type system extension. Otherwise, CBOR is structurally
+compatible with JSON.
+
+JSON Structure MAY be used to describe CBOR-encoded data structures. For
+encoding CBOR data structures, the data structure is first mapped to a JSON type
+model as described in this specification, with the exception that the {{binary}}
+primitive type is preserved as a byte array. The resulting mapping is converted
+into CBOR per the rules spelled out in {{Section 6.2 of RFC 8949}}.
+
+The decoding process is the reverse of the encoding process. The CBOR-encoded
+data structure is first decoded into a JSON type model, and then the JSON type
+model is validated against the JSON Structure schema, with `binary` types
+validated as byte arrays.
+
 # Media Type {#media-type}
 
 The media type for JSON Structure documents is `application/json-structure`.
@@ -1586,6 +1604,28 @@ represent the same data structure, such as CBOR {{RFC8949}}.
  - Fragment identifier considerations: none
  - Additional information: none
 
+
+# Media Type Parameters {#media-type-parameters}
+
+While the media type `application/json-structure` does not have any parameters,
+this specification defines a parameter applicable to all JSON documents.
+
+## `schema` Parameter {#schema-parameter}
+
+The `schema` parameter is used to reference a JSON Structure document that
+defines the structure of the JSON document. The value of the `schema` parameter
+MUST be a URI that references and ideally resolves to a JSON Structure document.
+
+The `schema` parameter MAY be used in conjunction with the `application/json`
+media type or the `+json` structured syntax suffix or any other media type that
+is known to be encoded as JSON.
+
+Example using the HTTP `Content-Type` header:
+
+~~~ http
+Content-Type: application/json; schema="https://schemas.vasters.com/TypeName"
+~~~
+
 # Security Considerations {#security-considerations}
 
 JSON Structure documents are self-contained and MUST NOT allow external
@@ -1595,7 +1635,12 @@ security vulnerabilities related to external schema inclusion.
 
 # IANA Considerations {#iana-considerations}
 
-This document has no IANA actions.
+IANA shall be requested to register the media type `application/json-structure`
+as defined in this specification in the "Media Types" registry.
+
+IANA shall be requested to register the parameter `schema` for the
+`application/json` media type in the "Media Type Structured Syntax Suffixes"
+registry.
 
 --- back
 
