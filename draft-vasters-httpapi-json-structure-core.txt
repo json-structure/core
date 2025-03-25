@@ -153,7 +153,7 @@ Table of Contents
    that extend the core schema language with additional, OPTIONAL
    features:
 
-   *  JSON Structure: Import_ [JSTRUCT-IMPORT]: Defines a mechanism for
+   *  _JSON Structure: Import_ [JSTRUCT-IMPORT]: Defines a mechanism for
       importing external schemas and definitions into a schema document.
 
    *  _JSON Structure: Alternate Names and Descriptions_
