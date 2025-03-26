@@ -2,7 +2,7 @@
 
 
 
-WG Working Group                                              C. Vasters
+TBD                                                           C. Vasters
 Internet-Draft                                     Microsoft Corporation
 Intended status: Informational                             24 March 2025
 Expires: 25 September 2025
@@ -28,9 +28,6 @@ About This Document
    Status information for this document may be found at
    https://datatracker.ietf.org/doc/draft-vasters-json-structure-core/.
 
-   Discussion of this document takes place on the WG Working Group
-   mailing list (mailto:WG@example.com), which is archived at
-   https://example.com/WG.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/json-structure/core.
