@@ -9,15 +9,15 @@ date: 2025-03-24
 consensus: true
 v: 3
 area: AREA
-workgroup:  WG Working Group
+workgroup: TBD
 keyword:
  - JSON
  - schema
 venue:
-  group: WG
+  group: TBD
   type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
+  mail: TBD
+  arch: TBD
   github: "json-structure/core"
   latest: "https://json-structure.github.io/core/draft-vasters-json-structure-core.html"
 
