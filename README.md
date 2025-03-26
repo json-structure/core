@@ -4,10 +4,10 @@
 
 This is the working area for the individual Internet-Draft, "JSON Structure Core".
 
-* [Editor's Copy](https://json-structure.github.io/core/#go.draft-vasters-httpapi-json-structure-core.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-vasters-httpapi-json-structure-core)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-vasters-httpapi-json-structure-core)
-* [Compare Editor's Copy to Individual Draft](https://json-structure.github.io/core/#go.draft-vasters-httpapi-json-structure-core.diff)
+* [Editor's Copy](https://json-structure.github.io/core/#go.draft-vasters-json-structure-core.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-vasters-json-structure-core)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-vasters-json-structure-core)
+* [Compare Editor's Copy to Individual Draft](https://json-structure.github.io/core/#go.draft-vasters-json-structure-core.diff)
 
 
 ## Contributing

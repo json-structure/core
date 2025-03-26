@@ -2,24 +2,24 @@
 title: "JSON Structure: Core"
 category: info
 
-docname: draft-vasters-httpapi-json-structure-core-latest
+docname: draft-vasters-json-structure-core-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date: 2025-03-24
 consensus: true
 v: 3
-area: ""
-workgroup: "Building Blocks for HTTP APIs"
+area: AREA
+workgroup:  WG Working Group
 keyword:
  - JSON
  - schema
 venue:
-  group: "Building Blocks for HTTP APIs"
-  type: ""
-  mail: "httpapi@ietf.org"
-  arch: "https://mailarchive.ietf.org/arch/browse/httpapi/"
+  group: WG
+  type: Working Group
+  mail: WG@example.com
+  arch: https://example.com/WG
   github: "json-structure/core"
-  latest: "https://json-structure.github.io/core/draft-vasters-httpapi-json-structure-core.html"
+  latest: "https://json-structure.github.io/core/draft-vasters-json-structure-core.html"
 
 author:
   -
