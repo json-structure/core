@@ -88,7 +88,7 @@ data to and from programming languages and databases and other data formats
 becomes straightforward.
 
 _JSON Structure_ is extensible, allowing additional features to be layered on
-top. The core language is a data-definition language. 
+top. The core language is a data-definition language.
 
 The "Validation" and "Conditional Composition" extension specifications add
 rules that allow for complex pattern matching of _JSON Structure_ documents
@@ -291,7 +291,7 @@ used to specify the encoding, compression, and media type of the binary data.
 - Base type: `string`
 - Constraints:
   - The string value MUST be an encoded binary value, with the encoding
-    specified in the `contentEncoding` keyword. 
+    specified in the `contentEncoding` keyword.
 
 #### `int8` {#int8}
 
@@ -685,7 +685,7 @@ other namespaces. Namespaces MAY be nested within other namespaces.
 
 The `definitions` keyword forms the root of the namespace hierarchy for reusable
 type definitions. All type declarations immediately under the `definitions`
-keyword are in the root namespace. 
+keyword are in the root namespace.
 
 A `type` definition at the root is placed into the root namespace as if it were
 a type declaration under `definitions`.
