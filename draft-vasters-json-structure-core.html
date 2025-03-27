@@ -8,7 +8,7 @@
 <meta content="Clemens Vasters" name="author">
 <meta content="
        This document specifies  JSON Structure , a data structure definition language
-that enforces strict typing, modularity, and determinism.  JSON Structure Core 
+that enforces strict typing, modularity, and determinism.  JSON Structure 
 describes JSON-encoded data such that mapping to and from programming languages
 and databases and other data formats is straightforward. 
     " name="description">
@@ -1084,7 +1084,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document specifies <em>JSON Structure</em>, a data structure definition language
-that enforces strict typing, modularity, and determinism. <em>JSON Structure Core</em>
+that enforces strict typing, modularity, and determinism. <em>JSON Structure</em>
 describes JSON-encoded data such that mapping to and from programming languages
 and databases and other data formats is straightforward.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
@@ -1379,40 +1379,40 @@ documents (schemas) describe JSON-encoded data such that mapping JSON encoded
 data to and from programming languages and databases and other data formats
 becomes straightforward.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2"><em>JSON Structure</em> is extensible, allowing additional features to be layered on
-top. The core language is a data-definition language. The "validation" and
-"conditional composition" extension specification add rules that allow for
-complex pattern matching of <em>JSON Structure</em> documents against JSON data for
-validation purposes.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">Complementing <em>JSON Structure</em> are a set of extension specifications that extend
-the core schema language with additional, OPTIONAL features:<a href="#section-1-3" class="pilcrow">¶</a></p>
+top. The core language is a data-definition language.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">The "Validation" and "Conditional Composition" extension specifications add
+rules that allow for complex pattern matching of <em>JSON Structure</em> documents
+against JSON data for document validation purposes.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">Complementing <em>JSON Structure</em> are a set of extension specifications that extend
+the core schema language with additional, OPTIONAL features:<a href="#section-1-4" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-1-4.1">
-          <p id="section-1-4.1.1"><em>JSON Structure: Import</em> <span>[<a href="#JSTRUCT-IMPORT" class="cite xref">JSTRUCT-IMPORT</a>]</span>: Defines a mechanism for importing
-external schemas and definitions into a schema document.<a href="#section-1-4.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-1-5.1">
+          <p id="section-1-5.1.1"><em>JSON Structure: Import</em> <span>[<a href="#JSTRUCT-IMPORT" class="cite xref">JSTRUCT-IMPORT</a>]</span>: Defines a mechanism for importing
+external schemas and definitions into a schema document.<a href="#section-1-5.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-4.2">
-          <p id="section-1-4.2.1"><em>JSON Structure: Alternate Names and Descriptions</em> <span>[<a href="#JSTRUCT-ALTNAMES" class="cite xref">JSTRUCT-ALTNAMES</a>]</span>:
+        <li class="normal" id="section-1-5.2">
+          <p id="section-1-5.2.1"><em>JSON Structure: Alternate Names and Descriptions</em> <span>[<a href="#JSTRUCT-ALTNAMES" class="cite xref">JSTRUCT-ALTNAMES</a>]</span>:
 Provides a mechanism for declaring multilingual descriptions, and alternate
-names and symbols for types and properties.<a href="#section-1-4.2.1" class="pilcrow">¶</a></p>
+names and symbols for types and properties.<a href="#section-1-5.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-4.3">
-          <p id="section-1-4.3.1"><em>JSON Structure: Symbols, Scientific Units, and Currencies</em> <span>[<a href="#JSTRUCT-UNITS" class="cite xref">JSTRUCT-UNITS</a>]</span>:
+        <li class="normal" id="section-1-5.3">
+          <p id="section-1-5.3.1"><em>JSON Structure: Symbols, Scientific Units, and Currencies</em> <span>[<a href="#JSTRUCT-UNITS" class="cite xref">JSTRUCT-UNITS</a>]</span>:
 Defines annotation keywords for specifying symbols, scientific units, and
-currency codes complementing type information.<a href="#section-1-4.3.1" class="pilcrow">¶</a></p>
+currency codes complementing type information.<a href="#section-1-5.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-4.4">
-          <p id="section-1-4.4.1"><em>JSON Structure: Validation</em> <span>[<a href="#JSTRUCT-VALIDATION" class="cite xref">JSTRUCT-VALIDATION</a>]</span>: Specifies extensions to
+        <li class="normal" id="section-1-5.4">
+          <p id="section-1-5.4.1"><em>JSON Structure: Validation</em> <span>[<a href="#JSTRUCT-VALIDATION" class="cite xref">JSTRUCT-VALIDATION</a>]</span>: Specifies extensions to
 the core schema language for declaring validation rules for JSON data that
-have no structural impact on the schema.<a href="#section-1-4.4.1" class="pilcrow">¶</a></p>
+have no structural impact on the schema.<a href="#section-1-5.4.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-4.5">
-          <p id="section-1-4.5.1"><em>JSON Structure: Composition</em> <span>[<a href="#JSTRUCT-COMPOSITION" class="cite xref">JSTRUCT-COMPOSITION</a>]</span>: Defines a set of
-conditional composition rules for evaluating schemas.<a href="#section-1-4.5.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-1-5.5">
+          <p id="section-1-5.5.1"><em>JSON Structure: Composition</em> <span>[<a href="#JSTRUCT-COMPOSITION" class="cite xref">JSTRUCT-COMPOSITION</a>]</span>: Defines a set of
+conditional composition rules for evaluating schemas.<a href="#section-1-5.5.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-1-5">These extension specifications are enabled by the extensibility
+<p id="section-1-6">These extension specifications are enabled by the extensibility
 (<a href="#extensions-and-add-ins" class="auto internal xref">Section 3.10</a>) features and can be applied to meta-schemas,
-schemas, and JSON document instances.<a href="#section-1-5" class="pilcrow">¶</a></p>
+schemas, and JSON document instances.<a href="#section-1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions">
@@ -1454,9 +1454,9 @@ node.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 </pre><a href="#section-3.1.1-3" class="pilcrow">¶</a>
 </div>
 <p id="section-3.1.1-4">In the case of a schema that references a compound type (<code>object</code>, <code>set</code>,
-<code>array</code>, <code>map</code>), the schema further describes the structure of the compound
-type. Such a schema is a "type declaration" as it yields a new type that can be
-referenced by other schemas if placed into a namespace (<a href="#namespaces" class="auto internal xref">Section 3.3.1</a>).<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
+<code>array</code>, <code>map</code>, <code>tuple</code>), the schema further describes the structure of the
+compound type. Schemas can be placed into a namespace (<a href="#namespaces" class="auto internal xref">Section 3.3.1</a>) for
+reuse in other schemas.<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.1.1-5">
 <pre>
 {
@@ -1480,8 +1480,8 @@ and is the container format in which schemas are stored on disk or exchanged. A
 schema document MAY contain multiple type declarations and namespaces. The
 structure of schema documents is defined in section 3.3
 (<a href="#document-structure" class="auto internal xref">Section 3.3</a>).<a href="#section-3.1.1-9" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-10">JSON Structure Core is extensible. All keywords that are not explicitly defined
-in this document MAY be used for custom annotations and extensions. This also
+<p id="section-3.1.1-10">JSON Structure is extensible. All keywords that are not explicitly defined in
+this document MAY be used for custom annotations and extensions. This also
 applies to keywords that begin with the <code>$</code> character. A complete list of
 reserved keywords is provided in section 3.11 (<a href="#reserved-keywords" class="auto internal xref">Section 4</a>).<a href="#section-3.1.1-10" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-11">The semantics of keywords defined in this document MAY be expanded by extension
@@ -1515,9 +1515,9 @@ namespaces.<a href="#section-3.1.2-2" class="pilcrow">¶</a></p>
           </h4>
 <p id="section-3.1.3-1">A meta-schema is a schema document that defines the structure and constraints of
 another schema document. Meta-schemas are used to validate schema documents and
-to ensure that schemas are well-formed and conform to the JSON Structure Core
+to ensure that schemas are well-formed and conform to the JSON Structure
 specification.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.1.3-2">The meta-schemas for JSON Structure Core and the extension specifications are
+<p id="section-3.1.3-2">The meta-schemas for JSON Structure and the extension specifications are
 enumerated in the Appendix: Metaschemas (<a href="#schema" class="auto internal xref">Section 3.1.1</a>).<a href="#section-3.1.3-2" class="pilcrow">¶</a></p>
 <p id="section-3.1.3-3">Meta-schemas can extend existing meta-schemas by adding new keywords or
 constraints. The <code>$schema</code> keyword is used to reference the meta-schema that a
@@ -1535,8 +1535,8 @@ from the foundational meta-schema.<a href="#section-3.1.3-3" class="pilcrow">¶<
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-data-types" class="section-name selfRef">Data Types</a>
         </h3>
 <p id="section-3.2-1">The data types that can be used with the <code>type</code> keyword are categorized into
-JSON Primitive Types, Extended Types, Compound Types, and compound reusable
-types <a href="#reusable-types" class="auto internal xref">Section 3.4.2</a>.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+JSON primitive types, extended types, compound types, and reusable types
+<a href="#reusable-types" class="auto internal xref">Section 3.4.2</a>.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.2-2">While JSON Structure builds on the JSON data type model, it introduces a rich
 set of types to represent structured data more accurately and to allow more
 precise integration with common data types used in programming languages and
@@ -1641,9 +1641,9 @@ the <span><a href="https://rfc-editor.org/rfc/rfc8259#section-6" class="relref">
             <h5 id="name-binary">
 <a href="#section-3.2.2.1" class="section-number selfRef">3.2.2.1. </a><a href="#name-binary" class="section-name selfRef"><code>binary</code></a>
             </h5>
-<p id="section-3.2.2.1-1">A binary value. The default encoding is base64. The type annotation keywords
-<code>contentEncoding</code>, <code>contentCompression</code>, and <code>contentMediaType</code> can be used to
-specify the encoding, compression, and media type of the binary data.<a href="#section-3.2.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.2.1-1">A binary value. The default encoding is Base64 <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>]</span>. The type annotation
+keywords <code>contentEncoding</code>, <code>contentCompression</code>, and <code>contentMediaType</code> can be
+used to specify the encoding, compression, and media type of the binary data.<a href="#section-3.2.2.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.2.1-2.1">
                 <p id="section-3.2.2.1-2.1.1">Base type: <code>string</code><a href="#section-3.2.2.1-2.1.1" class="pilcrow">¶</a></p>
@@ -1653,7 +1653,7 @@ specify the encoding, compression, and media type of the binary data.<a href="#s
 <ul class="normal">
 <li class="normal" id="section-3.2.2.1-2.2.2.1">
                     <p id="section-3.2.2.1-2.2.2.1.1">The string value MUST be an encoded binary value, with the encoding
-specified in the <code>contentEncoding</code> keyword. The default encoding is base64.<a href="#section-3.2.2.1-2.2.2.1.1" class="pilcrow">¶</a></p>
+specified in the <code>contentEncoding</code> keyword.<a href="#section-3.2.2.1-2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
@@ -2355,8 +2355,12 @@ primitive types, compound types, and extended types.<a href="#section-3.2.3.6-1"
             <p id="section-3.3-4.1.1"><code>$id</code>: A URI that is the unique identifier for this schema document.<a href="#section-3.3-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.3-4.2">
-            <p id="section-3.3-4.2.1"><code>$schema</code>: A string that identifies the version of the JSON Structure
-specification used.<a href="#section-3.3-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.3-4.2.1"><code>$schema</code>: A URI that identifies the version and meta-schema of the JSON
+Structure specification used.<a href="#section-3.3-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.3-4.3">
+            <p id="section-3.3-4.3.1"><code>name</code>: A string that provides a name for the document. If the root object
+ defines a type, the <code>name</code> attribute is also the name of the type.<a href="#section-3.3-4.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-3.3-5">The presence of both keywords identifies the document as a JSON Structure
@@ -2364,7 +2368,8 @@ document.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
 <p id="section-3.3-6">The root object MAY contain the following OPTIONAL keywords:<a href="#section-3.3-6" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.3-7.1">
-            <p id="section-3.3-7.1.1"><code>$root</code>: A JSON Pointer that designates a type as the root type for instances.<a href="#section-3.3-7.1.1" class="pilcrow">¶</a></p>
+            <p id="section-3.3-7.1.1"><code>$root</code>: A JSON Pointer that designates a reusable type as the root type for
+instances.<a href="#section-3.3-7.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.3-7.2">
             <p id="section-3.3-7.2.1"><code>definitions</code>: The root of the type declaration namespace hierarchy.<a href="#section-3.3-7.2.1" class="pilcrow">¶</a></p>
@@ -2377,26 +2382,23 @@ exclusive with <code>$root</code>.<a href="#section-3.3-7.3.1" class="pilcrow">�
             <p id="section-3.3-7.4.1">if <code>type</code> is present, all annotations and constraints applicable to this
 declared root type are also permitted at the root level.<a href="#section-3.3-7.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.3-7.5">
-            <p id="section-3.3-7.5.1"><code>name</code>: A string that defines the name of the root type. Required if <code>type</code> is
-present.<a href="#section-3.3-7.5.1" class="pilcrow">¶</a></p>
-</li>
         </ul>
 <div id="namespaces">
 <section id="section-3.3.1">
           <h4 id="name-namespaces">
 <a href="#section-3.3.1" class="section-number selfRef">3.3.1. </a><a href="#name-namespaces" class="section-name selfRef">Namespaces</a>
           </h4>
-<p id="section-3.3.1-1">A "namespace" is a JSON object that provides a scope for type declarations or
+<p id="section-3.3.1-1">A namespace is a JSON object that provides a scope for type declarations or
 other namespaces. Namespaces MAY be nested within other namespaces.<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.3.1-2">The <code>definitions</code> keyword forms the root of the namespace hierarchy for reusable
 type definitions. All type declarations immediately under the <code>definitions</code>
-keyword are in the root namespace. A <code>type</code> definition at the root is placed
-into the root namespace as if it were a type declaration under <code>definitions</code>.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.3.1-3">Any object in the <code>definitions</code> map that is not a type declaration is a
-namespace.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.3.1-4">Example with inline <code>type</code>:<a href="#section-3.3.1-4" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-3.3.1-5">
+keyword are in the root namespace.<a href="#section-3.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-3">A <code>type</code> definition at the root is placed into the root namespace as if it were
+a type declaration under <code>definitions</code>.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-4">Any object in the <code>definitions</code> map that is not a type declaration is a
+namespace.<a href="#section-3.3.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-5">Example with inline <code>type</code>:<a href="#section-3.3.1-5" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-3.3.1-6">
 <pre>
 {
     "$schema": "https://json-structure.github.io/meta/core/v0/#",
@@ -2407,10 +2409,10 @@ namespace.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
         "name": { "type": "string" }
     }
 }
-</pre><a href="#section-3.3.1-5" class="pilcrow">¶</a>
+</pre><a href="#section-3.3.1-6" class="pilcrow">¶</a>
 </div>
-<p id="section-3.3.1-6">Example with <code>$root</code>:<a href="#section-3.3.1-6" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-3.3.1-7">
+<p id="section-3.3.1-7">Example with <code>$root</code>:<a href="#section-3.3.1-7" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-3.3.1-8">
 <pre>
 {
     "$schema": "https://json-structure.github.io/meta/core/v0/#",
@@ -2425,10 +2427,10 @@ namespace.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
         }
     }
 }
-</pre><a href="#section-3.3.1-7" class="pilcrow">¶</a>
+</pre><a href="#section-3.3.1-8" class="pilcrow">¶</a>
 </div>
-<p id="section-3.3.1-8">Example with the root type in a namespace:<a href="#section-3.3.1-8" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-3.3.1-9">
+<p id="section-3.3.1-9">Example with the root type in a namespace:<a href="#section-3.3.1-9" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-3.3.1-10">
 <pre>
 {
     "$schema": "https://json-structure.github.io/meta/core/v0/#",
@@ -2446,7 +2448,7 @@ namespace.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
         }
     }
 }
-</pre><a href="#section-3.3.1-9" class="pilcrow">¶</a>
+</pre><a href="#section-3.3.1-10" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -2459,16 +2461,16 @@ namespace.<a href="#section-3.3.1-3" class="pilcrow">¶</a></p>
 has different functions in JSON Structure documents and JSON documents.<a href="#section-3.3.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.3.2-2.1">
-              <p id="section-3.3.2-2.1.1">In JSON Structure documents, the <code>$schema</code> keyword references a meta-schema
-that this document conforms to.<a href="#section-3.3.2-2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3.3.2-2.1.1">In JSON Structure schema documents, the <code>$schema</code> keyword references a
+meta-schema that this document conforms to.<a href="#section-3.3.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.3.2-2.2">
-              <p id="section-3.3.2-2.2.1">In JSON documents, the <code>$schema</code> keyword references a JSON schema document
-that defines the structure of the JSON document.<a href="#section-3.3.2-2.2.1" class="pilcrow">¶</a></p>
+              <p id="section-3.3.2-2.2.1">In JSON documents, the <code>$schema</code> keyword references a JSON Structure schema
+document that defines the structure of the JSON document.<a href="#section-3.3.2-2.2.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
-<p id="section-3.3.2-3">The value of <code>$schema</code> corresponds to the <code>$id</code> of the meta-schema or schema
-document.<a href="#section-3.3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.3.2-3">The value of <code>$schema</code> MUST correspond to the <code>$id</code> of the referenced
+meta-schema or schema document.<a href="#section-3.3.2-3" class="pilcrow">¶</a></p>
 <p id="section-3.3.2-4">The <code>$schema</code> keyword MUST be used at the root level of the document.<a href="#section-3.3.2-4" class="pilcrow">¶</a></p>
 <p id="section-3.3.2-5">Example:<a href="#section-3.3.2-5" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.3.2-6">
@@ -2493,8 +2495,8 @@ that its types become available for use in the current document.<a href="#sectio
 <a href="#section-3.3.3" class="section-number selfRef">3.3.3. </a><a href="#name-id-keyword" class="section-name selfRef"><code>$id</code> Keyword</a>
           </h4>
 <p id="section-3.3.3-1">The REQUIRED <code>$id</code> keyword is used to assign a unique identifier to a JSON
-Structure document. The value of <code>$id</code> MUST be an absolute URI. It SHOULD be a
-resolvable URI (a URL).<a href="#section-3.3.3-1" class="pilcrow">¶</a></p>
+Structure schema document. The value of <code>$id</code> MUST be an absolute URI. It SHOULD
+be a resolvable URI (a URL).<a href="#section-3.3.3-1" class="pilcrow">¶</a></p>
 <p id="section-3.3.3-2">The <code>$id</code> keyword is used to identify a schema document in references like
 <code>$schema</code>.<a href="#section-3.3.3-2" class="pilcrow">¶</a></p>
 <p id="section-3.3.3-3">The <code>$id</code> keyword MUST only be used once in a document, at the root level.<a href="#section-3.3.3-3" class="pilcrow">¶</a></p>
@@ -2519,10 +2521,10 @@ resolvable URI (a URL).<a href="#section-3.3.3-1" class="pilcrow">¶</a></p>
           <h4 id="name-root-keyword">
 <a href="#section-3.3.4" class="section-number selfRef">3.3.4. </a><a href="#name-root-keyword" class="section-name selfRef"><code>$root</code> Keyword</a>
           </h4>
-<p id="section-3.3.4-1">The OPTIONAL <code>$root</code> keyword is used to designate any type defined in the
-document as the root type for JSON nodes described by this schema document. The
-value of <code>$root</code> MUST be a valid JSON Pointer that resolves to an existing type
-definition inside the <code>definitions</code> object.<a href="#section-3.3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.4-1">The OPTIONAL <code>$root</code> keyword is used to designate any reusable type defined in
+the document as the root type of this schema document. The value of <code>$root</code> MUST
+be a valid JSON Pointer that resolves to an existing type definition inside the
+<code>definitions</code> object.<a href="#section-3.3.4-1" class="pilcrow">¶</a></p>
 <p id="section-3.3.4-2">The <code>$root</code> keyword MUST only be used once in a document, at the root level. Its
 use is mutually exclusive with the <code>type</code> keyword.<a href="#section-3.3.4-2" class="pilcrow">¶</a></p>
 <p id="section-3.3.4-3">Example:<a href="#section-3.3.4-3" class="pilcrow">¶</a></p>
@@ -2690,7 +2692,7 @@ MUST NOT be referenced externally.<a href="#section-3.4.1-1.3.1" class="pilcrow"
                   <p id="section-3.4.1-1.5.2.3.1"><strong>JSON Compounds:</strong> <code>object</code>, <code>array</code>.<a href="#section-3.4.1-1.5.2.3.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.4.1-1.5.2.4">
-                  <p id="section-3.4.1-1.5.2.4.1"><strong>Extended Compounds:</strong> <code>map</code>, <code>set</code>.<a href="#section-3.4.1-1.5.2.4.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.4.1-1.5.2.4.1"><strong>Extended Compounds:</strong> <code>map</code>, <code>set</code>, <code>tuple</code>, <code>any</code>.<a href="#section-3.4.1-1.5.2.4.1" class="pilcrow">¶</a></p>
 </li>
               </ul>
 </li>

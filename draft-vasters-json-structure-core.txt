@@ -15,9 +15,9 @@ Abstract
 
    This document specifies _JSON Structure_, a data structure definition
    language that enforces strict typing, modularity, and determinism.
-   _JSON Structure Core_ describes JSON-encoded data such that mapping
-   to and from programming languages and databases and other data
-   formats is straightforward.
+   _JSON Structure_ describes JSON-encoded data such that mapping to and
+   from programming languages and databases and other data formats is
+   straightforward.
 
 About This Document
 
@@ -140,9 +140,11 @@ Table of Contents
 
    _JSON Structure_ is extensible, allowing additional features to be
    layered on top.  The core language is a data-definition language.
-   The "validation" and "conditional composition" extension
-   specification add rules that allow for complex pattern matching of
-   _JSON Structure_ documents against JSON data for validation purposes.
+
+   The "Validation" and "Conditional Composition" extension
+   specifications add rules that allow for complex pattern matching of
+   _JSON Structure_ documents against JSON data for document validation
+   purposes.
 
    Complementing _JSON Structure_ are a set of extension specifications
    that extend the core schema language with additional, OPTIONAL
@@ -197,10 +199,9 @@ Table of Contents
    }
 
    In the case of a schema that references a compound type (object, set,
-   array, map), the schema further describes the structure of the
-   compound type.  Such a schema is a "type declaration" as it yields a
-   new type that can be referenced by other schemas if placed into a
-   namespace (Section 3.3.1).
+   array, map, tuple), the schema further describes the structure of the
+   compound type.  Schemas can be placed into a namespace
+   (Section 3.3.1) for reuse in other schemas.
 
    {
      "name": "myname",
@@ -226,11 +227,11 @@ Table of Contents
    declarations and namespaces.  The structure of schema documents is
    defined in section 3.3 (Section 3.3).
 
-   JSON Structure Core is extensible.  All keywords that are not
-   explicitly defined in this document MAY be used for custom
-   annotations and extensions.  This also applies to keywords that begin
-   with the $ character.  A complete list of reserved keywords is
-   provided in section 3.11 (Section 4).
+   JSON Structure is extensible.  All keywords that are not explicitly
+   defined in this document MAY be used for custom annotations and
+   extensions.  This also applies to keywords that begin with the $
+   character.  A complete list of reserved keywords is provided in
+   section 3.11 (Section 4).
 
    The semantics of keywords defined in this document MAY be expanded by
    extension specifications, but the core semantics of the keywords
@@ -261,11 +262,10 @@ Table of Contents
    A meta-schema is a schema document that defines the structure and
    constraints of another schema document.  Meta-schemas are used to
    validate schema documents and to ensure that schemas are well-formed
-   and conform to the JSON Structure Core specification.
+   and conform to the JSON Structure specification.
 
-   The meta-schemas for JSON Structure Core and the extension
-   specifications are enumerated in the Appendix: Metaschemas
-   (Section 3.1.1).
+   The meta-schemas for JSON Structure and the extension specifications
+   are enumerated in the Appendix: Metaschemas (Section 3.1.1).
 
    Meta-schemas can extend existing meta-schemas by adding new keywords
    or constraints.  The $schema keyword is used to reference the meta-
@@ -277,8 +277,8 @@ Table of Contents
 3.2.  Data Types
 
    The data types that can be used with the type keyword are categorized
-   into JSON Primitive Types, Extended Types, Compound Types, and
-   compound reusable types Section 3.4.2.
+   into JSON primitive types, extended types, compound types, and
+   reusable types Section 3.4.2.
 
    While JSON Structure builds on the JSON data type model, it
    introduces a rich set of types to represent structured data more
@@ -352,18 +352,17 @@ Table of Contents
 
 3.2.2.1.  binary
 
-   A binary value.  The default encoding is base64.  The type annotation
-   keywords contentEncoding, contentCompression, and contentMediaType
-   can be used to specify the encoding, compression, and media type of
-   the binary data.
+   A binary value.  The default encoding is Base64 [RFC4648].  The type
+   annotation keywords contentEncoding, contentCompression, and
+   contentMediaType can be used to specify the encoding, compression,
+   and media type of the binary data.
 
    *  Base type: string
 
    *  Constraints:
 
       -  The string value MUST be an encoded binary value, with the
-         encoding specified in the contentEncoding keyword.  The default
-         encoding is base64.
+         encoding specified in the contentEncoding keyword.
 
 3.2.2.2.  int8
 
@@ -786,16 +785,20 @@ Table of Contents
 
    *  $id: A URI that is the unique identifier for this schema document.
 
-   *  $schema: A string that identifies the version of the JSON
-      Structure specification used.
+   *  $schema: A URI that identifies the version and meta-schema of the
+      JSON Structure specification used.
+
+   *  name: A string that provides a name for the document.  If the root
+      object defines a type, the name attribute is also the name of the
+      type.
 
    The presence of both keywords identifies the document as a JSON
    Structure document.
 
    The root object MAY contain the following OPTIONAL keywords:
 
-   *  $root: A JSON Pointer that designates a type as the root type for
-      instances.
+   *  $root: A JSON Pointer that designates a reusable type as the root
+      type for instances.
 
    *  definitions: The root of the type declaration namespace hierarchy.
 
@@ -805,20 +808,18 @@ Table of Contents
    *  if type is present, all annotations and constraints applicable to
       this declared root type are also permitted at the root level.
 
-   *  name: A string that defines the name of the root type.  Required
-      if type is present.
-
 3.3.1.  Namespaces
 
-   A "namespace" is a JSON object that provides a scope for type
+   A namespace is a JSON object that provides a scope for type
    declarations or other namespaces.  Namespaces MAY be nested within
    other namespaces.
 
    The definitions keyword forms the root of the namespace hierarchy for
    reusable type definitions.  All type declarations immediately under
-   the definitions keyword are in the root namespace.  A type definition
-   at the root is placed into the root namespace as if it were a type
-   declaration under definitions.
+   the definitions keyword are in the root namespace.
+
+   A type definition at the root is placed into the root namespace as if
+   it were a type declaration under definitions.
 
    Any object in the definitions map that is not a type declaration is a
    namespace.
@@ -876,14 +877,14 @@ Table of Contents
    The keyword has different functions in JSON Structure documents and
    JSON documents.
 
-   *  In JSON Structure documents, the $schema keyword references a
-      meta-schema that this document conforms to.
+   *  In JSON Structure schema documents, the $schema keyword references
+      a meta-schema that this document conforms to.
 
-   *  In JSON documents, the $schema keyword references a JSON schema
-      document that defines the structure of the JSON document.
+   *  In JSON documents, the $schema keyword references a JSON Structure
+      schema document that defines the structure of the JSON document.
 
-   The value of $schema corresponds to the $id of the meta-schema or
-   schema document.
+   The value of $schema MUST correspond to the $id of the referenced
+   meta-schema or schema document.
 
    The $schema keyword MUST be used at the root level of the document.
 
@@ -905,8 +906,8 @@ Table of Contents
 3.3.3.  $id Keyword
 
    The REQUIRED $id keyword is used to assign a unique identifier to a
-   JSON Structure document.  The value of $id MUST be an absolute URI.
-   It SHOULD be a resolvable URI (a URL).
+   JSON Structure schema document.  The value of $id MUST be an absolute
+   URI.  It SHOULD be a resolvable URI (a URL).
 
    The $id keyword is used to identify a schema document in references
    like $schema.
@@ -928,11 +929,10 @@ Table of Contents
 
 3.3.4.  $root Keyword
 
-   The OPTIONAL $root keyword is used to designate any type defined in
-   the document as the root type for JSON nodes described by this schema
-   document.  The value of $root MUST be a valid JSON Pointer that
-   resolves to an existing type definition inside the definitions
-   object.
+   The OPTIONAL $root keyword is used to designate any reusable type
+   defined in the document as the root type of this schema document.
+   The value of $root MUST be a valid JSON Pointer that resolves to an
+   existing type definition inside the definitions object.
 
    The $root keyword MUST only be used once in a document, at the root
    level.  Its use is mutually exclusive with the type keyword.
@@ -1075,7 +1075,7 @@ Table of Contents
 
       -  *JSON Compounds:* object, array.
 
-      -  *Extended Compounds:* map, set.
+      -  *Extended Compounds:* map, set, tuple, any.
 
 3.4.2.  Reusable Types
 
