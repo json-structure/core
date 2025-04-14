@@ -827,7 +827,7 @@ Table of Contents
    Example with inline type:
 
    {
-       "$schema": "https://json-structure.github.io/meta/core/v0/#",
+       "$schema": "https://json-structure.org/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/TypeName",
        "name": "TypeName",
        "type": "object",
@@ -839,7 +839,7 @@ Table of Contents
    Example with $root:
 
    {
-       "$schema": "https://json-structure.github.io/meta/core/v0/#",
+       "$schema": "https://json-structure.org/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/TypeName",
        "$root": "#/definitions/TypeName",
        "definitions": {
@@ -855,7 +855,7 @@ Table of Contents
    Example with the root type in a namespace:
 
    {
-       "$schema": "https://json-structure.github.io/meta/core/v0/#",
+       "$schema": "https://json-structure.org/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/TypeName",
        "$root": "#/definitions/Namespace/TypeName",
        "definitions": {
@@ -891,7 +891,7 @@ Table of Contents
    Example:
 
    {
-       "$schema": "https://json-structure.github.io/meta/core/v0/#",
+       "$schema": "https://json-structure.org/meta/core/v0/#",
        "name": "TypeName",
        "type": "object",
        "properties": {
@@ -918,7 +918,7 @@ Table of Contents
    Example:
 
    {
-       "$schema": "https://json-structure.github.io/meta/core/v0/#",
+       "$schema": "https://json-structure.org/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/TypeName",
        "name": "TypeName",
        "type": "object",
@@ -940,7 +940,7 @@ Table of Contents
    Example:
 
    {
-     "$schema": "https://json-structure.github.io/meta/core/v0/#",
+     "$schema": "https://json-structure.org/meta/core/v0/#",
      "$id": "https://schemas.vasters.com/TypeName",
      "$root": "#/definitions/Namespace/TypeName",
      "definitions": {
@@ -974,7 +974,7 @@ Table of Contents
    Example:
 
    {
-       "$schema": "https://json-structure.github.io/meta/core/v0/#",
+       "$schema": "https://json-structure.org/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/TypeName",
        "definitions": {
            "Namespace": {
@@ -999,7 +999,7 @@ Table of Contents
    Example:
 
    {
-     "$schema": "https://json-structure.github.io/meta/core/v0/#",
+     "$schema": "https://json-structure.org/meta/core/v0/#",
      "$id": "https://schemas.vasters.com/TypeName",
      "properties": {
          "name1": { "type": { "$ref": "#/definitions/Namespace/TypeName" }},
@@ -1497,7 +1497,7 @@ Table of Contents
    Example:
 
    {
-     "$schema": "https://json-structure.github.io/meta/core/v0/#",
+     "$schema": "https://json-structure.org/meta/core/v0/#",
      "definitions" : {
        "Address": {
          "abstract": true,
@@ -1531,7 +1531,7 @@ Table of Contents
    in a document:
 
    {
-       "$schema": "https://json-structure.github.io/meta/core/v0/#",
+       "$schema": "https://json-structure.org/meta/core/v0/#",
        "$id": "https://schemas.vasters.com/Addresses",
        "$root": "#/definitions/StreetAddress",
        "$offers": {

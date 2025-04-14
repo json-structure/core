@@ -12,19 +12,19 @@ that enforces strict typing, modularity, and determinism.  JSON Structure
 describes JSON-encoded data such that mapping to and from programming languages
 and databases and other data formats is straightforward. 
     " name="description">
-<meta content="xml2rfc 3.28.0" name="generator">
+<meta content="xml2rfc 3.28.1" name="generator">
 <meta content="JSON" name="keyword">
 <meta content="schema" name="keyword">
 <meta content="draft-vasters-json-structure-core-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.28.0
+  xml2rfc 3.28.1
     Python 3.12.9
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
     lxml 5.3.0
-    platformdirs 4.3.6
+    platformdirs 4.3.7
     pycountry 24.6.1
     PyYAML 6.0.2
     requests 2.32.3
@@ -2401,7 +2401,7 @@ namespace.<a href="#section-3.3.1-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.3.1-6">
 <pre>
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/TypeName",
     "name": "TypeName",
     "type": "object",
@@ -2415,7 +2415,7 @@ namespace.<a href="#section-3.3.1-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.3.1-8">
 <pre>
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/TypeName",
     "$root": "#/definitions/TypeName",
     "definitions": {
@@ -2433,7 +2433,7 @@ namespace.<a href="#section-3.3.1-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.3.1-10">
 <pre>
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/TypeName",
     "$root": "#/definitions/Namespace/TypeName",
     "definitions": {
@@ -2476,7 +2476,7 @@ meta-schema or schema document.<a href="#section-3.3.2-3" class="pilcrow">¶</a>
 <div class="lang-json sourcecode" id="section-3.3.2-6">
 <pre>
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "name": "TypeName",
     "type": "object",
     "properties": {
@@ -2504,7 +2504,7 @@ be a resolvable URI (a URL).<a href="#section-3.3.3-1" class="pilcrow">¶</a></p
 <div class="lang-json sourcecode" id="section-3.3.3-5">
 <pre>
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/TypeName",
     "name": "TypeName",
     "type": "object",
@@ -2531,7 +2531,7 @@ use is mutually exclusive with the <code>type</code> keyword.<a href="#section-3
 <div class="lang-json sourcecode" id="section-3.3.4-4">
 <pre>
 {
-  "$schema": "https://json-structure.github.io/meta/core/v0/#",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
   "$id": "https://schemas.vasters.com/TypeName",
   "$root": "#/definitions/Namespace/TypeName",
   "definitions": {
@@ -2567,7 +2567,7 @@ type definition (containing the <code>type</code> attribute) is considered a nam
 <div class="lang-json sourcecode" id="section-3.3.5-5">
 <pre>
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/TypeName",
     "definitions": {
         "Namespace": {
@@ -2598,7 +2598,7 @@ definition.<a href="#section-3.3.6-1" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.3.6-3">
 <pre>
 {
-  "$schema": "https://json-structure.github.io/meta/core/v0/#",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
   "$id": "https://schemas.vasters.com/TypeName",
   "properties": {
       "name1": { "type": { "$ref": "#/definitions/Namespace/TypeName" }},
@@ -3283,7 +3283,7 @@ be used directly.<a href="#section-3.10-2" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.10-4">
 <pre>
 {
-  "$schema": "https://json-structure.github.io/meta/core/v0/#",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
   "definitions" : {
     "Address": {
       "abstract": true,
@@ -3318,7 +3318,7 @@ might be applied to any <em>StreetAddress</em> types in a document:<a href="#sec
 <div class="lang-json sourcecode" id="section-3.10-6">
 <pre>
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/Addresses",
     "$root": "#/definitions/StreetAddress",
     "$offers": {
