@@ -697,7 +697,7 @@ Example with inline `type`:
 
 ~~~ json
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/TypeName",
     "name": "TypeName",
     "type": "object",
@@ -711,7 +711,7 @@ Example with `$root`:
 
 ~~~ json
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/TypeName",
     "$root": "#/definitions/TypeName",
     "definitions": {
@@ -729,7 +729,7 @@ Example with the root type in a namespace:
 
 ~~~ json
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/TypeName",
     "$root": "#/definitions/Namespace/TypeName",
     "definitions": {
@@ -765,7 +765,7 @@ Example:
 
 ~~~ json
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "name": "TypeName",
     "type": "object",
     "properties": {
@@ -792,7 +792,7 @@ Example:
 
 ~~~ json
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/TypeName",
     "name": "TypeName",
     "type": "object",
@@ -816,7 +816,7 @@ Example:
 
 ~~~ json
 {
-  "$schema": "https://json-structure.github.io/meta/core/v0/#",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
   "$id": "https://schemas.vasters.com/TypeName",
   "$root": "#/definitions/Namespace/TypeName",
   "definitions": {
@@ -850,7 +850,7 @@ Example:
 
 ~~~ json
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/TypeName",
     "definitions": {
         "Namespace": {
@@ -877,7 +877,7 @@ Example:
 
 ~~~ json
 {
-  "$schema": "https://json-structure.github.io/meta/core/v0/#",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
   "$id": "https://schemas.vasters.com/TypeName",
   "properties": {
       "name1": { "type": { "$ref": "#/definitions/Namespace/TypeName" }},
@@ -1378,7 +1378,7 @@ Example:
 
 ~~~ json
 {
-  "$schema": "https://json-structure.github.io/meta/core/v0/#",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
   "definitions" : {
     "Address": {
       "abstract": true,
@@ -1413,7 +1413,7 @@ might be applied to any _StreetAddress_ types in a document:
 
 ~~~ json
 {
-    "$schema": "https://json-structure.github.io/meta/core/v0/#",
+    "$schema": "https://json-structure.org/meta/core/v0/#",
     "$id": "https://schemas.vasters.com/Addresses",
     "$root": "#/definitions/StreetAddress",
     "$offers": {
