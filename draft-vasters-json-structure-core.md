@@ -651,6 +651,137 @@ Example:
 }
 ~~~
 
+#### `choice` {#choice}
+
+The `choice` type is used to define a "discriminated union" of types. A
+choice is a set of types where only one type can be selected at a time and
+where the selected type is determined by the value of a selector.
+
+The `choice` type can declare two variants of discriminated unions that
+are represented differently in JSON:
+
+- _Tagged unions_: The `choice` type is represented as a JSON object with a
+  single property whose name is the selector of the type as declared in the
+  [`choices`]({{choices-keyword}}) map and whose value is of the selected type.
+- _Inline unions_: The `choice` type is represented as a JSON object of the
+  selected type with the selector as a property of the object.
+
+##### Tagged Unions {#tagged-unions}
+
+A tagged union is declared as follows:
+
+~~~ json
+{
+  "type": "choice",
+  "name": "MyChoice",
+  "choices": {
+    "string": { "type": "string" },
+    "int32": { "type": "int32" }
+  }
+}
+~~~
+
+The JSON node described by the schema above is a tagged union. For the
+example, the following JSON node is a valid instance of the `MyChoice` type:
+
+~~~ json
+{
+  "string": "Hello, world!"
+}
+~~~
+
+or:
+
+~~~ json
+{
+  "int32": 42
+}
+
+##### Inline Unions {#inline-unions}
+
+Inline unions require for all type choices to extend a common base type.
+
+This is expressed by using the [`$extends`]({{extends}}) keyword in the
+`choice` declaration. The `$extends` keyword MUST refer to a schema that
+defines the base type and the base type MUST be abstract.
+
+If `$extends` is present, the `selector` property declares the name of the
+injected property that acts as the selector for the inline union. The
+type of the selector property is `string`. The selector property MAY 
+shadow a property of the base type; in this case, the base type property
+MUST be of type `string`.
+
+The selector is defined as a property of the base type and the value of the
+selector property MUST be a string that matches the name of one of the
+options in the `choices` map.
+
+Example:
+
+~~~ json
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://schemas.vasters.com/TypeName",
+  "type": "choice",
+  "$extends": "#/definitions/Address",
+  "selector": "addressType",
+  "choices": {
+    "StreetAddress": { "$ref": "#/definitions/StreetAddress" },
+    "PostOfficeBoxAddress": { "$ref": "#/definitions/PostOfficeBoxAddress" }
+  },
+  "definitions" : {
+    "Address": {
+      "abstract": true,
+      "type": "object",
+      "properties": {
+          "city": { "type": "string" },
+          "state": { "type": "string" },
+          "zip": { "type": "string" }
+      }
+    },
+    "StreetAddress": {
+      "type": "object",
+      "$extends": "#/definitions/Address",
+      "properties": {
+          "street": { "type": "string" }
+      }
+    },
+    "PostOfficeBoxAddress": {
+      "type": "object",
+      "$extends": "#/definitions/Address",
+      "properties": {
+          "poBox": { "type": "string" }
+      }
+    }
+  }
+}
+~~~
+
+The JSON node described by the schema above is an inline union. This
+example shows a JSON node that is a street address:
+
+~~~ json
+{
+  "addressType": "StreetAddress",
+  "street": "123 Main St",
+  "city": "Seattle",
+  "state": "WA",
+  "zip": "98101"
+}
+~~~
+
+This example shows a JSON node that is a post office box address:
+
+~~~ json
+{
+  "addressType": "PostOfficeBoxAddress",
+  "poBox": "1234",
+  "city": "Seattle",
+  "state": "WA",
+  "zip": "98101"
+}
+~~~
+
+
 ## Document Structure {#document-structure}
 
 A JSON Structure document is a JSON object that contains schemas ({{schema}})
@@ -1206,6 +1337,38 @@ provided with a schema, each additional property MUST conform to it.
 }
 ~~~
 
+### The `choices` Keyword {#choices-keyword}
+
+`choices` defines the choices of a `choice` type. The value MUST be a map of
+type names to schemas. Each type name MUST be unique within the `choices` map.
+
+The value of each type name MUST be a schema. Inline compound types are permitted.
+
+The `choices` keyword MUST only be used in schemas of type [`choice`]({{choice}}).
+
+***Example**:
+
+~~~ json
+{
+  "type": "choice",
+  "name": "MyChoice",
+  "choices": {
+    "string": { "type": "string" },
+    "int32": { "type": "int32" }
+  }
+}
+~~~
+
+
+### The `selector` Keyword {#selector-keyword}
+
+The `selector` keyword defines the name of the property that acts as the selector
+for the type in a `choice` type. The value of `selector` MUST be a string.
+
+The `selector` keyword MUST only be used in schemas of type [`choice`]({{choice}}).
+
+See [`choice`]({{choice}}) for an example.
+
 ## Type Annotation Keywords {#type-annotation-keywords}
 
 Type annotation keywords provide additional metadata about the underlying type.
@@ -1552,6 +1715,7 @@ custom annotations or extension keywords:
 - `$offers`
 - `abstract`
 - `additionalProperties`
+- `choices`
 - `const`
 - `default`
 - `description`
@@ -1565,6 +1729,7 @@ custom annotations or extension keywords:
 - `properties`
 - `required`
 - `scale`
+- `selector`
 - `type`
 - `values`
 
