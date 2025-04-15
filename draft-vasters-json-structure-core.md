@@ -707,7 +707,7 @@ defines the base type and the base type MUST be abstract.
 
 If `$extends` is present, the `selector` property declares the name of the
 injected property that acts as the selector for the inline union. The
-type of the selector property is `string`. The selector property MAY 
+type of the selector property is `string`. The selector property MAY
 shadow a property of the base type; in this case, the base type property
 MUST be of type `string`.
 
