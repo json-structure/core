@@ -2918,8 +2918,10 @@ specification.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
           </h4>
 <ul class="normal">
 <li class="normal" id="section-3.5.1-1.1">
-              <p id="section-3.5.1-1.1.1">Type unions are formed as sets of primitive types and type references. It is
-NOT permitted to define a compound type inline inside a union.<a href="#section-3.5.1-1.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3.5.1-1.1.1">Non-discriminated type unions are formed as sets of primitive types and type
+references. It is NOT permitted to define a compound type inline inside a
+non-discriminated type union. Discriminated unions are formed as a
+<a href="#choice" class="auto internal xref">Section 3.2.3.7</a> type to which the rules of this section do not apply.<a href="#section-3.5.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.5.1-1.2">
               <p id="section-3.5.1-1.2.1">A type union is a composite type reference and not a standalone compound type
