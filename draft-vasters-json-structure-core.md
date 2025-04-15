@@ -1104,8 +1104,10 @@ specification.
 
 ### Unions {#unions}
 
-- Type unions are formed as sets of primitive types and type references. It is
-  NOT permitted to define a compound type inline inside a union.
+- Non-discriminated type unions are formed as sets of primitive types and type
+  references. It is NOT permitted to define a compound type inline inside a
+  non-discriminated type union. Discriminated unions are formed as a
+  [`choice`]({{choice}}) type to which the rules of this section do not apply.
 - A type union is a composite type reference and not a standalone compound type
   and is therefore not named.
 - The JSON node described by a schema with a type union MUST conform to at least
