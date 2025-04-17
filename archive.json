@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-15T00:42:36.465406+00:00",
+  "timestamp": "2025-04-17T00:41:35.378583+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -50,5 +50,32 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOONqYn86SnC9e",
+      "title": "Introducing choice type",
+      "url": "https://github.com/json-structure/core/pull/1",
+      "state": "OPEN",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This edit introduces the choice type for discriminated unions.",
+      "createdAt": "2025-04-15T06:40:40Z",
+      "updatedAt": "2025-04-15T06:46:35Z",
+      "baseRepository": "json-structure/core",
+      "baseRefName": "main",
+      "baseRefOid": "b0c1472fb4714d8805af0f92659f2538d9e5ee03",
+      "headRepository": "json-structure/core",
+      "headRefName": "add-choice",
+      "headRefOid": "ebea75e6290da25d1e91f5fdd22e76516564a858",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
