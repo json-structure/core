@@ -696,6 +696,7 @@ or:
 {
   "int32": 42
 }
+~~~
 
 ##### Inline Unions {#inline-unions}
 
