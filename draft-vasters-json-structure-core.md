@@ -702,9 +702,9 @@ or:
 
 Inline unions require for all type choices to extend a common base type.
 
-This is expressed by using the [`$extends`]({{extends}}) keyword in the
-`choice` declaration. The `$extends` keyword MUST refer to a schema that
-defines the base type and the base type MUST be abstract.
+This is expressed by using the [`$extends`]({{extends-keyword}}) keyword in the
+`choice` declaration. The `$extends` keyword MUST refer to a schema that defines
+the base type and the base type MUST be abstract.
 
 If `$extends` is present, the `selector` property declares the name of the
 injected property that acts as the selector for the inline union. The
