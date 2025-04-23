@@ -822,27 +822,27 @@ Table of Contents
      "int32": 42
    }
 
-   ##### Inline Unions {#inline-unions}
+3.2.3.7.2.  Inline Unions
 
-   Inline unions require for all type choices to extend a common base type.
+   Inline unions require for all type choices to extend a common base
+   type.
 
-   This is expressed by using the [`$extends`]({{extends}}) keyword in the
-   `choice` declaration. The `$extends` keyword MUST refer to a schema that
+   This is expressed by using the Section 3.10.2 keyword in the choice
+   declaration.  The $extends keyword MUST refer to a schema that
    defines the base type and the base type MUST be abstract.
 
-   If `$extends` is present, the `selector` property declares the name of the
-   injected property that acts as the selector for the inline union. The
-   type of the selector property is `string`. The selector property MAY
-   shadow a property of the base type; in this case, the base type property
-   MUST be of type `string`.
+   If $extends is present, the selector property declares the name of
+   the injected property that acts as the selector for the inline union.
+   The type of the selector property is string.  The selector property
+   MAY shadow a property of the base type; in this case, the base type
+   property MUST be of type string.
 
-   The selector is defined as a property of the base type and the value of the
-   selector property MUST be a string that matches the name of one of the
-   options in the `choices` map.
+   The selector is defined as a property of the base type and the value
+   of the selector property MUST be a string that matches the name of
+   one of the options in the choices map.
 
    Example:
 
-   ~~~ json
    {
      "$schema": "https://json-structure.org/meta/core/v0/#",
      "$id": "https://schemas.vasters.com/TypeName",
