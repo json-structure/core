@@ -1480,25 +1480,24 @@ property.<a href="#section-3.1.1-6" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-7">When the schema is placed into a namespace (<a href="#namespaces" class="auto internal xref">Section 3.3.1</a>) or embedded into a
 properties (<a href="#properties-keyword" class="auto internal xref">Section 3.7.2</a>) section of an <code>object</code> type, the name is the
 key under which the schema is stored.<a href="#section-3.1.1-7" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-8">Further rules for schemas are defined in section 3.4 (<a href="#type-system-rules" class="auto internal xref">Section 3.4</a>).<a href="#section-3.1.1-8" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-8">Further rules for schemas are defined in <a href="#type-system-rules" class="auto internal xref">Section 3.4</a>.<a href="#section-3.1.1-8" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-9">A "schema document" is a schema that represents the root of a schema hierarchy
 and is the container format in which schemas are stored on disk or exchanged. A
 schema document MAY contain multiple type declarations and namespaces. The
-structure of schema documents is defined in section 3.3
-(<a href="#document-structure" class="auto internal xref">Section 3.3</a>).<a href="#section-3.1.1-9" class="pilcrow">¶</a></p>
+structure of schema documents is defined in <a href="#document-structure" class="auto internal xref">Section 3.3</a>.<a href="#section-3.1.1-9" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-10">JSON Structure is extensible. All keywords that are not explicitly defined in
 this document MAY be used for custom annotations and extensions. This also
 applies to keywords that begin with the <code>$</code> character. A complete list of
-reserved keywords is provided in section 3.11 (<a href="#reserved-keywords" class="auto internal xref">Section 4</a>).<a href="#section-3.1.1-10" class="pilcrow">¶</a></p>
+reserved keywords is provided in <a href="#reserved-keywords" class="auto internal xref">Section 4</a>.<a href="#section-3.1.1-10" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-11">The semantics of keywords defined in this document MAY be expanded by extension
 specifications, but the core semantics of the keywords defined in this document
 MUST NOT be altered.<a href="#section-3.1.1-11" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-12">Be mindful that the use of custom keywords and annotations might conflict with
 future versions of this specification or other extensions and that the authors
 of this specification will not go out of their way to avoid such conflicts.<a href="#section-3.1.1-12" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-13">Section 3.10 (<a href="#extensions-and-add-ins" class="auto internal xref">Section 3.10</a>) details the extensibility features.<a href="#section-3.1.1-13" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-13"><a href="#extensions-and-add-ins" class="auto internal xref">Section 3.10</a> details the extensibility features.<a href="#section-3.1.1-13" class="pilcrow">¶</a></p>
 <p id="section-3.1.1-14">Formally, a schema is a constrained non-schema (<a href="#non-schema" class="auto internal xref">Section 3.1.2</a>) that requires a
-type (<a href="#type-keyword" class="auto internal xref">Section 3.7.1</a>) keyword or a <a href="#ref-keyword" class="auto internal xref">Section 3.3.6</a> keyword to be a
+type (<a href="#type-keyword" class="auto internal xref">Section 3.7.1</a>) keyword or a <code>$ref</code> (<a href="#ref-keyword" class="auto internal xref">Section 3.3.6</a>) keyword to be a
 schema.<a href="#section-3.1.1-14" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2302,7 +2301,8 @@ type or a locally declared compound type.<a href="#section-3.2.3.4-3" class="pil
 <p id="section-3.2.3.5-1">The <code>tuple</code> type is used to define an ordered collection of elements with a
 specific length. It's represented as a JSON array where each element is of a
 specific type.<a href="#section-3.2.3.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.5-2">The elements are defined using a <code>properties</code> map as <a href="#object" class="auto internal xref">Section 3.2.3.1</a> type and each element is named. All declared properties of
+<p id="section-3.2.3.5-2">The elements are defined using a <code>properties</code> map as with the
+<code>object</code> (<a href="#object" class="auto internal xref">Section 3.2.3.1</a>) type and each element is named. All declared properties of
 a <code>tuple</code> are implicitly required.<a href="#section-3.2.3.5-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.3.5-3">A <code>tuple</code> type MUST include a <code>name</code> attribute that defines the name of the
 type.<a href="#section-3.2.3.5-3" class="pilcrow">¶</a></p>
@@ -2358,7 +2358,7 @@ are represented differently in JSON:<a href="#section-3.2.3.7-2" class="pilcrow"
 <li class="normal" id="section-3.2.3.7-3.1">
                 <p id="section-3.2.3.7-3.1.1"><em>Tagged unions</em>: The <code>choice</code> type is represented as a JSON object with a
 single property whose name is the selector of the type as declared in the
-<a href="#choices-keyword" class="auto internal xref">Section 3.7.9</a> map and whose value is of the selected type.<a href="#section-3.2.3.7-3.1.1" class="pilcrow">¶</a></p>
+<code>choices</code> (<a href="#choices-keyword" class="auto internal xref">Section 3.7.9</a>) map and whose value is of the selected type.<a href="#section-3.2.3.7-3.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-3.2.3.7-3.2">
                 <p id="section-3.2.3.7-3.2.1"><em>Inline unions</em>: The <code>choice</code> type is represented as a JSON object of the
@@ -2408,7 +2408,7 @@ example, the following JSON node is a valid instance of the <code>MyChoice</code
 <a href="#section-3.2.3.7.2" class="section-number selfRef">3.2.3.7.2. </a><a href="#name-inline-unions" class="section-name selfRef">Inline Unions</a>
               </h6>
 <p id="section-3.2.3.7.2-1">Inline unions require for all type choices to extend a common base type.<a href="#section-3.2.3.7.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.7.2-2">This is expressed by using the <a href="#extends-keyword" class="auto internal xref">Section 3.10.2</a> keyword in the
+<p id="section-3.2.3.7.2-2">This is expressed by using the <code>$extends</code> (<a href="#extends-keyword" class="auto internal xref">Section 3.10.2</a>) keyword in the
 <code>choice</code> declaration. The <code>$extends</code> keyword MUST refer to a schema that defines
 the base type and the base type MUST be abstract.<a href="#section-3.2.3.7.2-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.3.7.2-3">If <code>$extends</code> is present, the <code>selector</code> property declares the name of the
@@ -2923,7 +2923,7 @@ specification.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
               <p id="section-3.5.1-1.1.1">Non-discriminated type unions are formed as sets of primitive types and type
 references. It is NOT permitted to define a compound type inline inside a
 non-discriminated type union. Discriminated unions are formed as a
-<a href="#choice" class="auto internal xref">Section 3.2.3.7</a> type to which the rules of this section do not apply.<a href="#section-3.5.1-1.1.1" class="pilcrow">¶</a></p>
+<code>choice</code> (<a href="#choice" class="auto internal xref">Section 3.2.3.7</a>) type to which the rules of this section do not apply.<a href="#section-3.5.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.5.1-1.2">
               <p id="section-3.5.1-1.2.1">A type union is a composite type reference and not a standalone compound type
@@ -3214,7 +3214,7 @@ provided with a schema, each additional property MUST conform to it.<a href="#se
 <p id="section-3.7.9-1"><code>choices</code> defines the choices of a <code>choice</code> type. The value MUST be a map of
 type names to schemas. Each type name MUST be unique within the <code>choices</code> map.<a href="#section-3.7.9-1" class="pilcrow">¶</a></p>
 <p id="section-3.7.9-2">The value of each type name MUST be a schema. Inline compound types are permitted.<a href="#section-3.7.9-2" class="pilcrow">¶</a></p>
-<p id="section-3.7.9-3">The <code>choices</code> keyword MUST only be used in schemas of type <a href="#choice" class="auto internal xref">Section 3.2.3.7</a>.<a href="#section-3.7.9-3" class="pilcrow">¶</a></p>
+<p id="section-3.7.9-3">The <code>choices</code> keyword MUST only be used in schemas of type <code>choice</code> (<a href="#choice" class="auto internal xref">Section 3.2.3.7</a>).<a href="#section-3.7.9-3" class="pilcrow">¶</a></p>
 <p id="section-3.7.9-4"><strong>*Example</strong>:<a href="#section-3.7.9-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.7.9-5">
 <pre>
@@ -3237,8 +3237,8 @@ type names to schemas. Each type name MUST be unique within the <code>choices</c
           </h4>
 <p id="section-3.7.10-1">The <code>selector</code> keyword defines the name of the property that acts as the selector
 for the type in a <code>choice</code> type. The value of <code>selector</code> MUST be a string.<a href="#section-3.7.10-1" class="pilcrow">¶</a></p>
-<p id="section-3.7.10-2">The <code>selector</code> keyword MUST only be used in schemas of type <a href="#choice" class="auto internal xref">Section 3.2.3.7</a>.<a href="#section-3.7.10-2" class="pilcrow">¶</a></p>
-<p id="section-3.7.10-3">See <a href="#choice" class="auto internal xref">Section 3.2.3.7</a> for an example.<a href="#section-3.7.10-3" class="pilcrow">¶</a></p>
+<p id="section-3.7.10-2">The <code>selector</code> keyword MUST only be used in schemas of type <code>choice</code> (<a href="#choice" class="auto internal xref">Section 3.2.3.7</a>).<a href="#section-3.7.10-2" class="pilcrow">¶</a></p>
+<p id="section-3.7.10-3">See <code>choice</code> (<a href="#choice" class="auto internal xref">Section 3.2.3.7</a>) for an example.<a href="#section-3.7.10-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
