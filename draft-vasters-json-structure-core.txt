@@ -1202,7 +1202,7 @@ Table of Contents
 
       -  *JSON Compounds:* object, array.
 
-      -  *Extended Compounds:* map, set, tuple, any.
+      -  *Extended Compounds:* map, set, tuple, any, choice.
 
 3.4.2.  Reusable Types
 
