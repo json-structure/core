@@ -1073,7 +1073,7 @@ provides a mechanism for importing definitions from external schemas.
     `uint128`, `float`, `double`, `decimal`, `date`, `datetime`, `time`,
     `duration`, `uuid`, `uri`, `binary`, `jsonpointer`.
   - **JSON Compounds:** `object`, `array`.
-  - **Extended Compounds:** `map`, `set`, `tuple`, `any`.
+  - **Extended Compounds:** `map`, `set`, `tuple`, `any`, `choice`.
 
 ### Reusable Types {#reusable-types}
 
