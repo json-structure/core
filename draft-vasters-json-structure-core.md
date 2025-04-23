@@ -161,18 +161,17 @@ When the schema is placed into a namespace ({{namespaces}}) or embedded into a
 properties ({{properties-keyword}}) section of an `object` type, the name is the
 key under which the schema is stored.
 
-Further rules for schemas are defined in section 3.4 ({{type-system-rules}}).
+Further rules for schemas are defined in {{type-system-rules}}.
 
 A "schema document" is a schema that represents the root of a schema hierarchy
 and is the container format in which schemas are stored on disk or exchanged. A
 schema document MAY contain multiple type declarations and namespaces. The
-structure of schema documents is defined in section 3.3
-({{document-structure}}).
+structure of schema documents is defined in {{document-structure}}.
 
 JSON Structure is extensible. All keywords that are not explicitly defined in
 this document MAY be used for custom annotations and extensions. This also
 applies to keywords that begin with the `$` character. A complete list of
-reserved keywords is provided in section 3.11 ({{reserved-keywords}}).
+reserved keywords is provided in {{reserved-keywords}}.
 
 The semantics of keywords defined in this document MAY be expanded by extension
 specifications, but the core semantics of the keywords defined in this document
@@ -182,10 +181,10 @@ Be mindful that the use of custom keywords and annotations might conflict with
 future versions of this specification or other extensions and that the authors
 of this specification will not go out of their way to avoid such conflicts.
 
-Section 3.10 ({{extensions-and-add-ins}}) details the extensibility features.
+{{extensions-and-add-ins}} details the extensibility features.
 
 Formally, a schema is a constrained non-schema ({{non-schema}}) that requires a
-type ({{type-keyword}}) keyword or a ['$ref']({{ref-keyword}}) keyword to be a
+type ({{type-keyword}}) keyword or a `$ref` ({{ref-keyword}}) keyword to be a
 schema.
 
 ### Non-Schema {#non-schema}
@@ -612,8 +611,8 @@ The `tuple` type is used to define an ordered collection of elements with a
 specific length. It's represented as a JSON array where each element is of a
 specific type.
 
-The elements are defined using a `properties` map as [with the
-`object`]({{object}}) type and each element is named. All declared properties of
+The elements are defined using a `properties` map as with the
+`object` ({{object}}) type and each element is named. All declared properties of
 a `tuple` are implicitly required.
 
 A `tuple` type MUST include a `name` attribute that defines the name of the
@@ -662,7 +661,7 @@ are represented differently in JSON:
 
 - _Tagged unions_: The `choice` type is represented as a JSON object with a
   single property whose name is the selector of the type as declared in the
-  [`choices`]({{choices-keyword}}) map and whose value is of the selected type.
+  `choices` ({{choices-keyword}}) map and whose value is of the selected type.
 - _Inline unions_: The `choice` type is represented as a JSON object of the
   selected type with the selector as a property of the object.
 
@@ -702,7 +701,7 @@ or:
 
 Inline unions require for all type choices to extend a common base type.
 
-This is expressed by using the [`$extends`]({{extends-keyword}}) keyword in the
+This is expressed by using the `$extends` ({{extends-keyword}}) keyword in the
 `choice` declaration. The `$extends` keyword MUST refer to a schema that defines
 the base type and the base type MUST be abstract.
 
@@ -1108,7 +1107,7 @@ specification.
 - Non-discriminated type unions are formed as sets of primitive types and type
   references. It is NOT permitted to define a compound type inline inside a
   non-discriminated type union. Discriminated unions are formed as a
-  [`choice`]({{choice}}) type to which the rules of this section do not apply.
+  `choice` ({{choice}}) type to which the rules of this section do not apply.
 - A type union is a composite type reference and not a standalone compound type
   and is therefore not named.
 - The JSON node described by a schema with a type union MUST conform to at least
@@ -1347,7 +1346,7 @@ type names to schemas. Each type name MUST be unique within the `choices` map.
 
 The value of each type name MUST be a schema. Inline compound types are permitted.
 
-The `choices` keyword MUST only be used in schemas of type [`choice`]({{choice}}).
+The `choices` keyword MUST only be used in schemas of type `choice` ({{choice}}).
 
 ***Example**:
 
@@ -1368,9 +1367,9 @@ The `choices` keyword MUST only be used in schemas of type [`choice`]({{choice}}
 The `selector` keyword defines the name of the property that acts as the selector
 for the type in a `choice` type. The value of `selector` MUST be a string.
 
-The `selector` keyword MUST only be used in schemas of type [`choice`]({{choice}}).
+The `selector` keyword MUST only be used in schemas of type `choice` ({{choice}}).
 
-See [`choice`]({{choice}}) for an example.
+See `choice` ({{choice}}) for an example.
 
 ## Type Annotation Keywords {#type-annotation-keywords}
 
