@@ -1275,6 +1275,9 @@ and databases and other data formats is straightforward.<a href="#section-abstra
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.7.2.10">
                     <p id="section-toc.1-1.3.2.7.2.10.1"><a href="#section-3.7.10" class="auto internal xref">3.7.10</a>. <a href="#name-the-selector-keyword" class="internal xref">The <code>selector</code> Keyword</a></p>
 </li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.7.2.11">
+                    <p id="section-toc.1-1.3.2.7.2.11.1"><a href="#section-3.7.11" class="auto internal xref">3.7.11</a>. <a href="#name-the-tuple-keyword" class="internal xref">The <code>tuple</code> Keyword</a></p>
+</li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.8">
@@ -1460,9 +1463,9 @@ node.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 </pre><a href="#section-3.1.1-3" class="pilcrow">¶</a>
 </div>
 <p id="section-3.1.1-4">In the case of a schema that references a compound type (<code>object</code>, <code>set</code>,
-<code>array</code>, <code>map</code>, <code>tuple</code>), the schema further describes the structure of the
-compound type. Schemas can be placed into a namespace (<a href="#namespaces" class="auto internal xref">Section 3.3.1</a>) for
-reuse in other schemas.<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
+<code>array</code>, <code>map</code>, <code>tuple</code>, <code>choice</code>), the schema further describes the structure
+of the compound type. Schemas can be placed into a namespace (<a href="#namespaces" class="auto internal xref">Section 3.3.1</a>)
+for reuse in other schemas.<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
 <div class="lang-json sourcecode" id="section-3.1.1-5">
 <pre>
 {
@@ -2301,13 +2304,19 @@ type or a locally declared compound type.<a href="#section-3.2.3.4-3" class="pil
 <p id="section-3.2.3.5-1">The <code>tuple</code> type is used to define an ordered collection of elements with a
 specific length. It's represented as a JSON array where each element is of a
 specific type.<a href="#section-3.2.3.5-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.5-2">The elements are defined using a <code>properties</code> map as with the
-<code>object</code> (<a href="#object" class="auto internal xref">Section 3.2.3.1</a>) type and each element is named. All declared properties of
-a <code>tuple</code> are implicitly required.<a href="#section-3.2.3.5-2" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.5-3">A <code>tuple</code> type MUST include a <code>name</code> attribute that defines the name of the
-type.<a href="#section-3.2.3.5-3" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.5-4">Example:<a href="#section-3.2.3.5-4" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-3.2.3.5-5">
+<p id="section-3.2.3.5-2">The elements are defined using a <code>properties</code> map as with the <code>object</code>
+(<a href="#object" class="auto internal xref">Section 3.2.3.1</a>) type and each element is named. This permits straightforward
+mapping into application constructs. All declared properties of a <code>tuple</code> are
+implicitly REQUIRED.<a href="#section-3.2.3.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.5-3">The order of the elements in a tuple is declared using the <code>tuple</code> keyword
+<a href="#tuple-keyword" class="auto internal xref">Section 3.7.11</a>, which is REQUIRED. The <code>tuple</code> keyword MUST be a JSON array
+of strings, where each declared property name MUST be an element of the array.
+The order of the elements in the array defines the order of the properties in
+the tuple.<a href="#section-3.2.3.5-3" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.5-4">A <code>tuple</code> type MUST include a <code>name</code> attribute that defines the name of the
+type.<a href="#section-3.2.3.5-4" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.5-5">Example:<a href="#section-3.2.3.5-5" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-3.2.3.5-6">
 <pre>
 {
   "type": "tuple",
@@ -2315,15 +2324,16 @@ type.<a href="#section-3.2.3.5-3" class="pilcrow">¶</a></p>
   "properties": {
     "name": { "type": "string" },
     "age": { "type": "int32" }
-  }
+  },
+  "tuple": ["name", "age"]
 }
-</pre><a href="#section-3.2.3.5-5" class="pilcrow">¶</a>
+</pre><a href="#section-3.2.3.5-6" class="pilcrow">¶</a>
 </div>
-<p id="section-3.2.3.5-6">The following JSON node is an valid instance of the <code>tuple</code> type defined above:<a href="#section-3.2.3.5-6" class="pilcrow">¶</a></p>
-<div class="lang-json sourcecode" id="section-3.2.3.5-7">
+<p id="section-3.2.3.5-7">The following JSON node is an valid instance of the <code>tuple</code> type defined above:<a href="#section-3.2.3.5-7" class="pilcrow">¶</a></p>
+<div class="lang-json sourcecode" id="section-3.2.3.5-8">
 <pre>
 ["Alice", 42]
-</pre><a href="#section-3.2.3.5-7" class="pilcrow">¶</a>
+</pre><a href="#section-3.2.3.5-8" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -3239,6 +3249,19 @@ type names to schemas. Each type name MUST be unique within the <code>choices</c
 for the type in a <code>choice</code> type. The value of <code>selector</code> MUST be a string.<a href="#section-3.7.10-1" class="pilcrow">¶</a></p>
 <p id="section-3.7.10-2">The <code>selector</code> keyword MUST only be used in schemas of type <code>choice</code> (<a href="#choice" class="auto internal xref">Section 3.2.3.7</a>).<a href="#section-3.7.10-2" class="pilcrow">¶</a></p>
 <p id="section-3.7.10-3">See <code>choice</code> (<a href="#choice" class="auto internal xref">Section 3.2.3.7</a>) for an example.<a href="#section-3.7.10-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="tuple-keyword">
+<section id="section-3.7.11">
+          <h4 id="name-the-tuple-keyword">
+<a href="#section-3.7.11" class="section-number selfRef">3.7.11. </a><a href="#name-the-tuple-keyword" class="section-name selfRef">The <code>tuple</code> Keyword</a>
+          </h4>
+<p id="section-3.7.11-1">The <code>tuple</code> keyword defines the order of properties in a <code>tuple</code> type. The
+value of <code>tuple</code> MUST be an array of strings, where each string is the name of a
+property defined in the <code>properties</code> map. The order of the strings in the array
+defines the order of the properties in the tuple.<a href="#section-3.7.11-1" class="pilcrow">¶</a></p>
+<p id="section-3.7.11-2">The <code>tuple</code> keyword MUST only be used in schemas of type <code>tuple</code> (<a href="#tuple" class="auto internal xref">Section 3.2.3.5</a>).<a href="#section-3.7.11-2" class="pilcrow">¶</a></p>
+<p id="section-3.7.11-3">See <code>tuple</code> (<a href="#tuple" class="auto internal xref">Section 3.2.3.5</a>) for an example.<a href="#section-3.7.11-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

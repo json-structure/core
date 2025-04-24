@@ -104,6 +104,7 @@ Table of Contents
        3.7.8.  The additionalProperties Keyword
        3.7.9.  The choices Keyword
        3.7.10. The selector Keyword
+       3.7.11. The tuple Keyword
      3.8.  Type Annotation Keywords
        3.8.1.  The maxLength Keyword
        3.8.2.  The precision Keyword
@@ -201,9 +202,9 @@ Table of Contents
    }
 
    In the case of a schema that references a compound type (object, set,
-   array, map, tuple), the schema further describes the structure of the
-   compound type.  Schemas can be placed into a namespace
-   (Section 3.3.1) for reuse in other schemas.
+   array, map, tuple, choice), the schema further describes the
+   structure of the compound type.  Schemas can be placed into a
+   namespace (Section 3.3.1) for reuse in other schemas.
 
    {
      "name": "myname",
@@ -743,8 +744,15 @@ Table of Contents
    element is of a specific type.
 
    The elements are defined using a properties map as with the object
-   (Section 3.2.3.1) type and each element is named.  All declared
-   properties of a tuple are implicitly required.
+   (Section 3.2.3.1) type and each element is named.  This permits
+   straightforward mapping into application constructs.  All declared
+   properties of a tuple are implicitly REQUIRED.
+
+   The order of the elements in a tuple is declared using the tuple
+   keyword Section 3.7.11, which is REQUIRED.  The tuple keyword MUST be
+   a JSON array of strings, where each declared property name MUST be an
+   element of the array.  The order of the elements in the array defines
+   the order of the properties in the tuple.
 
    A tuple type MUST include a name attribute that defines the name of
    the type.
@@ -757,7 +765,8 @@ Table of Contents
      "properties": {
        "name": { "type": "string" },
        "age": { "type": "int32" }
-     }
+     },
+     "tuple": ["name", "age"]
    }
 
    The following JSON node is an valid instance of the tuple type
@@ -1491,6 +1500,19 @@ Table of Contents
    (Section 3.2.3.7).
 
    See choice (Section 3.2.3.7) for an example.
+
+3.7.11.  The tuple Keyword
+
+   The tuple keyword defines the order of properties in a tuple type.
+   The value of tuple MUST be an array of strings, where each string is
+   the name of a property defined in the properties map.  The order of
+   the strings in the array defines the order of the properties in the
+   tuple.
+
+   The tuple keyword MUST only be used in schemas of type tuple
+   (Section 3.2.3.5).
+
+   See tuple (Section 3.2.3.5) for an example.
 
 3.8.  Type Annotation Keywords
 
