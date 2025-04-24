@@ -139,9 +139,9 @@ This schema constrains a JSON node to be of type `string`:
 ~~~
 
 In the case of a schema that references a compound type (`object`, `set`,
-`array`, `map`, `tuple`), the schema further describes the structure of the
-compound type. Schemas can be placed into a namespace ({{namespaces}}) for
-reuse in other schemas.
+`array`, `map`, `tuple`, `choice`), the schema further describes the structure
+of the compound type. Schemas can be placed into a namespace ({{namespaces}})
+for reuse in other schemas.
 
 ~~~ json
 {
@@ -611,9 +611,16 @@ The `tuple` type is used to define an ordered collection of elements with a
 specific length. It's represented as a JSON array where each element is of a
 specific type.
 
-The elements are defined using a `properties` map as with the
-`object` ({{object}}) type and each element is named. All declared properties of
-a `tuple` are implicitly required.
+The elements are defined using a `properties` map as with the `object`
+({{object}}) type and each element is named. This permits straightforward
+mapping into application constructs. All declared properties of a `tuple` are
+implicitly REQUIRED.
+
+The order of the elements in a tuple is declared using the `tuple` keyword
+{{tuple-keyword}}, which is REQUIRED. The `tuple` keyword MUST be a JSON array
+of strings, where each declared property name MUST be an element of the array.
+The order of the elements in the array defines the order of the properties in
+the tuple.
 
 A `tuple` type MUST include a `name` attribute that defines the name of the
 type.
@@ -627,7 +634,8 @@ Example:
   "properties": {
     "name": { "type": "string" },
     "age": { "type": "int32" }
-  }
+  },
+  "tuple": ["name", "age"]
 }
 ~~~
 
@@ -1370,6 +1378,17 @@ for the type in a `choice` type. The value of `selector` MUST be a string.
 The `selector` keyword MUST only be used in schemas of type `choice` ({{choice}}).
 
 See `choice` ({{choice}}) for an example.
+
+### The `tuple` Keyword {#tuple-keyword}
+
+The `tuple` keyword defines the order of properties in a `tuple` type. The
+value of `tuple` MUST be an array of strings, where each string is the name of a
+property defined in the `properties` map. The order of the strings in the array
+defines the order of the properties in the tuple.
+
+The `tuple` keyword MUST only be used in schemas of type `tuple` ({{tuple}}).
+
+See `tuple` ({{tuple}}) for an example.
 
 ## Type Annotation Keywords {#type-annotation-keywords}
 
