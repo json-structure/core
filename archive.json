@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-22T00:42:17.417336+00:00",
+  "timestamp": "2025-04-24T00:41:58.245491+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -49,31 +49,50 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 2,
+      "id": "I_kwDOONqYn86ztw5t",
+      "title": "\"tuple\" type declaration of \"properties\" is problematic",
+      "url": "https://github.com/json-structure/core/issues/2",
+      "state": "OPEN",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The `properties` declaration is reused for the `tuple` type. That's an issue because the tuple is ordered and the `properties` declaration is an object where keys are unordered. \n\nI do like preserving the same declaration style as for `object` combined with the terseness of the encoding in an array.  \n\nNoting this as an issue while pondering the options.",
+      "createdAt": "2025-04-23T19:55:26Z",
+      "updatedAt": "2025-04-23T19:55:26Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
   "pulls": [
     {
       "number": 1,
       "id": "PR_kwDOONqYn86SnC9e",
       "title": "Introducing choice type",
       "url": "https://github.com/json-structure/core/pull/1",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "clemensv",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "This edit introduces the choice type for discriminated unions.",
       "createdAt": "2025-04-15T06:40:40Z",
-      "updatedAt": "2025-04-15T06:46:35Z",
+      "updatedAt": "2025-04-22T11:20:16Z",
       "baseRepository": "json-structure/core",
       "baseRefName": "main",
       "baseRefOid": "b0c1472fb4714d8805af0f92659f2538d9e5ee03",
       "headRepository": "json-structure/core",
       "headRefName": "add-choice",
       "headRefOid": "ebea75e6290da25d1e91f5fdd22e76516564a858",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-04-22T11:20:12Z",
+      "mergedAt": "2025-04-22T11:20:11Z",
+      "mergedBy": "clemensv",
+      "mergeCommit": {
+        "oid": "8f83b3da08ff5e86d8fe3566ed501f34ba58fcd6"
+      },
       "comments": [],
       "reviews": []
     }
