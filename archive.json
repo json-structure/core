@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-24T00:41:58.245491+00:00",
+  "timestamp": "2025-04-27T00:45:40.410806+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -55,14 +55,107 @@
       "id": "I_kwDOONqYn86ztw5t",
       "title": "\"tuple\" type declaration of \"properties\" is problematic",
       "url": "https://github.com/json-structure/core/issues/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "clemensv",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "The `properties` declaration is reused for the `tuple` type. That's an issue because the tuple is ordered and the `properties` declaration is an object where keys are unordered. \n\nI do like preserving the same declaration style as for `object` combined with the terseness of the encoding in an array.  \n\nNoting this as an issue while pondering the options.",
       "createdAt": "2025-04-23T19:55:26Z",
-      "updatedAt": "2025-04-23T19:55:26Z",
+      "updatedAt": "2025-04-24T07:05:57Z",
+      "closedAt": "2025-04-24T07:05:57Z",
+      "comments": [
+        {
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Fix will be an ordering array that references the properties. The tuple still defines a data structure with property names such that it can be easily mapped to an object in a programming language or database.\n\n```\n{\n  \"type\": \"tuple\",\n  \"name\": \"Person\",\n  \"properties\": {\n    \"name\": { \"type\": \"string\" },\n    \"age\": { \"type\": \"int32\" }\n  },\n  \"tuple\": [\"name\", \"age\"]\n}\n```",
+          "createdAt": "2025-04-24T05:48:55Z",
+          "updatedAt": "2025-04-24T05:48:55Z"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOONqYn86z9ZkN",
+      "title": "Idea: Consider relaxing dict key charset restriction, rely on \"name\" instead of \"altnames.json\"",
+      "url": "https://github.com/json-structure/core/issues/3",
+      "state": "OPEN",
+      "author": "Fannon",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Just a suggestion / feedback on something that could be done *differently*, but the current proposal also works.\n\nInstead of applying the restricted charset ([Identifier Rules](https://json-structure.github.io/core/draft-vasters-json-structure-core.html#section-3.6)) to the dictionary keys AND to the `name`, we could make it more similar to how JSON Schema works today:\n\n- There are no limitation on dictionary key charset and it represents the JSON encoding name (`altnames.json`). If this contains restricted chars, it's mandatory to add `name` for codegen / tools.\n- The `altnames.json` can be removed, and it's not necessary to use a spec extension just to describe existing JSON / JS structures as they are.\n- Tools / codegens will always use `name` and fall back to the dictionary key.\n\nAdvantages from my view:\n- Closer to how JSON Schema works today\n- One less concept and one less spec extension to understand \n- I think that modeling existing JSON structures is very common, the new identifier name restrictions may only work consistently for greenfield / new models that are created in JSON Structure from start.\n\nDisadvantages:\n- Validation of correct JSON Structure document is more complicated, because the regexp validation on dictionary keys is conditional (only has to match regex if no `name` is provided).",
+      "createdAt": "2025-04-25T07:21:44Z",
+      "updatedAt": "2025-04-25T14:29:21Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The restriction of the character set of names is very intentional. I want to make sure that all names and namespaces can be cleanly mapped into databases and most common programming languages. Being able to define everyone's weird JSON document shapes is not a goal I am pursuing. altnames/json is a way to hack around that restriction and the pain of doing that is also intentional. \n\nthere are a few cases where \"name\" doesn't have a map above it and therefore this proposal would not work for those cases. ",
+          "createdAt": "2025-04-25T11:18:15Z",
+          "updatedAt": "2025-04-25T11:18:15Z"
+        },
+        {
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "body": "@clemensv - yes, I understood that and fully agree that this is useful. The charset restriction of `name` would stay exactly like it is. \n\nBut if `name` can't be put in every place where it's needed, this approach would cause issues. Where would this be? ",
+          "createdAt": "2025-04-25T14:29:14Z",
+          "updatedAt": "2025-04-25T14:29:20Z"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOONqYn86z9g6z",
+      "title": "Feature: Support Associations",
+      "url": "https://github.com/json-structure/core/issues/4",
+      "state": "OPEN",
+      "author": "Fannon",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "In my experience, one of the biggest gaps of JSON Schema is that it's not possible to describe associations. Both IDs and associations are just \"string\" or maybe \"UUID\" format if you're lucky. This is probably due to JSON Schema only focusing on validation, not on describing models. \n\nJSON Structure is already much better suited to describe models, but it would be important to also explicitly model the associations, e.g. to express FK relationships in database schemas or references / associations in API models. \n\nThere are many ways to go about it, we could collect them here. \n\n### Initial Proposal\n\nA first initial, simpler proposal (partially discussed with Clemens) could look like this. \n\n- Add new structural keyword `id` to object and , which is an array of property names that are the \"primary ID\" that are used to reference to it. This is usually one value, but if its multiple, we have a \"composite ID\". \n- Add a new structural keyword `targettype` to properties, the value is a JSON Pointer to the association target object. The target MSUT be an object and MUST have use the `id` keyword.\n- Cardinality is known through `required` and whether the association is within an `array` or not.\n- We do not need a dedicated `association` type, because it's useful to know the type of the ID itself (could be string, UUID, number, ...). We know something is an ID, because we marked it with `id` and we know something is an association by having the `targettype` keyword in it.\n- Polymorphic associations could probably be covered by wrapping this into a `choice`. (@clemensv ?)\n\n### Gaps / Open Questions \n- For composite IDs and References, we still don't know which source object property maps to which target object property. If this is needed to understand (e.g. to automatically construct query join conditions or code that joins the associations), we need to define this mapping.\n  - Maybe we could add a `targetproperty` in this case, where the property name for the corresponding ID is stated. EDIT: This alone is not sufficient if one object has more than one association to the same target. In this case, it's necessary to know which properties on the source object together form one composite association to the target objects composite ID (and how the properties each map). \n- Not sure if we could also use `abstract` objects for polymorphic associations. In this case, you could point to the abstract object, it defines the shared `id`. All concrete implementations of the abstract object are then valid association targets. ",
+      "createdAt": "2025-04-25T07:35:56Z",
+      "updatedAt": "2025-04-25T21:00:25Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I think of your proposal as three (!) features that compose:\n\n1) The `targettype` annotation for `jsonpointer` typed schemas simply creates a constraint for what JSON node the JSON Pointer may point at, nothing more. \n\n2) The optional, array-of-string valued `id` annotation for `object` (and `tuple`) establishes a set of identifiers that MUST, in combination, be unique for each instance. That is also a feature that puts a constraint on instances (the check will have to span instances of all usages of the type independent of where they appear in a document). \n\n3) If a `jsonpointer` points from some type property to another `targettype`, and that `targettype` has a declared `id`, a mapping into a database can use that information to construct a foreign key relationship. If there are mutual relationships, of that sort, that may cause an extra table to be created. That's basically a side-product of 1) and 2). \n\nPolymorphic associations would point to a `choice`, yes. For an inline discriminator `choice`, the base class would have to define the `id` already.",
+          "createdAt": "2025-04-25T09:25:48Z",
+          "updatedAt": "2025-04-25T09:25:48Z"
+        },
+        {
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "body": "Yes, it makes sense to compose it to separate feature requests / PRs. Maybe an additional one to support composite IDs via `targetproperty` (or something else) - but that is not needed for a first iteration.\n\nThose 2 first features could be separate PRs (should I create them?) and work together to get the associations as a feature into JSON Structure.\n\nFeature 3 is then more of a implication?",
+          "createdAt": "2025-04-25T09:28:37Z",
+          "updatedAt": "2025-04-25T09:45:33Z"
+        },
+        {
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Yes, 3 is a result of 1 and 2. If you want to create PRs, go right ahead!",
+          "createdAt": "2025-04-25T21:00:24Z",
+          "updatedAt": "2025-04-25T21:00:24Z"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOONqYn860GhWp",
+      "title": "Section 3.8 - Prohibit type annotations with type unions",
+      "url": "https://github.com/json-structure/core/issues/5",
+      "state": "OPEN",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Add a clause that explicitly prohibits using type annotations in schemas where the type is a type-union.\n\nThis prevents ambiguous definitions where the type union includes a combination of types (e.g. [\"string\", \"decimal\"]) and the annotation would only apply to  one of the types.\n\nTo achieve a type union of further constrained types, one must define them as reusable types and type-union those.\n\nThe prohibition will also extend to and be repeated in the validation spec.",
+      "createdAt": "2025-04-26T08:04:18Z",
+      "updatedAt": "2025-04-26T08:04:18Z",
       "closedAt": null,
       "comments": []
     }
