@@ -1079,6 +1079,7 @@ Example:
 ~~~
 
 The `id` MUST only be used on objects.
+The value MUST be an array of property names of the current object.
 
 ### Cross-references {#cross-references}
 
