@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-27T00:45:40.410806+00:00",
+  "timestamp": "2025-05-01T00:48:53.242422+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -115,9 +115,9 @@
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
-      "body": "In my experience, one of the biggest gaps of JSON Schema is that it's not possible to describe associations. Both IDs and associations are just \"string\" or maybe \"UUID\" format if you're lucky. This is probably due to JSON Schema only focusing on validation, not on describing models. \n\nJSON Structure is already much better suited to describe models, but it would be important to also explicitly model the associations, e.g. to express FK relationships in database schemas or references / associations in API models. \n\nThere are many ways to go about it, we could collect them here. \n\n### Initial Proposal\n\nA first initial, simpler proposal (partially discussed with Clemens) could look like this. \n\n- Add new structural keyword `id` to object and , which is an array of property names that are the \"primary ID\" that are used to reference to it. This is usually one value, but if its multiple, we have a \"composite ID\". \n- Add a new structural keyword `targettype` to properties, the value is a JSON Pointer to the association target object. The target MSUT be an object and MUST have use the `id` keyword.\n- Cardinality is known through `required` and whether the association is within an `array` or not.\n- We do not need a dedicated `association` type, because it's useful to know the type of the ID itself (could be string, UUID, number, ...). We know something is an ID, because we marked it with `id` and we know something is an association by having the `targettype` keyword in it.\n- Polymorphic associations could probably be covered by wrapping this into a `choice`. (@clemensv ?)\n\n### Gaps / Open Questions \n- For composite IDs and References, we still don't know which source object property maps to which target object property. If this is needed to understand (e.g. to automatically construct query join conditions or code that joins the associations), we need to define this mapping.\n  - Maybe we could add a `targetproperty` in this case, where the property name for the corresponding ID is stated. EDIT: This alone is not sufficient if one object has more than one association to the same target. In this case, it's necessary to know which properties on the source object together form one composite association to the target objects composite ID (and how the properties each map). \n- Not sure if we could also use `abstract` objects for polymorphic associations. In this case, you could point to the abstract object, it defines the shared `id`. All concrete implementations of the abstract object are then valid association targets. ",
+      "body": "In my experience, one of the biggest gaps of JSON Schema is that it's not possible to describe associations. Both IDs and associations are just \"string\" or maybe \"UUID\" format if you're lucky. This is probably due to JSON Schema only focusing on validation, not on describing models. \n\nJSON Structure is already much better suited to describe models, but it would be important to also explicitly model the associations, e.g. to express FK relationships in database schemas or references / associations in API models. \n\nThere are many ways to go about it, we could collect them here. \n\n### PRs\n\n- https://github.com/json-structure/core/pull/7\n- https://github.com/json-structure/core/pull/8\n\n### Initial Proposal\n\nA first initial, simpler proposal (partially discussed with Clemens) could look like this. \n\n- Add new structural keyword `id` to object and , which is an array of property names that are the \"primary ID\" that are used to reference to it. This is usually one value, but if its multiple, we have a \"composite ID\". \n- Add a new structural keyword `targettype` to properties, the value is a JSON Pointer to the association target object. The target MSUT be an object and MUST have use the `id` keyword.\n- Cardinality is known through `required` and whether the association is within an `array` or not.\n- We do not need a dedicated `association` type, because it's useful to know the type of the ID itself (could be string, UUID, number, ...). We know something is an ID, because we marked it with `id` and we know something is an association by having the `targettype` keyword in it.\n- Polymorphic associations could probably be covered by wrapping this into a `choice`. (@clemensv ?)\n\n### Gaps / Open Questions \n- For composite IDs and References, we still don't know which source object property maps to which target object property. If this is needed to understand (e.g. to automatically construct query join conditions or code that joins the associations), we need to define this mapping.\n  - Maybe we could add a `targetproperty` in this case, where the property name for the corresponding ID is stated. EDIT: This alone is not sufficient if one object has more than one association to the same target. In this case, it's necessary to know which properties on the source object together form one composite association to the target objects composite ID (and how the properties each map). \n- Not sure if we could also use `abstract` objects for polymorphic associations. In this case, you could point to the abstract object, it defines the shared `id`. All concrete implementations of the abstract object are then valid association targets. ",
       "createdAt": "2025-04-25T07:35:56Z",
-      "updatedAt": "2025-04-25T21:00:25Z",
+      "updatedAt": "2025-04-29T13:57:21Z",
       "closedAt": null,
       "comments": [
         {
@@ -158,6 +158,22 @@
       "updatedAt": "2025-04-26T08:04:18Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOONqYn860exCx",
+      "title": "Clarify encoding of `$ref`",
+      "url": "https://github.com/json-structure/core/issues/6",
+      "state": "OPEN",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The JSON Pointer for `$ref` is encoded with a leading '#' and thus leans on RFC6901 Section 6 to ease composition for deep-links; that's not noted in the draft at the moment and should be. ",
+      "createdAt": "2025-04-29T11:25:17Z",
+      "updatedAt": "2025-04-29T11:25:17Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -188,6 +204,140 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDOONqYn86UWdJa",
+      "title": "Add id keyword to objects to state primary IDs",
+      "url": "https://github.com/json-structure/core/pull/7",
+      "state": "OPEN",
+      "author": "Fannon",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Relates #4 \r\n\r\nThis adds just the `id` keyword. \r\n\r\nThere will be another PR to also add the `targettype` keyword on property level. ",
+      "createdAt": "2025-04-29T13:35:39Z",
+      "updatedAt": "2025-04-29T13:59:11Z",
+      "baseRepository": "json-structure/core",
+      "baseRefName": "main",
+      "baseRefOid": "034f99d5bf701da2d43c7f3a8f5bd182149f4a96",
+      "headRepository": "Fannon/json-structure-core",
+      "headRefName": "add-id-keyword",
+      "headRefOid": "240f7c05cbb9a898b10161c838bff9276682ed81",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOONqYn86nG6d2",
+          "commit": {
+            "abbreviatedOid": "0bff4c8"
+          },
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-29T13:42:26Z",
+          "updatedAt": "2025-04-29T13:42:27Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\nThe `id` MUST only be used on objects.\r\nThe value MUST be an array of property names of the current object.\r\n```",
+              "createdAt": "2025-04-29T13:42:26Z",
+              "updatedAt": "2025-04-29T13:42:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOONqYn86nHVol",
+          "commit": {
+            "abbreviatedOid": "240f7c0"
+          },
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-29T13:59:11Z",
+          "updatedAt": "2025-04-29T13:59:11Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "Maybe more explicit:\r\n\r\n```suggestion\r\n              \"primaryid\": [\"ID\"],\r\n```",
+              "createdAt": "2025-04-29T13:59:11Z",
+              "updatedAt": "2025-04-29T13:59:11Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOONqYn86UWuQU",
+      "title": "Propose targettype keyword for associations",
+      "url": "https://github.com/json-structure/core/pull/8",
+      "state": "OPEN",
+      "author": "Fannon",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Relates #4 \r\n\r\nBuilds upon #7 \r\n\r\nAdds the `targettype` keyword to indicate associations / references / pointers within the model.",
+      "createdAt": "2025-04-29T13:56:45Z",
+      "updatedAt": "2025-04-29T14:00:45Z",
+      "baseRepository": "json-structure/core",
+      "baseRefName": "main",
+      "baseRefOid": "034f99d5bf701da2d43c7f3a8f5bd182149f4a96",
+      "headRepository": "Fannon/json-structure-core",
+      "headRefName": "add-targettype-keyword",
+      "headRefOid": "8cbb31c63f96cd2934dec798d268dca2330067f9",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOONqYn86nHUsa",
+          "commit": {
+            "abbreviatedOid": "8cbb31c"
+          },
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-29T13:58:36Z",
+          "updatedAt": "2025-04-29T13:58:37Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Other possible keyword names:\r\n\r\n```suggestion\r\n### `target` Keyword {#targettype-keyword}\r\n```\r\n\r\n```suggestion\r\n### `targetobject` Keyword {#targettype-keyword}\r\n```",
+              "createdAt": "2025-04-29T13:58:37Z",
+              "updatedAt": "2025-04-29T13:58:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOONqYn86nHYCi",
+          "commit": {
+            "abbreviatedOid": "8cbb31c"
+          },
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-04-29T14:00:44Z",
+          "updatedAt": "2025-04-29T14:00:45Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "@clemensv : Could it also appear in set and tuple?",
+              "createdAt": "2025-04-29T14:00:44Z",
+              "updatedAt": "2025-04-29T14:00:45Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
