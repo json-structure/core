@@ -104,6 +104,7 @@ Table of Contents
        3.7.8.  The additionalProperties Keyword
        3.7.9.  The choices Keyword
        3.7.10. The selector Keyword
+       3.7.11. The tuple Keyword
      3.8.  Type Annotation Keywords
        3.8.1.  The maxLength Keyword
        3.8.2.  The precision Keyword
@@ -201,9 +202,9 @@ Table of Contents
    }
 
    In the case of a schema that references a compound type (object, set,
-   array, map, tuple), the schema further describes the structure of the
-   compound type.  Schemas can be placed into a namespace
-   (Section 3.3.1) for reuse in other schemas.
+   array, map, tuple, choice), the schema further describes the
+   structure of the compound type.  Schemas can be placed into a
+   namespace (Section 3.3.1) for reuse in other schemas.
 
    {
      "name": "myname",
@@ -221,19 +222,19 @@ Table of Contents
    embedded into a properties (Section 3.7.2) section of an object type,
    the name is the key under which the schema is stored.
 
-   Further rules for schemas are defined in section 3.4 (Section 3.4).
+   Further rules for schemas are defined in Section 3.4.
 
    A "schema document" is a schema that represents the root of a schema
    hierarchy and is the container format in which schemas are stored on
    disk or exchanged.  A schema document MAY contain multiple type
    declarations and namespaces.  The structure of schema documents is
-   defined in section 3.3 (Section 3.3).
+   defined in Section 3.3.
 
    JSON Structure is extensible.  All keywords that are not explicitly
    defined in this document MAY be used for custom annotations and
    extensions.  This also applies to keywords that begin with the $
    character.  A complete list of reserved keywords is provided in
-   section 3.11 (Section 4).
+   Section 4.
 
    The semantics of keywords defined in this document MAY be expanded by
    extension specifications, but the core semantics of the keywords
@@ -244,11 +245,11 @@ Table of Contents
    extensions and that the authors of this specification will not go out
    of their way to avoid such conflicts.
 
-   Section 3.10 (Section 3.10) details the extensibility features.
+   Section 3.10 details the extensibility features.
 
    Formally, a schema is a constrained non-schema (Section 3.1.2) that
-   requires a type (Section 3.7.1) keyword or a Section 3.3.6 keyword to
-   be a schema.
+   requires a type (Section 3.7.1) keyword or a $ref (Section 3.3.6)
+   keyword to be a schema.
 
 3.1.2.  Non-Schema
 
@@ -724,7 +725,7 @@ Table of Contents
    represented as a JSON object where the keys are strings and the
    values are of a specific type.
 
-   All keys in a map MUST conform to the identifier rules (Section 3.6).
+   Map keys MAY be any valid JSON string.
 
    The values attribute of a map MUST reference a reusable type or a
    primitive type or a locally declared compound type.
@@ -742,9 +743,16 @@ Table of Contents
    with a specific length.  It's represented as a JSON array where each
    element is of a specific type.
 
-   The elements are defined using a properties map as Section 3.2.3.1
-   type and each element is named.  All declared properties of a tuple
-   are implicitly required.
+   The elements are defined using a properties map as with the object
+   (Section 3.2.3.1) type and each element is named.  This permits
+   straightforward mapping into application constructs.  All declared
+   properties of a tuple are implicitly REQUIRED.
+
+   The order of the elements in a tuple is declared using the tuple
+   keyword Section 3.7.11, which is REQUIRED.  The tuple keyword MUST be
+   a JSON array of strings, where each declared property name MUST be an
+   element of the array.  The order of the elements in the array defines
+   the order of the properties in the tuple.
 
    A tuple type MUST include a name attribute that defines the name of
    the type.
@@ -757,7 +765,8 @@ Table of Contents
      "properties": {
        "name": { "type": "string" },
        "age": { "type": "int32" }
-     }
+     },
+     "tuple": ["name", "age"]
    }
 
    The following JSON node is an valid instance of the tuple type
@@ -788,8 +797,8 @@ Table of Contents
 
    *  _Tagged unions_: The choice type is represented as a JSON object
       with a single property whose name is the selector of the type as
-      declared in the Section 3.7.9 map and whose value is of the
-      selected type.
+      declared in the choices (Section 3.7.9) map and whose value is of
+      the selected type.
 
    *  _Inline unions_: The choice type is represented as a JSON object
       of the selected type with the selector as a property of the
@@ -822,27 +831,27 @@ Table of Contents
      "int32": 42
    }
 
-   ##### Inline Unions {#inline-unions}
+3.2.3.7.2.  Inline Unions
 
-   Inline unions require for all type choices to extend a common base type.
+   Inline unions require for all type choices to extend a common base
+   type.
 
-   This is expressed by using the [`$extends`]({{extends}}) keyword in the
-   `choice` declaration. The `$extends` keyword MUST refer to a schema that
-   defines the base type and the base type MUST be abstract.
+   This is expressed by using the $extends (Section 3.10.2) keyword in
+   the choice declaration.  The $extends keyword MUST refer to a schema
+   that defines the base type and the base type MUST be abstract.
 
-   If `$extends` is present, the `selector` property declares the name of the
-   injected property that acts as the selector for the inline union. The
-   type of the selector property is `string`. The selector property MAY
-   shadow a property of the base type; in this case, the base type property
-   MUST be of type `string`.
+   If $extends is present, the selector property declares the name of
+   the injected property that acts as the selector for the inline union.
+   The type of the selector property is string.  The selector property
+   MAY shadow a property of the base type; in this case, the base type
+   property MUST be of type string.
 
-   The selector is defined as a property of the base type and the value of the
-   selector property MUST be a string that matches the name of one of the
-   options in the `choices` map.
+   The selector is defined as a property of the base type and the value
+   of the selector property MUST be a string that matches the name of
+   one of the options in the choices map.
 
    Example:
 
-   ~~~ json
    {
      "$schema": "https://json-structure.org/meta/core/v0/#",
      "$id": "https://schemas.vasters.com/TypeName",
@@ -1202,7 +1211,7 @@ Table of Contents
 
       -  *JSON Compounds:* object, array.
 
-      -  *Extended Compounds:* map, set, tuple, any.
+      -  *Extended Compounds:* map, set, tuple, any, choice.
 
 3.4.2.  Reusable Types
 
@@ -1241,8 +1250,8 @@ Table of Contents
    *  Non-discriminated type unions are formed as sets of primitive
       types and type references.  It is NOT permitted to define a
       compound type inline inside a non-discriminated type union.
-      Discriminated unions are formed as a Section 3.2.3.7 type to which
-      the rules of this section do not apply.
+      Discriminated unions are formed as a choice (Section 3.2.3.7) type
+      to which the rules of this section do not apply.
 
    *  A type union is a composite type reference and not a standalone
       compound type and is therefore not named.
@@ -1294,9 +1303,6 @@ Table of Contents
    expression [A-Za-z_][A-Za-z0-9_]*. They MUST begin with a letter or
    underscore and MAY contain letters, digits, and underscores.  Keys
    and type names are case-sensitive.
-
-   map keys MAY additionally contain the characters . and - and MAY
-   begin with a digit.
 
    If names need to contain characters outside of this range, consider
    using the [JSTRUCT-ALTNAMES] extension specification to define those.
@@ -1467,8 +1473,8 @@ Table of Contents
    The value of each type name MUST be a schema.  Inline compound types
    are permitted.
 
-   The choices keyword MUST only be used in schemas of type
-   Section 3.2.3.7.
+   The choices keyword MUST only be used in schemas of type choice
+   (Section 3.2.3.7).
 
    **Example*:
 
@@ -1487,10 +1493,23 @@ Table of Contents
    the selector for the type in a choice type.  The value of selector
    MUST be a string.
 
-   The selector keyword MUST only be used in schemas of type
-   Section 3.2.3.7.
+   The selector keyword MUST only be used in schemas of type choice
+   (Section 3.2.3.7).
 
-   See Section 3.2.3.7 for an example.
+   See choice (Section 3.2.3.7) for an example.
+
+3.7.11.  The tuple Keyword
+
+   The tuple keyword defines the order of properties in a tuple type.
+   The value of tuple MUST be an array of strings, where each string is
+   the name of a property defined in the properties map.  The order of
+   the strings in the array defines the order of the properties in the
+   tuple.
+
+   The tuple keyword MUST only be used in schemas of type tuple
+   (Section 3.2.3.5).
+
+   See tuple (Section 3.2.3.5) for an example.
 
 3.8.  Type Annotation Keywords
 
