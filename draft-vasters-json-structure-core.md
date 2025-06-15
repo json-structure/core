@@ -591,7 +591,7 @@ Example:
 The `map` type is used to define dynamic key–value pairs. It's represented as a
 JSON object where the keys are strings and the values are of a specific type.
 
-All keys in a `map` MUST conform to the identifier rules ({{identifier-rules}}).
+Map keys MAY be any valid JSON string.
 
 The `values` attribute of a `map` MUST reference a reusable type or a primitive
 type or a locally declared compound type.
@@ -1171,8 +1171,6 @@ All property names and type names MUST conform to the regular expression
 contain letters, digits, and underscores. Keys and type names are
 case-sensitive.
 
-`map` keys MAY additionally contain the characters `.` and `-` and MAY begin
-with a digit.
 
 If names need to contain characters outside of this range, consider using the
 {{JSTRUCT-ALTNAMES}} extension specification to define those.
