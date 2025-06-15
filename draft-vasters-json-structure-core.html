@@ -23,12 +23,12 @@ and databases and other data formats is straightforward.
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
-    lxml 5.3.0
-    platformdirs 4.3.7
+    lxml 5.3.1
+    platformdirs 4.3.8
     pycountry 24.6.1
     PyYAML 6.0.2
     requests 2.32.3
-    setuptools 70.3.0
+    setuptools 80.9.0
     wcwidth 0.2.13
 -->
 <link href="draft-vasters-json-structure-core.xml" rel="alternate" type="application/rfc+xml">
@@ -2282,7 +2282,7 @@ type or a locally declared compound type.<a href="#section-3.2.3.3-2" class="pil
             </h5>
 <p id="section-3.2.3.4-1">The <code>map</code> type is used to define dynamic key–value pairs. It's represented as a
 JSON object where the keys are strings and the values are of a specific type.<a href="#section-3.2.3.4-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.3.4-2">All keys in a <code>map</code> MUST conform to the identifier rules (<a href="#identifier-rules" class="auto internal xref">Section 3.6</a>).<a href="#section-3.2.3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.2.3.4-2">Map keys MAY be any valid JSON string.<a href="#section-3.2.3.4-2" class="pilcrow">¶</a></p>
 <p id="section-3.2.3.4-3">The <code>values</code> attribute of a <code>map</code> MUST reference a reusable type or a primitive
 type or a locally declared compound type.<a href="#section-3.2.3.4-3" class="pilcrow">¶</a></p>
 <p id="section-3.2.3.4-4">Example:<a href="#section-3.2.3.4-4" class="pilcrow">¶</a></p>
@@ -3011,10 +3011,8 @@ matching type in the union.<a href="#section-3.5.1-1.4.1" class="pilcrow">¶</a>
 <code>[A-Za-z_][A-Za-z0-9_]*</code>. They MUST begin with a letter or underscore and MAY
 contain letters, digits, and underscores. Keys and type names are
 case-sensitive.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
-<p id="section-3.6-2"><code>map</code> keys MAY additionally contain the characters <code>.</code> and <code>-</code> and MAY begin
-with a digit.<a href="#section-3.6-2" class="pilcrow">¶</a></p>
-<p id="section-3.6-3">If names need to contain characters outside of this range, consider using the
-<span>[<a href="#JSTRUCT-ALTNAMES" class="cite xref">JSTRUCT-ALTNAMES</a>]</span> extension specification to define those.<a href="#section-3.6-3" class="pilcrow">¶</a></p>
+<p id="section-3.6-2">If names need to contain characters outside of this range, consider using the
+<span>[<a href="#JSTRUCT-ALTNAMES" class="cite xref">JSTRUCT-ALTNAMES</a>]</span> extension specification to define those.<a href="#section-3.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="structural-keywords">

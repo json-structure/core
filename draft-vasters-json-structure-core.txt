@@ -725,7 +725,7 @@ Table of Contents
    represented as a JSON object where the keys are strings and the
    values are of a specific type.
 
-   All keys in a map MUST conform to the identifier rules (Section 3.6).
+   Map keys MAY be any valid JSON string.
 
    The values attribute of a map MUST reference a reusable type or a
    primitive type or a locally declared compound type.
@@ -1303,9 +1303,6 @@ Table of Contents
    expression [A-Za-z_][A-Za-z0-9_]*. They MUST begin with a letter or
    underscore and MAY contain letters, digits, and underscores.  Keys
    and type names are case-sensitive.
-
-   map keys MAY additionally contain the characters . and - and MAY
-   begin with a digit.
 
    If names need to contain characters outside of this range, consider
    using the [JSTRUCT-ALTNAMES] extension specification to define those.
