@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-01T00:48:53.242422+00:00",
+  "timestamp": "2025-06-17T00:44:53.997495+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -174,6 +174,24 @@
       "updatedAt": "2025-04-29T11:25:17Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOONqYn867lmws",
+      "title": "Lift character set restriction on map keys",
+      "url": "https://github.com/json-structure/core/issues/9",
+      "state": "CLOSED",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "clemensv"
+      ],
+      "labels": [],
+      "body": "`map` keys are currently restricted to the identifier character set. Since `map` keys are unlikely to be mapped to column names or variable names while projecting a JSON Structure onto a database or programming language, we can lift the restriction.",
+      "createdAt": "2025-06-15T07:15:36Z",
+      "updatedAt": "2025-06-15T07:32:13Z",
+      "closedAt": "2025-06-15T07:32:12Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -338,6 +356,34 @@
           ]
         }
       ]
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOONqYn86aktrc",
+      "title": "Lift character set restriction on map keys",
+      "url": "https://github.com/json-structure/core/pull/10",
+      "state": "MERGED",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #9\n\nSigned-off-by: Clemens Vasters <clemens@vasters.com>",
+      "createdAt": "2025-06-15T07:30:48Z",
+      "updatedAt": "2025-06-15T07:32:21Z",
+      "baseRepository": "json-structure/core",
+      "baseRefName": "main",
+      "baseRefOid": "034f99d5bf701da2d43c7f3a8f5bd182149f4a96",
+      "headRepository": "json-structure/core",
+      "headRefName": "clemensv/issue9",
+      "headRefOid": "bf4e6e8d219a8d636cbccaacee32e25df2a25fb1",
+      "closedAt": "2025-06-15T07:32:12Z",
+      "mergedAt": "2025-06-15T07:32:12Z",
+      "mergedBy": "clemensv",
+      "mergeCommit": {
+        "oid": "45a84114fc5c260bb5cc54cab3e9a8e007c1ba81"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
