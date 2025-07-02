@@ -2,10 +2,10 @@
 
 
 
-TBD                                                           C. Vasters
+Building Blocks for HTTP APIs                                 C. Vasters
 Internet-Draft                                     Microsoft Corporation
-Intended status: Informational                             24 March 2025
-Expires: 25 September 2025
+Intended status: Standards Track                             2 July 2025
+Expires: 3 January 2026
 
 
                           JSON Structure: Core
@@ -13,9 +13,9 @@ Expires: 25 September 2025
 
 Abstract
 
-   This document specifies _JSON Structure_, a data structure definition
+   This document specifies JSON Structure, a data structure definition
    language that enforces strict typing, modularity, and determinism.
-   _JSON Structure_ describes JSON-encoded data such that mapping to and
+   JSON Structure describes JSON-encoded data such that mapping to and
    from programming languages and databases and other data formats is
    straightforward.
 
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 September 2025.
+   This Internet-Draft will expire on 3 January 2026.
 
 Copyright Notice
 
@@ -614,7 +614,7 @@ Table of Contents
 
    *  Constraints:
 
-      -  The string value MUST conform to the [RFC4122] UUID format.
+      -  The string value MUST conform to the [RFC9562] UUID format.
 
 3.2.2.21.  uri
 
@@ -1129,8 +1129,9 @@ Table of Contents
 
    References to type declarations within the same document MUST use a
    schema containing a single property with the name $ref as the value
-   of type.  The value of $ref MUST be a valid JSON Pointer that
-   resolves to an existing type definition.
+   of type.  The value of $ref MUST be a valid JSON Pointer Fragment
+   Identifier (see Section 6 of [RFC6901]) that resolves to an existing
+   type definition.
 
    Example:
 
@@ -2010,19 +2011,6 @@ Table of Contents
 
 10.1.  Normative References
 
-   [RFC1950]  Deutsch, P. and J. Gailly, "ZLIB Compressed Data Format
-              Specification version 3.3", RFC 1950,
-              DOI 10.17487/RFC1950, May 1996,
-              <https://www.rfc-editor.org/rfc/rfc1950>.
-
-   [RFC1951]  Deutsch, P., "DEFLATE Compressed Data Format Specification
-              version 1.3", RFC 1951, DOI 10.17487/RFC1951, May 1996,
-              <https://www.rfc-editor.org/rfc/rfc1951>.
-
-   [RFC1952]  Deutsch, P., "GZIP file format specification version 4.3",
-              RFC 1952, DOI 10.17487/RFC1952, May 1996,
-              <https://www.rfc-editor.org/rfc/rfc1952>.
-
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -2036,11 +2024,6 @@ Table of Contents
               Resource Identifier (URI): Generic Syntax", STD 66,
               RFC 3986, DOI 10.17487/RFC3986, January 2005,
               <https://www.rfc-editor.org/rfc/rfc3986>.
-
-   [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
-              Unique IDentifier (UUID) URN Namespace", RFC 4122,
-              DOI 10.17487/RFC4122, July 2005,
-              <https://www.rfc-editor.org/rfc/rfc4122>.
 
    [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
@@ -2056,10 +2039,6 @@ Table of Contents
               DOI 10.17487/RFC6901, April 2013,
               <https://www.rfc-editor.org/rfc/rfc6901>.
 
-   [RFC7932]  Alakuijala, J. and Z. Szabadka, "Brotli Compressed Data
-              Format", RFC 7932, DOI 10.17487/RFC7932, July 2016,
-              <https://www.rfc-editor.org/rfc/rfc7932>.
-
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
@@ -2073,6 +2052,10 @@ Table of Contents
               Representation (CBOR)", STD 94, RFC 8949,
               DOI 10.17487/RFC8949, December 2020,
               <https://www.rfc-editor.org/rfc/rfc8949>.
+
+   [RFC9562]  Davis, K., Peabody, B., and P. Leach, "Universally Unique
+              IDentifiers (UUIDs)", RFC 9562, DOI 10.17487/RFC9562, May
+              2024, <https://www.rfc-editor.org/rfc/rfc9562>.
 
 10.2.  Informative References
 
@@ -2096,6 +2079,23 @@ Table of Contents
    [JSTRUCT-VALIDATION]
               Vasters, C., "JSON Structure Validation", n.d.,
               <https://json-structure.github.io/validation>.
+
+   [RFC1950]  Deutsch, P. and J. Gailly, "ZLIB Compressed Data Format
+              Specification version 3.3", RFC 1950,
+              DOI 10.17487/RFC1950, May 1996,
+              <https://www.rfc-editor.org/rfc/rfc1950>.
+
+   [RFC1951]  Deutsch, P., "DEFLATE Compressed Data Format Specification
+              version 1.3", RFC 1951, DOI 10.17487/RFC1951, May 1996,
+              <https://www.rfc-editor.org/rfc/rfc1951>.
+
+   [RFC1952]  Deutsch, P., "GZIP file format specification version 4.3",
+              RFC 1952, DOI 10.17487/RFC1952, May 1996,
+              <https://www.rfc-editor.org/rfc/rfc1952>.
+
+   [RFC7932]  Alakuijala, J. and Z. Szabadka, "Brotli Compressed Data
+              Format", RFC 7932, DOI 10.17487/RFC7932, July 2016,
+              <https://www.rfc-editor.org/rfc/rfc7932>.
 
 Acknowledgments
 
