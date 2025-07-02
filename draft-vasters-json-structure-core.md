@@ -26,7 +26,6 @@ author:
     email: clemensv@microsoft.com
 
 normative:
-  RFC2119:
   RFC3339:
   RFC3986:
   RFC9562:
@@ -1006,7 +1005,7 @@ Example:
 References to type declarations within the same document MUST use a schema
 containing a single property with the name `$ref` as the value of `type`. The
 value of `$ref` MUST be a valid JSON Pointer Fragment Identifier
-(see {{!Section 6 of RFC6901}}) that resolves to an existing type definition.
+(see {{Section 6 of RFC6901}}) that resolves to an existing type definition.
 
 Example:
 
