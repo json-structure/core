@@ -1,15 +1,15 @@
 ---
 title: "JSON Structure: Core"
-category: info
+category: std
 
 docname: draft-vasters-json-structure-core-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
-date: 2025-03-24
+date: 2025-07-02
 consensus: true
 v: 3
-area: AREA
-workgroup: TBD
+area: Web and Internet Transport
+workgroup: Building Blocks for HTTP APIs
 keyword:
  - JSON
  - schema
@@ -20,29 +20,26 @@ venue:
   arch: TBD
   github: "json-structure/core"
   latest: "https://json-structure.github.io/core/draft-vasters-json-structure-core.html"
-
 author:
-  -
-    fullname: Clemens Vasters
+  - fullname: Clemens Vasters
     organization: Microsoft Corporation
     email: clemensv@microsoft.com
 
 normative:
-  RFC1950:
-  RFC1951:
-  RFC1952:
+  RFC2119:
   RFC3339:
   RFC3986:
-  RFC4122:
+  RFC9562:
   RFC4648:
   RFC6838:
   RFC6901:
-  RFC7932:
   RFC8259:
   RFC8949:
-
-
 informative:
+  RFC1950:
+  RFC1951:
+  RFC1952:
+  RFC7932:
   JSTRUCT-ALTNAMES:
     title: "JSON Structure Alternate Names"
     author:
@@ -69,11 +66,10 @@ informative:
       - fullname: Clemens Vasters
     target: https://json-structure.github.io/validation
 
-
 --- abstract
 
-This document specifies _JSON Structure_, a data structure definition language
-that enforces strict typing, modularity, and determinism. _JSON Structure_
+This document specifies JSON Structure, a data structure definition language
+that enforces strict typing, modularity, and determinism. JSON Structure
 describes JSON-encoded data such that mapping to and from programming languages
 and databases and other data formats is straightforward.
 
@@ -118,7 +114,7 @@ schemas, and JSON document instances.
 
 # Conventions {#conventions}
 
-{::boilerplate bcp14}
+{::boilerplate bcp14-tagged}
 
 # JSON Structure Core Specification {#json-structure-core-specification}
 
@@ -480,7 +476,7 @@ A universally unique identifier.
 
 - Base type: `string`
 - Constraints:
-  - The string value MUST conform to the {{RFC4122}} `UUID` format.
+  - The string value MUST conform to the {{RFC9562}} `UUID` format.
 
 #### `uri` {#uri}
 
@@ -1009,8 +1005,8 @@ Example:
 
 References to type declarations within the same document MUST use a schema
 containing a single property with the name `$ref` as the value of `type`. The
-value of `$ref` MUST be a valid JSON Pointer that resolves to an existing type
-definition.
+value of `$ref` MUST be a valid JSON Pointer Fragment Identifier
+(see {{!Section 6 of RFC6901}}) that resolves to an existing type definition.
 
 Example:
 
