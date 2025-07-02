@@ -1,6 +1,6 @@
 ---
 title: "JSON Structure: Core"
-category: info
+category: standard
 
 docname: draft-vasters-json-structure-core-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
@@ -8,16 +8,16 @@ number:
 date: 2025-03-24
 consensus: true
 v: 3
-area: AREA
-workgroup: TBD
+# area: Web and Internet Transport
+# workgroup: Building Blocks for HTTP APIs
 keyword:
  - JSON
  - schema
 venue:
-  group: TBD
-  type: Working Group
-  mail: TBD
-  arch: TBD
+#  group: TBD
+#  type: Working Group
+#  mail: TBD
+#  arch: TBD
   github: "json-structure/core"
   latest: "https://json-structure.github.io/core/draft-vasters-json-structure-core.html"
 
@@ -1009,8 +1009,8 @@ Example:
 
 References to type declarations within the same document MUST use a schema
 containing a single property with the name `$ref` as the value of `type`. The
-value of `$ref` MUST be a valid JSON Pointer that resolves to an existing type
-definition.
+value of `$ref` MUST be a valid JSON Pointer Fragment Identifier
+(see {{!Section 6 of RFC6901}}) that resolves to an existing type definition.
 
 Example:
 
