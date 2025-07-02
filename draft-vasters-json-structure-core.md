@@ -1051,6 +1051,36 @@ schema definition, including in type unions.
 `$ref` is NOT permitted in other attributes and MUST NOT be used inside the
 `type` of the root object.
 
+### `id` Keyword {#object-id-keyword}
+
+The `id` keyword is only applicable on objects and states the properties that
+make up the primary ID(s) of the object. Providing more than one ID indicates
+a composite primary ID, not a list of alternative IDs.
+
+Example:
+
+~~~ json
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://schemas.vasters.com/TypeName",
+  "definitions": {
+      "Namespace": {
+          "TypeName": {
+              "name": "TypeName",
+              "type": "object",
+              "id": ["ID"],
+              "properties": {
+                "ID": { "type": "string" }
+              }
+          }
+      }
+  }
+}
+~~~
+
+The `id` MUST only be used on objects.
+The value MUST be an array of property names of the current object.
+
 ### Cross-references {#cross-references}
 
 In JSON Structure documents, the `$schema` keyword references the meta-schema of
