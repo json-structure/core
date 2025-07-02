@@ -1051,6 +1051,47 @@ schema definition, including in type unions.
 `$ref` is NOT permitted in other attributes and MUST NOT be used inside the
 `type` of the root object.
 
+### `targettype` Keyword {#targettype-keyword}
+
+The `targettype` keyword can be used to indicate an association / reference /
+pointer to an object, using its primary IDs. With this information, consumers
+know how data can be joined together and how to construct references correctly.
+
+Note: Only in the case of a single primary ID it's clear how the reference
+property maps to the target object ID. In case of composite IDs, the
+references become composite references, where the mapping from multiple
+reference properties to multiple target IDs need to be explicitly maintained.
+This goes beyond the scope of the core spec.
+
+Example:
+
+~~~ json
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://schemas.vasters.com/TypeName",
+  "definitions": {
+      "Namespace": {
+          "Person": {
+              "name": "Person",
+              "type": "object",
+              "id": ["ID"],
+              "properties": {
+                "ID": { "type": "string" },
+                "archenemy": {
+                  "type": "string"
+                  "targettype": ""$ref": "#/Namespace/Person""
+                },
+              }
+          },
+      }
+  }
+}
+~~~
+
+The `targettype` MUST only be used on object properties.
+The value MUST be a valid JSON Pointer to the association target object,
+which MUST provide the `id` keyword to indicate its primary IDs.
+
 ### Cross-references {#cross-references}
 
 In JSON Structure documents, the `$schema` keyword references the meta-schema of
