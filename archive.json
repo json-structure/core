@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-17T00:44:53.997495+00:00",
+  "timestamp": "2025-07-03T00:45:15.036557+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -47,6 +47,11 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "companion spec",
+      "description": "candidate topic for a companion spec",
+      "color": "a30bb9"
     }
   ],
   "issues": [
@@ -164,15 +169,17 @@
       "id": "I_kwDOONqYn860exCx",
       "title": "Clarify encoding of `$ref`",
       "url": "https://github.com/json-structure/core/issues/6",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "clemensv",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [],
+      "assignees": [
+        "clemensv"
+      ],
       "labels": [],
       "body": "The JSON Pointer for `$ref` is encoded with a leading '#' and thus leans on RFC6901 Section 6 to ease composition for deep-links; that's not noted in the draft at the moment and should be. ",
       "createdAt": "2025-04-29T11:25:17Z",
-      "updatedAt": "2025-04-29T11:25:17Z",
-      "closedAt": null,
+      "updatedAt": "2025-07-02T12:36:00Z",
+      "closedAt": "2025-07-02T12:36:00Z",
       "comments": []
     },
     {
@@ -232,10 +239,12 @@
       "author": "Fannon",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "companion spec"
+      ],
       "body": "Relates #4 \r\n\r\nThis adds just the `id` keyword. \r\n\r\nThere will be another PR to also add the `targettype` keyword on property level. ",
       "createdAt": "2025-04-29T13:35:39Z",
-      "updatedAt": "2025-04-29T13:59:11Z",
+      "updatedAt": "2025-07-02T13:01:32Z",
       "baseRepository": "json-structure/core",
       "baseRefName": "main",
       "baseRefOid": "034f99d5bf701da2d43c7f3a8f5bd182149f4a96",
@@ -287,6 +296,70 @@
               "updatedAt": "2025-04-29T13:59:11Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOONqYn86xiFYO",
+          "commit": {
+            "abbreviatedOid": "240f7c0"
+          },
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "@Fannon Let me know whether you can still adapt this; otherwise I can take this one over.",
+          "createdAt": "2025-07-02T09:49:30Z",
+          "updatedAt": "2025-07-02T09:57:00Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "\"identity\" will be clearer",
+              "createdAt": "2025-07-02T09:49:30Z",
+              "updatedAt": "2025-07-02T09:57:00Z"
+            },
+            {
+              "originalPosition": 6,
+              "body": "objects and tuples.",
+              "createdAt": "2025-07-02T09:49:46Z",
+              "updatedAt": "2025-07-02T09:57:00Z"
+            },
+            {
+              "originalPosition": 7,
+              "body": "lists the properties, in the role of identifiers,  that establish an unambiguous identity of an instance. Providing more than one property reference indicates a composite identity, not a list of alternate identifiers.",
+              "createdAt": "2025-07-02T09:53:21Z",
+              "updatedAt": "2025-07-02T09:57:00Z"
+            },
+            {
+              "originalPosition": 21,
+              "body": "\"identity \" should be clear.",
+              "createdAt": "2025-07-02T09:53:53Z",
+              "updatedAt": "2025-07-02T09:57:00Z"
+            },
+            {
+              "originalPosition": 31,
+              "body": "Identity SHOULD be used on object and tuple declarations. I assume the reason why you want to make it mandatory is the association feature, but I think that will just not work when there is no identity and that might be okay. ",
+              "createdAt": "2025-07-02T09:56:18Z",
+              "updatedAt": "2025-07-02T09:57:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOONqYn86xjJcz",
+          "commit": {
+            "abbreviatedOid": "240f7c0"
+          },
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-02T11:27:58Z",
+          "updatedAt": "2025-07-02T11:27:58Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Ah, I only wanted to make the statement that they must only be used on objects, but there they would be optional. \r\n\r\nI agree, they should be optional. Not every object may need an identity, e.g. value objects.",
+              "createdAt": "2025-07-02T11:27:58Z",
+              "updatedAt": "2025-07-02T11:27:59Z"
+            }
+          ]
         }
       ]
     },
@@ -299,10 +372,12 @@
       "author": "Fannon",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "companion spec"
+      ],
       "body": "Relates #4 \r\n\r\nBuilds upon #7 \r\n\r\nAdds the `targettype` keyword to indicate associations / references / pointers within the model.",
       "createdAt": "2025-04-29T13:56:45Z",
-      "updatedAt": "2025-04-29T14:00:45Z",
+      "updatedAt": "2025-07-02T13:00:35Z",
       "baseRepository": "json-structure/core",
       "baseRefName": "main",
       "baseRefOid": "034f99d5bf701da2d43c7f3a8f5bd182149f4a96",
@@ -313,7 +388,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I think identities and relations would be a good companion spec. ",
+          "createdAt": "2025-07-02T11:16:38Z",
+          "updatedAt": "2025-07-02T11:16:38Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOONqYn86nHUsa",
@@ -354,6 +437,26 @@
               "updatedAt": "2025-04-29T14:00:45Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOONqYn86xjAp7",
+          "commit": {
+            "abbreviatedOid": "8cbb31c"
+          },
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-02T11:15:16Z",
+          "updatedAt": "2025-07-02T11:15:16Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "I agree with the direction of this, but I would make this broader:\r\n\r\nFor objects and tuples, I would add a new keyword \"relations\" that is similar to \"properties\" but specifically defines relationship properties. \"relations\" and \"properties\" share a namespace, so they can't define conflicting names.\r\n\r\nThe \"relations\" declarations are not modeled as types, because they must be able to cross-reference properties within the same tuple/object. They are similar to properties in that they are represented just like properties in the instances.\r\n\r\nA `relation` is a named object (via the `relations` map) that has two properties:\r\n\r\n- the `targettype` declares the target type that the relation refers to\r\n- the `cardinality` declares whether the relationship point to one or more targets\r\n\r\nthe targettype's `identity` declaration functions like the `tuple` keyword for establishing the type of references, meaning that if the target's `identity` clause references two properties, the reference value in the relation source is a tuple-encoded list of values matching that identity.\r\n\r\nAn instance of a single relation is an object with the following properties:\r\n\r\n\"ref\" : a JSON pointer to the target object\r\n\"identity\": a tuple that reflects the target object identity values\r\n\r\nA relationship MAY be established either through a direct link (ref) or through an `identity` match against all known instances of the target type. If both properties are defined, the `identity` match is performed against all instances of the target type that exists within the scope of the `ref` json pointer, i.e. are children of the identified node.\r\n\r\nthe value of relations with `multiple` cardinality is an array of such objects. the value of relations with `single` cardinality is a single such object.\r\n\r\n```\r\n{\r\n  \"$schema\": \"https://json-structure.org/meta/core/v0/#\",\r\n  \"$id\":     \"https://example.com/library.schema\",\r\n  \"$root\":   \"#/definitions/Library/Document\",\r\n\r\n  \"definitions\": {\r\n    \"Library\": {\r\n\r\n      /* 1 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500  AUTHOR  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\r\n      \"Author\": {\r\n        \"type\": \"object\",\r\n        \"name\": \"Author\",\r\n        \"properties\": {\r\n          \"id\":   { \"type\": \"uuid\" },\r\n          \"name\": { \"type\": \"string\" }\r\n        },\r\n        \"required\": [\"id\", \"name\"],\r\n        \"identity\": [\"id\"]\r\n      },\r\n\r\n      /* 2 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500  PUBLISHER  \u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\r\n      \"Publisher\": {\r\n        \"type\": \"object\",\r\n        \"name\": \"Publisher\",\r\n        \"properties\": {\r\n          \"id\":   { \"type\": \"uuid\" },\r\n          \"name\": { \"type\": \"string\" },\r\n          \"city\": { \"type\": \"string\" }\r\n        },\r\n        \"required\": [\"id\", \"name\"],\r\n        \"identity\": [\"id\"]\r\n      },\r\n\r\n      /* 3 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500  BOOK  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\r\n      \"Book\": {\r\n        \"type\": \"object\",\r\n        \"name\": \"Book\",\r\n\r\n        /* intrinsic fields only \u2014 reference\r\n           properties are implicit via `relations` */\r\n        \"properties\": {\r\n          \"isbn\":  { \"type\": \"string\" },\r\n          \"title\": { \"type\": \"string\" }\r\n        },\r\n        \"required\": [\"isbn\", \"title\"],\r\n        \"identity\": [\"isbn\"],\r\n\r\n        \"relations\": {\r\n          /* many Authors per Book  */\r\n          \"authors\": {\r\n            \"cardinality\": \"multiple\",\r\n            \"targettype\":  { \"$ref\": \"#/definitions/Library/Author\" }\r\n          },\r\n          /* exactly one Publisher per Book */\r\n          \"publisher\": {\r\n            \"cardinality\": \"single\",\r\n            \"targettype\":  { \"$ref\": \"#/definitions/Library/Publisher\" }\r\n          }\r\n        }\r\n      },\r\n\r\n      /* 4 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500  DOCUMENT ROOT  \u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\r\n      \"Document\": {\r\n        \"type\": \"object\",\r\n        \"name\": \"LibraryDocument\",\r\n        \"properties\": {\r\n          /* list of all authors present in this file */\r\n          \"authors\": {\r\n            \"type\": \"array\",\r\n            \"items\": { \"$ref\": \"#/definitions/Library/Author\" }\r\n          },\r\n\r\n          /* list of all publishers */\r\n          \"publishers\": {\r\n            \"type\": \"array\",\r\n            \"items\": { \"$ref\": \"#/definitions/Library/Publisher\" }\r\n          },\r\n\r\n          /* list of all books */\r\n          \"books\": {\r\n            \"type\": \"array\",\r\n            \"items\": { \"$ref\": \"#/definitions/Library/Book\" }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n```\r\n\r\nInstance:\r\n\r\n```\r\n{\r\n  \"$schema\": \"https://example.com/library.schema\",\r\n  \"authors\": [\r\n    {\r\n      \"id\":   \"3aad369c-1bfb-11e5-9a21-1697f925ec7b\",\r\n      \"name\": \"Brian W. Kernighan\"\r\n    },\r\n    {\r\n      \"id\":   \"b3e0fac1-603f-4960-8646-90b053b6af19\",\r\n      \"name\": \"Dennis M. Ritchie\"\r\n    }\r\n  ],\r\n  \"publishers\": [\r\n    {\r\n      \"id\":   \"9609d302-62fb-4d0a-9e71-86f744e3022c\",\r\n      \"name\": \"Prentice Hall\"\r\n    }\r\n  ],\r\n  \"books\": [\r\n    {\r\n      \"isbn\":  \"978-0131103627\",\r\n      \"title\": \"The C Programming Language\",\r\n      \"authors\": [\r\n        {\r\n          \"ref\":      \"#/authors/0\",\r\n          \"identity\": [\"3aad369c-1bfb-11e5-9a21-1697f925ec7b\"]\r\n        },\r\n        {\r\n          \"ref\":      \"#/authors/1\",\r\n          \"identity\": [\"b3e0fac1-603f-4960-8646-90b053b6af19\"]\r\n        }\r\n      ],\r\n      \"publisher\": {\r\n        \"ref\":      \"#/publishers/0\",\r\n        \"identity\": [\"9609d302-62fb-4d0a-9e71-86f744e3022c\"]\r\n      }\r\n    }\r\n  ]\r\n}\r\n```\r\n\r\nI explicitly made the `relation` instance an object, because that gives us the opportunity to declare a `qualifier` type in the `relation` which defines/references a type to qualify the relationship further, equivalent to link properties in a graph.\r\n\r\nExample:\r\n\r\nqualifier type:\r\n\r\n```\r\n\"AuthorRole\": {\r\n  \"type\": \"string\",\r\n  \"enum\": [\"Author\", \"Editor\", \"Illustrator\", \"Translator\"]\r\n}\r\n```\r\n\r\nextend the relation:\r\n\r\n```\r\n\"authors\": {\r\n  \"targettype\":  { \"$ref\": \"#/definitions/Library/Author\" },\r\n  \"cardinality\": \"multiple\",\r\n\r\n  /* NEW \u2013 the schema that qualifies the link                *\r\n   * Every relation-instance object MUST carry a `qualifier`  *\r\n   * that validates against this type.                       */\r\n  \"qualifiertype\": { \"$ref\": \"#/definitions/Library/AuthorRole\" }\r\n}\r\n```\r\n\r\nInstance with qualifiers:\r\n\r\n```\r\n{\r\n  \"$schema\": \"https://example.com/library.schema\",\r\n\r\n  \"authors\": [\r\n    { \"id\": \"3aad369c-1bfb-11e5-9a21-1697f925ec7b\", \"name\": \"Brian W. Kernighan\" },\r\n    { \"id\": \"b3e0fac1-603f-4960-8646-90b053b6af19\", \"name\": \"Dennis M. Ritchie\" }\r\n  ],\r\n\r\n  \"publishers\": [\r\n    { \"id\": \"9609d302-62fb-4d0a-9e71-86f744e3022c\", \"name\": \"Prentice Hall\" }\r\n  ],\r\n\r\n  \"books\": [\r\n    {\r\n      \"isbn\":  \"978-0131103627\",\r\n      \"title\": \"The C Programming Language\",\r\n\r\n      \"authors\": [\r\n        {\r\n          \"ref\":       \"#/authors/0\",\r\n          \"identity\":  [\"3aad369c-1bfb-11e5-9a21-1697f925ec7b\"],\r\n          \"qualifier\": \"Author\"          // \u2190 validated by AuthorRole enum\r\n        },\r\n        {\r\n          \"ref\":       \"#/authors/1\",\r\n          \"identity\":  [\"b3e0fac1-603f-4960-8646-90b053b6af19\"],\r\n          \"qualifier\": \"Author\"\r\n        }\r\n      ],\r\n\r\n      \"publisher\": {\r\n        \"ref\":       \"#/publishers/0\",\r\n        \"identity\":  [\"9609d302-62fb-4d0a-9e71-86f744e3022c\"]\r\n        /* no qualifier here because the relation         *\r\n         * lacks a `qualifiertype` in the declaration.    */\r\n      }\r\n    }\r\n  ]\r\n}\r\n```\r\n\r\n\r\n\r\n\r\n\r\n    ",
+              "createdAt": "2025-07-02T11:15:16Z",
+              "updatedAt": "2025-07-02T11:15:16Z"
+            }
+          ]
         }
       ]
     },
@@ -381,6 +484,34 @@
       "mergedBy": "clemensv",
       "mergeCommit": {
         "oid": "45a84114fc5c260bb5cc54cab3e9a8e007c1ba81"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOONqYn86dE9Wn",
+      "title": "Clemensv/issue6",
+      "url": "https://github.com/json-structure/core/pull/11",
+      "state": "MERGED",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #6\n\nSigned-off-by: Clemens Vasters <clemens@vasters.com>",
+      "createdAt": "2025-07-02T12:35:50Z",
+      "updatedAt": "2025-07-02T12:36:11Z",
+      "baseRepository": "json-structure/core",
+      "baseRefName": "main",
+      "baseRefOid": "45a84114fc5c260bb5cc54cab3e9a8e007c1ba81",
+      "headRepository": "json-structure/core",
+      "headRefName": "clemensv/issue6",
+      "headRefOid": "cce9997c2154723262149595d31ab1ce561ae6cf",
+      "closedAt": "2025-07-02T12:35:58Z",
+      "mergedAt": "2025-07-02T12:35:58Z",
+      "mergedBy": "clemensv",
+      "mergeCommit": {
+        "oid": "4aeb7e24ee63935d52e768631e4f6c892851c19f"
       },
       "comments": [],
       "reviews": []
