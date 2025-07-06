@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-03T00:45:15.036557+00:00",
+  "timestamp": "2025-07-06T00:51:51.060361+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -244,7 +244,7 @@
       ],
       "body": "Relates #4 \r\n\r\nThis adds just the `id` keyword. \r\n\r\nThere will be another PR to also add the `targettype` keyword on property level. ",
       "createdAt": "2025-04-29T13:35:39Z",
-      "updatedAt": "2025-07-02T13:01:32Z",
+      "updatedAt": "2025-07-03T05:55:34Z",
       "baseRepository": "json-structure/core",
       "baseRefName": "main",
       "baseRefOid": "034f99d5bf701da2d43c7f3a8f5bd182149f4a96",
@@ -360,6 +360,52 @@
               "updatedAt": "2025-07-02T11:27:59Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOONqYn86xuvUN",
+          "commit": {
+            "abbreviatedOid": "240f7c0"
+          },
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-03T05:53:12Z",
+          "updatedAt": "2025-07-03T05:53:12Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nThe `id` keyword is only applicable on objects and tuples. It states the properties that\r\n```",
+              "createdAt": "2025-07-03T05:53:12Z",
+              "updatedAt": "2025-07-03T05:53:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOONqYn86xuv1E",
+          "commit": {
+            "abbreviatedOid": "240f7c0"
+          },
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-03T05:53:46Z",
+          "updatedAt": "2025-07-03T05:55:34Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "```suggestion\r\n              \"identity\": [\"ID\"],\r\n```",
+              "createdAt": "2025-07-03T05:53:46Z",
+              "updatedAt": "2025-07-03T05:55:34Z"
+            },
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\nAdding `identity` is optional, but only applicable on objects and tuples.\r\n```",
+              "createdAt": "2025-07-03T05:55:29Z",
+              "updatedAt": "2025-07-03T05:55:34Z"
+            }
+          ]
         }
       ]
     },
@@ -377,7 +423,7 @@
       ],
       "body": "Relates #4 \r\n\r\nBuilds upon #7 \r\n\r\nAdds the `targettype` keyword to indicate associations / references / pointers within the model.",
       "createdAt": "2025-04-29T13:56:45Z",
-      "updatedAt": "2025-07-02T13:00:35Z",
+      "updatedAt": "2025-07-03T05:52:37Z",
       "baseRepository": "json-structure/core",
       "baseRefName": "main",
       "baseRefOid": "034f99d5bf701da2d43c7f3a8f5bd182149f4a96",
@@ -455,6 +501,46 @@
               "body": "I agree with the direction of this, but I would make this broader:\r\n\r\nFor objects and tuples, I would add a new keyword \"relations\" that is similar to \"properties\" but specifically defines relationship properties. \"relations\" and \"properties\" share a namespace, so they can't define conflicting names.\r\n\r\nThe \"relations\" declarations are not modeled as types, because they must be able to cross-reference properties within the same tuple/object. They are similar to properties in that they are represented just like properties in the instances.\r\n\r\nA `relation` is a named object (via the `relations` map) that has two properties:\r\n\r\n- the `targettype` declares the target type that the relation refers to\r\n- the `cardinality` declares whether the relationship point to one or more targets\r\n\r\nthe targettype's `identity` declaration functions like the `tuple` keyword for establishing the type of references, meaning that if the target's `identity` clause references two properties, the reference value in the relation source is a tuple-encoded list of values matching that identity.\r\n\r\nAn instance of a single relation is an object with the following properties:\r\n\r\n\"ref\" : a JSON pointer to the target object\r\n\"identity\": a tuple that reflects the target object identity values\r\n\r\nA relationship MAY be established either through a direct link (ref) or through an `identity` match against all known instances of the target type. If both properties are defined, the `identity` match is performed against all instances of the target type that exists within the scope of the `ref` json pointer, i.e. are children of the identified node.\r\n\r\nthe value of relations with `multiple` cardinality is an array of such objects. the value of relations with `single` cardinality is a single such object.\r\n\r\n```\r\n{\r\n  \"$schema\": \"https://json-structure.org/meta/core/v0/#\",\r\n  \"$id\":     \"https://example.com/library.schema\",\r\n  \"$root\":   \"#/definitions/Library/Document\",\r\n\r\n  \"definitions\": {\r\n    \"Library\": {\r\n\r\n      /* 1 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500  AUTHOR  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\r\n      \"Author\": {\r\n        \"type\": \"object\",\r\n        \"name\": \"Author\",\r\n        \"properties\": {\r\n          \"id\":   { \"type\": \"uuid\" },\r\n          \"name\": { \"type\": \"string\" }\r\n        },\r\n        \"required\": [\"id\", \"name\"],\r\n        \"identity\": [\"id\"]\r\n      },\r\n\r\n      /* 2 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500  PUBLISHER  \u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\r\n      \"Publisher\": {\r\n        \"type\": \"object\",\r\n        \"name\": \"Publisher\",\r\n        \"properties\": {\r\n          \"id\":   { \"type\": \"uuid\" },\r\n          \"name\": { \"type\": \"string\" },\r\n          \"city\": { \"type\": \"string\" }\r\n        },\r\n        \"required\": [\"id\", \"name\"],\r\n        \"identity\": [\"id\"]\r\n      },\r\n\r\n      /* 3 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500  BOOK  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\r\n      \"Book\": {\r\n        \"type\": \"object\",\r\n        \"name\": \"Book\",\r\n\r\n        /* intrinsic fields only \u2014 reference\r\n           properties are implicit via `relations` */\r\n        \"properties\": {\r\n          \"isbn\":  { \"type\": \"string\" },\r\n          \"title\": { \"type\": \"string\" }\r\n        },\r\n        \"required\": [\"isbn\", \"title\"],\r\n        \"identity\": [\"isbn\"],\r\n\r\n        \"relations\": {\r\n          /* many Authors per Book  */\r\n          \"authors\": {\r\n            \"cardinality\": \"multiple\",\r\n            \"targettype\":  { \"$ref\": \"#/definitions/Library/Author\" }\r\n          },\r\n          /* exactly one Publisher per Book */\r\n          \"publisher\": {\r\n            \"cardinality\": \"single\",\r\n            \"targettype\":  { \"$ref\": \"#/definitions/Library/Publisher\" }\r\n          }\r\n        }\r\n      },\r\n\r\n      /* 4 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500  DOCUMENT ROOT  \u2500\u2500\u2500\u2500\u2500\u2500\u2500 */\r\n      \"Document\": {\r\n        \"type\": \"object\",\r\n        \"name\": \"LibraryDocument\",\r\n        \"properties\": {\r\n          /* list of all authors present in this file */\r\n          \"authors\": {\r\n            \"type\": \"array\",\r\n            \"items\": { \"$ref\": \"#/definitions/Library/Author\" }\r\n          },\r\n\r\n          /* list of all publishers */\r\n          \"publishers\": {\r\n            \"type\": \"array\",\r\n            \"items\": { \"$ref\": \"#/definitions/Library/Publisher\" }\r\n          },\r\n\r\n          /* list of all books */\r\n          \"books\": {\r\n            \"type\": \"array\",\r\n            \"items\": { \"$ref\": \"#/definitions/Library/Book\" }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n```\r\n\r\nInstance:\r\n\r\n```\r\n{\r\n  \"$schema\": \"https://example.com/library.schema\",\r\n  \"authors\": [\r\n    {\r\n      \"id\":   \"3aad369c-1bfb-11e5-9a21-1697f925ec7b\",\r\n      \"name\": \"Brian W. Kernighan\"\r\n    },\r\n    {\r\n      \"id\":   \"b3e0fac1-603f-4960-8646-90b053b6af19\",\r\n      \"name\": \"Dennis M. Ritchie\"\r\n    }\r\n  ],\r\n  \"publishers\": [\r\n    {\r\n      \"id\":   \"9609d302-62fb-4d0a-9e71-86f744e3022c\",\r\n      \"name\": \"Prentice Hall\"\r\n    }\r\n  ],\r\n  \"books\": [\r\n    {\r\n      \"isbn\":  \"978-0131103627\",\r\n      \"title\": \"The C Programming Language\",\r\n      \"authors\": [\r\n        {\r\n          \"ref\":      \"#/authors/0\",\r\n          \"identity\": [\"3aad369c-1bfb-11e5-9a21-1697f925ec7b\"]\r\n        },\r\n        {\r\n          \"ref\":      \"#/authors/1\",\r\n          \"identity\": [\"b3e0fac1-603f-4960-8646-90b053b6af19\"]\r\n        }\r\n      ],\r\n      \"publisher\": {\r\n        \"ref\":      \"#/publishers/0\",\r\n        \"identity\": [\"9609d302-62fb-4d0a-9e71-86f744e3022c\"]\r\n      }\r\n    }\r\n  ]\r\n}\r\n```\r\n\r\nI explicitly made the `relation` instance an object, because that gives us the opportunity to declare a `qualifier` type in the `relation` which defines/references a type to qualify the relationship further, equivalent to link properties in a graph.\r\n\r\nExample:\r\n\r\nqualifier type:\r\n\r\n```\r\n\"AuthorRole\": {\r\n  \"type\": \"string\",\r\n  \"enum\": [\"Author\", \"Editor\", \"Illustrator\", \"Translator\"]\r\n}\r\n```\r\n\r\nextend the relation:\r\n\r\n```\r\n\"authors\": {\r\n  \"targettype\":  { \"$ref\": \"#/definitions/Library/Author\" },\r\n  \"cardinality\": \"multiple\",\r\n\r\n  /* NEW \u2013 the schema that qualifies the link                *\r\n   * Every relation-instance object MUST carry a `qualifier`  *\r\n   * that validates against this type.                       */\r\n  \"qualifiertype\": { \"$ref\": \"#/definitions/Library/AuthorRole\" }\r\n}\r\n```\r\n\r\nInstance with qualifiers:\r\n\r\n```\r\n{\r\n  \"$schema\": \"https://example.com/library.schema\",\r\n\r\n  \"authors\": [\r\n    { \"id\": \"3aad369c-1bfb-11e5-9a21-1697f925ec7b\", \"name\": \"Brian W. Kernighan\" },\r\n    { \"id\": \"b3e0fac1-603f-4960-8646-90b053b6af19\", \"name\": \"Dennis M. Ritchie\" }\r\n  ],\r\n\r\n  \"publishers\": [\r\n    { \"id\": \"9609d302-62fb-4d0a-9e71-86f744e3022c\", \"name\": \"Prentice Hall\" }\r\n  ],\r\n\r\n  \"books\": [\r\n    {\r\n      \"isbn\":  \"978-0131103627\",\r\n      \"title\": \"The C Programming Language\",\r\n\r\n      \"authors\": [\r\n        {\r\n          \"ref\":       \"#/authors/0\",\r\n          \"identity\":  [\"3aad369c-1bfb-11e5-9a21-1697f925ec7b\"],\r\n          \"qualifier\": \"Author\"          // \u2190 validated by AuthorRole enum\r\n        },\r\n        {\r\n          \"ref\":       \"#/authors/1\",\r\n          \"identity\":  [\"b3e0fac1-603f-4960-8646-90b053b6af19\"],\r\n          \"qualifier\": \"Author\"\r\n        }\r\n      ],\r\n\r\n      \"publisher\": {\r\n        \"ref\":       \"#/publishers/0\",\r\n        \"identity\":  [\"9609d302-62fb-4d0a-9e71-86f744e3022c\"]\r\n        /* no qualifier here because the relation         *\r\n         * lacks a `qualifiertype` in the declaration.    */\r\n      }\r\n    }\r\n  ]\r\n}\r\n```\r\n\r\n\r\n\r\n\r\n\r\n    ",
               "createdAt": "2025-07-02T11:15:16Z",
               "updatedAt": "2025-07-02T11:15:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOONqYn86xuq6E",
+          "commit": {
+            "abbreviatedOid": "8cbb31c"
+          },
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-03T05:47:18Z",
+          "updatedAt": "2025-07-03T05:47:19Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "You clarified it in another comment. \r\n\r\n```suggestion\r\nThe `targettype` is optional, but only applicable for object or tuple properties.\r\n```",
+              "createdAt": "2025-07-03T05:47:18Z",
+              "updatedAt": "2025-07-03T05:47:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOONqYn86xuu1L",
+          "commit": {
+            "abbreviatedOid": "8cbb31c"
+          },
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-03T05:52:37Z",
+          "updatedAt": "2025-07-03T05:52:37Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "I like where this is going, thanks for creating this example! \r\nMoving it to its own `relation` property as an array of object seems like a really good idea. \r\n\r\nWhere I'm unsure is if we can assume that the instances are structured like you propose. I see how it's nice to make each reference an object and for convenience also adding a \"ref\", but in many real data cases I've seen the references are just a string property or an array of strings. The concept also needs to work with this. So the \"reference\" in the schema has to point to the property that carries the ID of the reference, too?\r\n\r\nLet me get back on this to you when I have more time to think it through. ",
+              "createdAt": "2025-07-03T05:52:37Z",
+              "updatedAt": "2025-07-03T05:52:38Z"
             }
           ]
         }
