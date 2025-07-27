@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-06T00:51:51.060361+00:00",
+  "timestamp": "2025-07-27T00:54:38.073076+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -198,6 +198,22 @@
       "createdAt": "2025-06-15T07:15:36Z",
       "updatedAt": "2025-06-15T07:32:13Z",
       "closedAt": "2025-06-15T07:32:12Z",
+      "comments": []
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOONqYn87Cgvd-",
+      "title": "Compare to JSON-Schema.org",
+      "url": "https://github.com/json-structure/core/issues/12",
+      "state": "OPEN",
+      "author": "aurium",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Don't get me wrong. I thought this was great!\nWhoever, I think you could put it clearly somewhere:\n\n  * Why JSON Structure when you have other mature alternatives?\n  * Where JSON Structure differs to JSON Schema?\n  * In what cases is this superior to JSON Schema?\n",
+      "createdAt": "2025-07-25T14:10:16Z",
+      "updatedAt": "2025-07-25T14:10:16Z",
+      "closedAt": null,
       "comments": []
     }
   ],
