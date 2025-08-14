@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-27T00:54:38.073076+00:00",
+  "timestamp": "2025-08-14T00:45:55.375095+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -212,9 +212,17 @@
       "labels": [],
       "body": "Don't get me wrong. I thought this was great!\nWhoever, I think you could put it clearly somewhere:\n\n  * Why JSON Structure when you have other mature alternatives?\n  * Where JSON Structure differs to JSON Schema?\n  * In what cases is this superior to JSON Schema?\n",
       "createdAt": "2025-07-25T14:10:16Z",
-      "updatedAt": "2025-07-25T14:10:16Z",
+      "updatedAt": "2025-08-13T14:46:41Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "The primer aims to provide that: https://github.com/json-structure/primer-and-samples/blob/main/json-structure-primer.md",
+          "createdAt": "2025-08-13T14:46:41Z",
+          "updatedAt": "2025-08-13T14:46:41Z"
+        }
+      ]
     }
   ],
   "pulls": [
