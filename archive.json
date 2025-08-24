@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-14T00:45:55.375095+00:00",
+  "timestamp": "2025-08-24T00:48:57.360509+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -223,6 +223,22 @@
           "updatedAt": "2025-08-13T14:46:41Z"
         }
       ]
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOONqYn87HE52k",
+      "title": "Relationship to RFC 8927 (JSON Type Definition)?",
+      "url": "https://github.com/json-structure/core/issues/13",
+      "state": "OPEN",
+      "author": "gsnedders",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "The [primer](https://github.com/json-structure/primer-and-samples/blob/main/json-structure-primer.md) says:\n\n> There are rapidly growing needs for a standardized (IETF RFC) schema language that can describe data types and structures and whose definitions map cleanly to programming language types and database constructs as well as into the popular JSON data encoding.\n\nIt goes on to talk about JSON Schema.\n\nHowever, it doesn't mention RFC 8927 (JSON Type Definition) whatsoever, which is already a published RFC.",
+      "createdAt": "2025-08-21T01:22:20Z",
+      "updatedAt": "2025-08-21T01:22:20Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
