@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-08-24T00:48:57.360509+00:00",
+  "timestamp": "2025-10-14T00:40:47.006963+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -237,6 +237,22 @@
       "body": "The [primer](https://github.com/json-structure/primer-and-samples/blob/main/json-structure-primer.md) says:\n\n> There are rapidly growing needs for a standardized (IETF RFC) schema language that can describe data types and structures and whose definitions map cleanly to programming language types and database constructs as well as into the popular JSON data encoding.\n\nIt goes on to talk about JSON Schema.\n\nHowever, it doesn't mention RFC 8927 (JSON Type Definition) whatsoever, which is already a published RFC.",
       "createdAt": "2025-08-21T01:22:20Z",
       "updatedAt": "2025-08-21T01:22:20Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOONqYn87RN51y",
+      "title": "New base32hex 26-character unpadded format for UUID",
+      "url": "https://github.com/json-structure/core/issues/14",
+      "state": "OPEN",
+      "author": "sergeyprokhorenko",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "It is necessary to expand the wording:\n\n3.2.2.20. uuid\nA universally unique identifier.\u00b6\n* Base type: string\u00b6\n* Constraints:\u00b6\n    * The string value MUST conform to the [RFC9562] UUID format **or [RFC4648] base32hex 26-character unpadded format.\u00b6**\n\nSee https://github.com/x4m/postgres_g/commit/aa902bbc5dfc47d4b35f05016304a1e671abb505",
+      "createdAt": "2025-10-13T13:29:11Z",
+      "updatedAt": "2025-10-13T13:57:06Z",
       "closedAt": null,
       "comments": []
     }
