@@ -243,6 +243,15 @@ decimal number (base-10) and therefore cannot accurately represent all possible
 values of IEE754 floating-point numbers (base-2), in spite of JSON `number`
 leaning on the IEEE754 standard as a reference for the value space.
 
+#### `integer` {#integer}
+
+An alias for `int32` ({{int32}}), provided for compatibility with JSON Schema.
+
+- Base type: `number`
+- Constraints:
+  - The numeric literal MUST be in the range -2³¹ to 2³¹–1.
+  - No decimal points or quotes are allowed.
+
 #### `boolean` {#boolean}
 
 A literal `true` or `false` (without quotes).
@@ -1069,7 +1078,7 @@ provides a mechanism for importing definitions from external schemas.
   MUST NOT be referenced externally.
 - Primitive and compound type declarations are confined to this specification.
 - Defined types:
-  - **JSON Primitives:** `string`, `number`, `boolean`, `null`.
+  - **JSON Primitives:** `string`, `number`, `integer`, `boolean`, `null`.
   - **Extended Primitives:** `int32`, `uint32`, `int64`, `uint64`, `int128`,
     `uint128`, `float`, `double`, `decimal`, `date`, `datetime`, `time`,
     `duration`, `uuid`, `uri`, `binary`, `jsonpointer`.
