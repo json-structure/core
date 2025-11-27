@@ -12,23 +12,22 @@ that enforces strict typing, modularity, and determinism. JSON Structure
 describes JSON-encoded data such that mapping to and from programming languages
 and databases and other data formats is straightforward. 
     " name="description">
-<meta content="xml2rfc 3.29.0" name="generator">
+<meta content="xml2rfc 3.31.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-vasters-json-structure-core-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.29.0
-    Python 3.12.11
+  xml2rfc 3.31.0
+    Python 3.12.12
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
     lxml 5.3.1
-    platformdirs 4.3.8
+    platformdirs 4.5.0
     pycountry 24.6.1
     PyYAML 6.0.2
-    requests 2.32.4
-    setuptools 80.9.0
-    wcwidth 0.2.13
+    requests 2.32.5
+    wcwidth 0.2.14
 -->
 <link href="draft-vasters-json-structure-core.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1590,28 +1589,52 @@ values of IEE754 floating-point numbers (base-2), in spite of JSON <code>number<
 leaning on the IEEE754 standard as a reference for the value space.<a href="#section-3.2.1.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="boolean">
+<div id="integer">
 <section id="section-3.2.1.3">
-            <h5 id="name-boolean">
-<a href="#section-3.2.1.3" class="section-number selfRef">3.2.1.3. </a><a href="#name-boolean" class="section-name selfRef"><code>boolean</code></a>
+            <h5 id="name-integer">
+<a href="#section-3.2.1.3" class="section-number selfRef">3.2.1.3. </a><a href="#name-integer" class="section-name selfRef"><code>integer</code></a>
             </h5>
-<p id="section-3.2.1.3-1">A literal <code>true</code> or <code>false</code> (without quotes).<a href="#section-3.2.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.1.3-1">An alias for <code>int32</code> (<a href="#int32" class="auto internal xref">Section 3.2.2.6</a>), provided for compatibility with JSON Schema.<a href="#section-3.2.1.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2.1.3-2.1">
-                <p id="section-3.2.1.3-2.1.1">Base type: <code>boolean</code> <span><a href="https://rfc-editor.org/rfc/rfc8259#section-3" class="relref">Section 3</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span><a href="#section-3.2.1.3-2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-3.2.1.3-2.1.1">Base type: <code>number</code><a href="#section-3.2.1.3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-3.2.1.3-2.2">
+                <p id="section-3.2.1.3-2.2.1">Constraints:<a href="#section-3.2.1.3-2.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2.1.3-2.2.2.1">
+                    <p id="section-3.2.1.3-2.2.2.1.1">The numeric literal <span class="bcp14">MUST</span> be in the range -2³¹ to 2³¹–1.<a href="#section-3.2.1.3-2.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+                  <li class="normal" id="section-3.2.1.3-2.2.2.2">
+                    <p id="section-3.2.1.3-2.2.2.2.1">No decimal points or quotes are allowed.<a href="#section-3.2.1.3-2.2.2.2.1" class="pilcrow">¶</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
+</section>
+</div>
+<div id="boolean">
+<section id="section-3.2.1.4">
+            <h5 id="name-boolean">
+<a href="#section-3.2.1.4" class="section-number selfRef">3.2.1.4. </a><a href="#name-boolean" class="section-name selfRef"><code>boolean</code></a>
+            </h5>
+<p id="section-3.2.1.4-1">A literal <code>true</code> or <code>false</code> (without quotes).<a href="#section-3.2.1.4-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2.1.4-2.1">
+                <p id="section-3.2.1.4-2.1.1">Base type: <code>boolean</code> <span><a href="https://rfc-editor.org/rfc/rfc8259#section-3" class="relref">Section 3</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span><a href="#section-3.2.1.4-2.1.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </section>
 </div>
 <div id="null">
-<section id="section-3.2.1.4">
+<section id="section-3.2.1.5">
             <h5 id="name-null">
-<a href="#section-3.2.1.4" class="section-number selfRef">3.2.1.4. </a><a href="#name-null" class="section-name selfRef"><code>null</code></a>
+<a href="#section-3.2.1.5" class="section-number selfRef">3.2.1.5. </a><a href="#name-null" class="section-name selfRef"><code>null</code></a>
             </h5>
-<p id="section-3.2.1.4-1">A literal <code>null</code> (without quotes).<a href="#section-3.2.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.1.5-1">A literal <code>null</code> (without quotes).<a href="#section-3.2.1.5-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.2.1.4-2.1">
-                <p id="section-3.2.1.4-2.1.1">Base type: <code>null</code> <span><a href="https://rfc-editor.org/rfc/rfc8259#section-3" class="relref">Section 3</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span><a href="#section-3.2.1.4-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3.2.1.5-2.1">
+                <p id="section-3.2.1.5-2.1.1">Base type: <code>null</code> <span><a href="https://rfc-editor.org/rfc/rfc8259#section-3" class="relref">Section 3</a> of [<a href="#RFC8259" class="cite xref">RFC8259</a>]</span><a href="#section-3.2.1.5-2.1.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </section>
@@ -2840,7 +2863,7 @@ types. Inline compound types in arrays, maps, unions, or property definitions
               <p id="section-3.4.1-1.5.1">Defined types:<a href="#section-3.4.1-1.5.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.4.1-1.5.2.1">
-                  <p id="section-3.4.1-1.5.2.1.1"><strong>JSON Primitives:</strong> <code>string</code>, <code>number</code>, <code>boolean</code>, <code>null</code>.<a href="#section-3.4.1-1.5.2.1.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.4.1-1.5.2.1.1"><strong>JSON Primitives:</strong> <code>string</code>, <code>number</code>, <code>integer</code>, <code>boolean</code>, <code>null</code>.<a href="#section-3.4.1-1.5.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.4.1-1.5.2.2">
                   <p id="section-3.4.1-1.5.2.2.1"><strong>Extended Primitives:</strong> <code>int32</code>, <code>uint32</code>, <code>int64</code>, <code>uint64</code>, <code>int128</code>,
