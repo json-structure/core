@@ -1692,39 +1692,7 @@ document.
     order. If multiple base types define a property with the same name, the
     property from the first base type in the array takes precedence.
 
-**Example**:
-
-~~~ json
-{
-  "definitions": {
-    "BaseHeader": {
-      "type": "object",
-      "abstract": true,
-      "properties": {
-        "version": { "type": "uint32" },
-        "timestamp": { "type": "uint64" }
-      }
-    },
-    "Metadata": {
-      "type": "object",
-      "abstract": true,
-      "properties": {
-        "created": { "type": "uint64" },
-        "modified": { "type": "uint64" }
-      }
-    },
-    "FullRecord": {
-      "type": "object",
-      "$extends": ["#/definitions/BaseHeader", "#/definitions/Metadata"],
-      "properties": {
-        "data": { "type": "binary" }
-      }
-    }
-  }
-}
-~~~
-
-### The `$offers` Keyword {#offers-keyword}### The `$offers` Keyword {#offers-keyword}
+### The `$offers` Keyword {#offers-keyword}
 
 The `$offers` keyword is used to advertise add-in types that are available for
 use in a schema document. The `$offers` keyword is a map of add-in names to
