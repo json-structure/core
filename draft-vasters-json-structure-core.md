@@ -1454,11 +1454,11 @@ The permitted values for `uuidEncoding` are:
 - `rfc9562`: The UUID value is encoded in the standard {{RFC9562}} format
   (e.g., `550e8400-e29b-41d4-a716-446655440000`). This is the default.
 - `base32hex`: The UUID value is encoded as a 26-character unpadded base32hex
-  string as defined in {{RFC4648}}.
+  string as defined in {{RFC4648}} (e.g., `AHO84039NASJ54B68SL50G0000`).
 - `base64`: The UUID value is encoded as a base64 string as defined in
-  {{RFC4648}}.
+  {{RFC4648}} (e.g., `VQ6EAOKbQdSnFkRmVUQAAA==`).
 - `base64url`: The UUID value is encoded as a base64url string as defined in
-  {{RFC4648}}.
+  {{RFC4648}} (e.g., `VQ6EAOKbQdSnFkRmVUQAAA`).
 
 If `uuidEncoding` is not specified, the default encoding is `rfc9562`.
 
