@@ -118,8 +118,7 @@ Table of Contents
      3.10. Extensions and Add-Ins
        3.10.1.  The abstract Keyword
        3.10.2.  The $extends Keyword
-       3.10.3.  The $offers Keyword {#offers-keyword}### The $offers
-               Keyword
+       3.10.3.  The $offers Keyword
        3.10.4.  The $uses Keyword
    4.  Reserved Keywords
    5.  CBOR Type System Mapping
@@ -1833,37 +1832,7 @@ Table of Contents
          the same name, the property from the first base type in the
          array takes precedence.
 
-   *Example*:
-
-   {
-     "definitions": {
-       "BaseHeader": {
-         "type": "object",
-         "abstract": true,
-         "properties": {
-           "version": { "type": "uint32" },
-           "timestamp": { "type": "uint64" }
-         }
-       },
-       "Metadata": {
-         "type": "object",
-         "abstract": true,
-         "properties": {
-           "created": { "type": "uint64" },
-           "modified": { "type": "uint64" }
-         }
-       },
-       "FullRecord": {
-         "type": "object",
-         "$extends": ["#/definitions/BaseHeader", "#/definitions/Metadata"],
-         "properties": {
-           "data": { "type": "binary" }
-         }
-       }
-     }
-   }
-
-3.10.3.  The $offers Keyword {#offers-keyword}### The $offers Keyword
+3.10.3.  The $offers Keyword
 
    The $offers keyword is used to advertise add-in types that are
    available for use in a schema document.  The $offers keyword is a map
