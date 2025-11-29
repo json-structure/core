@@ -1672,21 +1672,25 @@ is always `true`).
 
 ### The `$extends` Keyword {#extends-keyword}
 
-The `$extends` keyword merges all properties from an abstract base type into the
-extending type.
+The `$extends` keyword merges all properties from one or more abstract base
+types into the extending type.
 
 If the type using `$extends` is marked as `abstract` and referenced via
 `$addins`, the composite type _replaces_ the base type in the type model of the
 document.
 
-- **Value**: A JSON Pointer to an abstract type.
+- **Value**: A JSON Pointer to an abstract type, or an array of JSON Pointers to
+  abstract types.
 - **Rules**:
   - The `$extends` keyword MUST only be used in schemas of type `object` and
     `tuple`.
-  - The value of `$extends` MUST be a valid JSON Pointer that points to an
-    abstract type within the same document.
-  - The extending type MUST merge the abstract type’s properties and constraints
+  - The value of `$extends` MUST be a valid JSON Pointer or an array of valid
+    JSON Pointers that point to abstract types within the same document.
+  - The extending type MUST merge the abstract type's properties and constraints
     and MUST NOT redefine any inherited property.
+  - When multiple base types are specified, properties are merged in array
+    order. If multiple base types define a property with the same name, the
+    property from the first base type in the array takes precedence.
 
 ### The `$offers` Keyword {#offers-keyword}
 
