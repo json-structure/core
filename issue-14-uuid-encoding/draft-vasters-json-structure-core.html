@@ -3365,20 +3365,27 @@ used as an annotation for <code>uuid</code> types.<a href="#section-3.8.4-1" cla
 <p id="section-3.8.4-2">The permitted values for <code>uuidEncoding</code> are:<a href="#section-3.8.4-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.8.4-3.1">
-              <p id="section-3.8.4-3.1.1"><code>rfc9562</code>: The UUID value is encoded in the standard <span>[<a href="#RFC9562" class="cite xref">RFC9562</a>]</span> format
-(e.g., <code>550e8400-e29b-41d4-a716-446655440000</code>). This is the default.<a href="#section-3.8.4-3.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3.8.4-3.1.1"><code>rfc9562</code>: The UUID value is encoded in the standard <span>[<a href="#RFC9562" class="cite xref">RFC9562</a>]</span> hexadecimal
+format with dashes (e.g., <code>550e8400-e29b-41d4-a716-446655440000</code>). This is the
+default.<a href="#section-3.8.4-3.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.8.4-3.2">
               <p id="section-3.8.4-3.2.1"><code>base32hex</code>: The UUID value is encoded as a 26-character unpadded base32hex
-string as defined in <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>]</span> (e.g., <code>AK788072JD0T99OM8HJ5AH0000</code>).<a href="#section-3.8.4-3.2.1" class="pilcrow">¶</a></p>
+string as defined in Section 7 of <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>]</span>
+(e.g., <code>AK788072JD0T99OM8HJ5AH0000</code>).<a href="#section-3.8.4-3.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.8.4-3.3">
-              <p id="section-3.8.4-3.3.1"><code>base64sort</code>: The UUID value is encoded as a 22-character base64 sortable
-string (e.g., <code>KFu3-D9QFSHb4ZGaKJF---</code>).<a href="#section-3.8.4-3.3.1" class="pilcrow">¶</a></p>
+              <p id="section-3.8.4-3.3.1"><code>base64sort</code>: The UUID value is encoded as a 22-character lexicographically
+sortable base64 string using the alphabet
+<code>-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz</code>
+(e.g., <code>KFu3-D9QFSHb4ZGaKJF---</code>). This encoding is under consideration for
+inclusion in a future revision of <span>[<a href="#RFC9562" class="cite xref">RFC9562</a>]</span>.<a href="#section-3.8.4-3.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.8.4-3.4">
-              <p id="section-3.8.4-3.4.1"><code>base52sort</code>: The UUID value is encoded as a 23-character base52 sortable
-string using only letters (e.g., <code>CACeYFbTsBxqTXPqHtHTGBx</code>).<a href="#section-3.8.4-3.4.1" class="pilcrow">¶</a></p>
+              <p id="section-3.8.4-3.4.1"><code>base52sort</code>: The UUID value is encoded as a 23-character lexicographically
+sortable base52 string using only alphabetic characters
+(e.g., <code>CACeYFbTsBxqTXPqHtHTGBx</code>). This encoding is under consideration for
+inclusion in a future revision of <span>[<a href="#RFC9562" class="cite xref">RFC9562</a>]</span>.<a href="#section-3.8.4-3.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 <p id="section-3.8.4-4">If <code>uuidEncoding</code> is not specified, the default encoding is <code>rfc9562</code>.<a href="#section-3.8.4-4" class="pilcrow">¶</a></p>
