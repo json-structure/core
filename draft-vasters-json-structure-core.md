@@ -482,7 +482,8 @@ A universally unique identifier.
 
 - Base type: `string`
 - Constraints:
-  - The string value MUST conform to the {{RFC9562}} `UUID` format.
+  - The string value MUST conform to the {{RFC9562}} `UUID` format, or to an
+    alternate encoding specified by the `uuidEncoding` keyword.
 
 #### `uri` {#uri}
 
@@ -1440,6 +1441,33 @@ types to constrain the fractional part.
 {
   "type": "decimal",
   "scale": 2
+}
+~~~
+
+### The `uuidEncoding` Keyword {#uuidencoding-keyword}
+
+Specifies the encoding format for a UUID value. The `uuidEncoding` keyword is
+used as an annotation for `uuid` types.
+
+The permitted values for `uuidEncoding` are:
+
+- `rfc9562`: The UUID value is encoded in the standard {{RFC9562}} format
+  (e.g., `550e8400-e29b-41d4-a716-446655440000`). This is the default.
+- `base32hex`: The UUID value is encoded as a 26-character unpadded base32hex
+  string as defined in {{RFC4648}}.
+- `base64`: The UUID value is encoded as a base64 string as defined in
+  {{RFC4648}}.
+- `base64url`: The UUID value is encoded as a base64url string as defined in
+  {{RFC4648}}.
+
+If `uuidEncoding` is not specified, the default encoding is `rfc9562`.
+
+**Example**:
+
+~~~ json
+{
+  "type": "uuid",
+  "uuidEncoding": "base32hex"
 }
 ~~~
 
