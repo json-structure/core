@@ -1457,15 +1457,6 @@ The permitted values for `uuidEncoding` are:
 - `base32hex`: The UUID value is encoded as a 26-character unpadded base32hex
   string as defined in Section 7 of {{RFC4648}}
   (e.g., `AK788072JD0T99OM8HJ5AH0000`).
-- `base64sort`: The UUID value is encoded as a 22-character lexicographically
-  sortable base64 string using the alphabet
-  `-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz`
-  (e.g., `KFu3-D9QFSHb4ZGaKJF---`). This encoding is under consideration for
-  inclusion in a future revision of {{RFC9562}}.
-- `base52sort`: The UUID value is encoded as a 23-character lexicographically
-  sortable base52 string using only alphabetic characters
-  (e.g., `CACeYFbTsBxqTXPqHtHTGBx`). This encoding is under consideration for
-  inclusion in a future revision of {{RFC9562}}.
 
 If `uuidEncoding` is not specified, the default encoding is `rfc9562`.
 
@@ -1474,7 +1465,7 @@ If `uuidEncoding` is not specified, the default encoding is `rfc9562`.
 ~~~ json
 {
   "type": "uuid",
-  "uuidEncoding": "base64sort"
+  "uuidEncoding": "base32hex"
 }
 ~~~
 
