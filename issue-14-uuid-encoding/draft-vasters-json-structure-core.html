@@ -3374,19 +3374,6 @@ default.<a href="#section-3.8.4-3.1.1" class="pilcrow">¶</a></p>
 string as defined in Section 7 of <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>]</span>
 (e.g., <code>AK788072JD0T99OM8HJ5AH0000</code>).<a href="#section-3.8.4-3.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-3.8.4-3.3">
-              <p id="section-3.8.4-3.3.1"><code>base64sort</code>: The UUID value is encoded as a 22-character lexicographically
-sortable base64 string using the alphabet
-<code>-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz</code>
-(e.g., <code>KFu3-D9QFSHb4ZGaKJF---</code>). This encoding is under consideration for
-inclusion in a future revision of <span>[<a href="#RFC9562" class="cite xref">RFC9562</a>]</span>.<a href="#section-3.8.4-3.3.1" class="pilcrow">¶</a></p>
-</li>
-            <li class="normal" id="section-3.8.4-3.4">
-              <p id="section-3.8.4-3.4.1"><code>base52sort</code>: The UUID value is encoded as a 23-character lexicographically
-sortable base52 string using only alphabetic characters
-(e.g., <code>CACeYFbTsBxqTXPqHtHTGBx</code>). This encoding is under consideration for
-inclusion in a future revision of <span>[<a href="#RFC9562" class="cite xref">RFC9562</a>]</span>.<a href="#section-3.8.4-3.4.1" class="pilcrow">¶</a></p>
-</li>
           </ul>
 <p id="section-3.8.4-4">If <code>uuidEncoding</code> is not specified, the default encoding is <code>rfc9562</code>.<a href="#section-3.8.4-4" class="pilcrow">¶</a></p>
 <p id="section-3.8.4-5"><strong>Example</strong>:<a href="#section-3.8.4-5" class="pilcrow">¶</a></p>
@@ -3394,7 +3381,7 @@ inclusion in a future revision of <span>[<a href="#RFC9562" class="cite xref">RF
 <pre>
 {
   "type": "uuid",
-  "uuidEncoding": "base64sort"
+  "uuidEncoding": "base32hex"
 }
 </pre><a href="#section-3.8.4-6" class="pilcrow">¶</a>
 </div>
