@@ -3642,14 +3642,15 @@ value is implicitly <code>true</code>).<a href="#section-3.10.1-3.2.2.3.1" class
           <h4 id="name-the-extends-keyword">
 <a href="#section-3.10.2" class="section-number selfRef">3.10.2. </a><a href="#name-the-extends-keyword" class="section-name selfRef">The <code>$extends</code> Keyword</a>
           </h4>
-<p id="section-3.10.2-1">The <code>$extends</code> keyword merges all properties from an abstract base type into the
-extending type.<a href="#section-3.10.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.10.2-1">The <code>$extends</code> keyword merges all properties from one or more abstract base
+types into the extending type.<a href="#section-3.10.2-1" class="pilcrow">¶</a></p>
 <p id="section-3.10.2-2">If the type using <code>$extends</code> is marked as <code>abstract</code> and referenced via
 <code>$addins</code>, the composite type <em>replaces</em> the base type in the type model of the
 document.<a href="#section-3.10.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.10.2-3.1">
-              <p id="section-3.10.2-3.1.1"><strong>Value</strong>: A JSON Pointer to an abstract type.<a href="#section-3.10.2-3.1.1" class="pilcrow">¶</a></p>
+              <p id="section-3.10.2-3.1.1"><strong>Value</strong>: A JSON Pointer to an abstract type, or an array of JSON Pointers to
+abstract types.<a href="#section-3.10.2-3.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.10.2-3.2">
               <p id="section-3.10.2-3.2.1"><strong>Rules</strong>:<a href="#section-3.10.2-3.2.1" class="pilcrow">¶</a></p>
@@ -3659,12 +3660,17 @@ document.<a href="#section-3.10.2-2" class="pilcrow">¶</a></p>
 <code>tuple</code>.<a href="#section-3.10.2-3.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.10.2-3.2.2.2">
-                  <p id="section-3.10.2-3.2.2.2.1">The value of <code>$extends</code> <span class="bcp14">MUST</span> be a valid JSON Pointer that points to an
-abstract type within the same document.<a href="#section-3.10.2-3.2.2.2.1" class="pilcrow">¶</a></p>
+                  <p id="section-3.10.2-3.2.2.2.1">The value of <code>$extends</code> <span class="bcp14">MUST</span> be a valid JSON Pointer or an array of valid
+JSON Pointers that point to abstract types within the same document.<a href="#section-3.10.2-3.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
                 <li class="normal" id="section-3.10.2-3.2.2.3">
-                  <p id="section-3.10.2-3.2.2.3.1">The extending type <span class="bcp14">MUST</span> merge the abstract type’s properties and constraints
+                  <p id="section-3.10.2-3.2.2.3.1">The extending type <span class="bcp14">MUST</span> merge the abstract type's properties and constraints
 and <span class="bcp14">MUST NOT</span> redefine any inherited property.<a href="#section-3.10.2-3.2.2.3.1" class="pilcrow">¶</a></p>
+</li>
+                <li class="normal" id="section-3.10.2-3.2.2.4">
+                  <p id="section-3.10.2-3.2.2.4.1">When multiple base types are specified, properties are merged in array
+order. If multiple base types define a property with the same name, the
+property from the first base type in the array takes precedence.<a href="#section-3.10.2-3.2.2.4.1" class="pilcrow">¶</a></p>
 </li>
               </ul>
 </li>
