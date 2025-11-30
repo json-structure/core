@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-11T00:45:01.662449+00:00",
+  "timestamp": "2025-11-30T00:52:01.595595+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -236,9 +236,17 @@
       "labels": [],
       "body": "The [primer](https://github.com/json-structure/primer-and-samples/blob/main/json-structure-primer.md) says:\n\n> There are rapidly growing needs for a standardized (IETF RFC) schema language that can describe data types and structures and whose definitions map cleanly to programming language types and database constructs as well as into the popular JSON data encoding.\n\nIt goes on to talk about JSON Schema.\n\nHowever, it doesn't mention RFC 8927 (JSON Type Definition) whatsoever, which is already a published RFC.",
       "createdAt": "2025-08-21T01:22:20Z",
-      "updatedAt": "2025-08-21T01:22:20Z",
+      "updatedAt": "2025-11-27T22:44:16Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@gsnedders Thank you for the note. The experimental RFC 8927 hasn't shown up for me in any real customer scenario while JSON Schema does all the time. JSON Schema is incredibly popular in spite of all of its faults and my sense is that part of the attraction is that the simple scenarios like declaring a simple object type are straightforward. ",
+          "createdAt": "2025-11-27T22:44:16Z",
+          "updatedAt": "2025-11-27T22:44:16Z"
+        }
+      ]
     },
     {
       "number": 14,
@@ -252,9 +260,38 @@
       "labels": [],
       "body": "It is necessary to expand the wording:\n\n3.2.2.20. uuid\nA universally unique identifier.\u00b6\n* Base type: string\u00b6\n* Constraints:\u00b6\n    * The string value MUST conform to the [RFC9562] UUID format **or [RFC4648] base32hex 26-character unpadded format.\u00b6**\n\nSee https://github.com/x4m/postgres_g/commit/aa902bbc5dfc47d4b35f05016304a1e671abb505",
       "createdAt": "2025-10-13T13:29:11Z",
-      "updatedAt": "2025-10-13T13:57:06Z",
+      "updatedAt": "2025-11-28T08:02:56Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@sergeyprokhorenko I will review",
+          "createdAt": "2025-11-27T22:39:03Z",
+          "updatedAt": "2025-11-27T22:39:03Z"
+        },
+        {
+          "author": "sergeyprokhorenko",
+          "authorAssociation": "NONE",
+          "body": "@clemensv\n\nThe authors of RFC 9562 are currently considering including one of the UUID encodings, Base64Sort or Base52Sort, in the standard. A decision has not yet been made. Base32hex is unlikely to be included in the standard, as it is less compact.\n\n",
+          "createdAt": "2025-11-28T07:29:46Z",
+          "updatedAt": "2025-11-28T07:29:46Z"
+        },
+        {
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@sergeyprokhorenko should we add a type qualifier that selects the encoding?",
+          "createdAt": "2025-11-28T07:33:21Z",
+          "updatedAt": "2025-11-28T07:33:21Z"
+        },
+        {
+          "author": "sergeyprokhorenko",
+          "authorAssociation": "NONE",
+          "body": "@clemensv\n\n> should we add a type qualifier that selects the encoding?\n\nYes, this is a good solution",
+          "createdAt": "2025-11-28T08:02:56Z",
+          "updatedAt": "2025-11-28T08:02:56Z"
+        }
+      ]
     },
     {
       "number": 15,
@@ -268,8 +305,48 @@
       "labels": [],
       "body": "### Proposal for a More Flexible Numeric Type System\n\nFirst, thank you for the work on this draft. The clear and strict type system is a great foundation.\n\nThis proposal suggests enhancing the numeric type system to be more flexible and descriptive, allowing for the precise definition of numeric types with arbitrary precision, particularly for scientific, financial, and hardware-interfacing applications.\n\n### Current State\n\nThe current specification defines a useful set of fixed-size numeric types (`int8`...`int128`, `float`, `double`) and a `decimal` type for high precision. It also lists `precision` and `scale` as annotation keywords (3.8.2, 3.8.3).\n\nHowever, this system could be made more expressive. For example, it's not explicitly clear how to define:\n\n- A floating-point number with a minimum required decimal precision (not just float or double).\n- A binary fixed-point number with a specific delta (absolute error).\n- A decimal fixed-point number (which decimal + precision + scale may cover, but could be more explicit).\n- A modular (wrap-around) integer type, common in many systems.\n\n### Inspiration: The ADA Type System\n\nThe ADA language provides an excellent model for defining numeric types based on their requirements rather than their implementation. This makes schemas more portable and semantically rich.\n\nWe could adopt a similar model by clarifying and extending the use of the precision and scale keywords, and perhaps introducing a new keyword like model to define the numeric representation.\n\nThis proposal suggests an approach that:\n * Uses the standard type property (\"number\" or \"string\") to define the storage representation of the value in the JSON document.\n * Adds new \"qualifier\" properties (e.g., `representation`, `radix`) at the same level as type to specify the exact semantics.\nThe type is set to `\"number\"` if the value can be losslessly represented by a standard JSON number (IEEE 754 double). Otherwise, type is set to `\"string\"` to hold the high-precision value.\n\n**Proposed Properties**\n * `type`: `\"number\"` | `\"string\"` _(Required)_\n * `representation`: `\"integer\"` | `\"floating\"` | `\"fixed\"` | `\"rational\"` | `\"modular\"` _(Required for this proposal)_\n * `radix`: `\"binary\"` | `\"decimal\"` _(Required for integer, fixed, and floating)_\n * `precision`: `integer` _(Optional. The number of significant bits/digits)_\n   * For integer and fixed: The total number of bits (if radix: \"binary\") or digits (if radix: \"decimal\").\n   * For floating: The number of bits (if radix: \"binary\") or digits (if radix: \"decimal\") in the mantissa.\n * `scale`: `integer` _(Optional. Required for fixed representation. The number of fractional bits/digits)._\n * `modulus`: `string` | `number` _(Optional. Required for modular representation. Same type as indicated by `type`)._\n * `minimum`: `string` | `number` _(Optional. The inclusive minimum valid value, as a string for arbitrary precision)._\n * `maximum`: `string` | `number` _(Optional. The inclusive maximum valid value, as a string for arbitrary precision)._\n * `exclusiveMinimum`: `string` | `number` _(Optional. The exclusive minimum valid value, as a string for arbitrary precision)._\n * `exclusiveMaximum`: `string` | `number` _(Optional. The exclusive maximum valid value, as a string for arbitrary precision)._\n\n### Relationship to Current Definitions\nThis proposal can be seen as a superset of the numeric types currently defined in the JSON Structure Core draft (e.g., uint8, int32, float64).\nThose definitions can be expressed using this proposal:\n * uint8:\n ```json\n  \"type\": \"number\",\n  \"representation\": \"integer\",\n  \"radix\": \"binary\",\n  \"precision\": 8,\n  \"minimum\": \"0\",\n  \"exclusiveMaximum\": \"256\"\n```\n * int32:\n ```json\n  \"type\": \"number\",\n  \"representation\": \"integer\",\n  \"radix\": \"binary\",\n  \"precision\": 32,\n  \"minimum\": \"-2147483648\",\n  \"exclusiveMaximum\": \"2147483648\"\n```\n * float64 (IEEE 754 Double):\n ```json\n  \"type\": \"number\",\n  \"representation\": \"floating\",\n  \"radix\": \"binary\",\n  \"precision\": 53,\n  \"minimum\": \"-1.7976931348623157e+308\",\n  \"maximum\": \"1.7976931348623157e+308\"\n```\n   _(Note: precision is 53 for the bits in the mantissa. Inclusive min/max is standard for float definitions)._\n\nThe key limitation of the current definitions is that they are restricted to power-of-two, binary types. This proposal extends support to:\n * Non-power-of-two binary types: e.g., a 10-bit integer from a sensor.\n * Decimal types: e.g., DECIMAL(19, 4) for finance, which cannot be losslessly represented by float64.\nThis proposal provides a single, unified system for defining all of them.\n\n### Examples\nHere is how this system would define various numeric types.\n1. Binary Integer\n * Concept: A base-2 integer.\n * Schema (for uint10 sensor reading):\n ```json\n  \"type\": \"number\",\n  \"representation\": \"integer\",\n  \"radix\": \"binary\",\n  \"precision\": 10,\n  \"minimum\": 0,\n  \"exclusiveMaximum\": 1024\n ```\n * Schema (for int128):\n ```json\n  \"type\": \"string\",\n  \"representation\": \"integer\",\n  \"radix\": \"binary\",\n  \"precision\": 128,\n  \"minimum\": \"-170141183460469231731687303715884105728\",\n  \"exclusiveMaximum\": \"170141183460469231731687303715884105728\"\n```\n2. Binary Floating Point\n * Concept: A base-2 floating-point number.\n * Schema (for binary64/double):\n   * (See \"Relationship to Current Definitions\" section)\n * Schema (for arbitrary 512-bit float):\n ```json\n  \"type\": \"string\",\n  \"representation\": \"floating\",\n  \"radix\": \"binary\",\n  \"precision\": 450\n```\n3. Binary Fixed Point\n * Concept: A base-2 fixed-point number (e.g., Q notation).\n * Schema (for Q24.8, 32-bit total):\n ```json\n  \"type\": \"number\",\n  \"representation\": \"fixed\",\n  \"radix\": \"binary\",\n  \"precision\": 32,\n  \"scale\": 8,\n  \"minimum\": -8388608,\n  \"exclusiveMaximum\": 8388608\n```\n4. Decimal Floating Point\n * Concept: A base-10 floating-point number.\n * Schema (for decimal128, 34-digit mantissa):\n ```json\n  \"type\": \"string\",\n  \"representation\": \"floating\",\n  \"radix\": \"decimal\",\n  \"precision\": 34\n```\n5. Decimal Fixed Point\n * Concept: Standard for currency (DECIMAL(p, s)).\n * Schema (for DECIMAL(19, 4)):\n ```json\n  \"type\": \"string\",\n  \"representation\": \"fixed\",\n  \"radix\": \"decimal\",\n  \"precision\": 19,\n  \"scale\": 4,\n  \"exclusiveMinimum\": \"-1000000000000000\",\n  \"exclusiveMaximum\": \"1000000000000000\"\n```\n * Schema (for DECIMAL(10, 2)):\n ```json\n  \"type\": \"number\",\n  \"representation\": \"fixed\",\n  \"radix\": \"decimal\",\n  \"precision\": 10,\n  \"scale\": 2,\n  \"exclusiveMinimum\": -100000000,\n  \"exclusiveMaximum\": 100000000\n```\n6. Rational Numbers\n * Concept: A number as a ratio of two integers.\n * Schema:\n ```json\n  \"type\": \"string\",\n  \"representation\": \"rational\"\n```\n7. Modular Types\n * Concept: An integer that wraps around.\n * Schema (for mod 360), e.g. heading in degrees:\n ```json\n  \"type\": \"number\",\n  \"representation\": \"modular\",\n  \"modulus\": \"360\"\n```\n * Schema (for mod 2**256):\n ```json\n  \"type\": \"string\",\n  \"representation\": \"modular\",\n  \"modulus\": \"115792089237316195423570985008687907853269984665640564039457584007913129639936\",\n  \"minimum\": \"0\",\n  \"exclusiveMaximum\": \"115792089237316195423570985008687907853269984665640564039457584007913129639936\"\n```\n\n### Benefits of This Approach\n * Backwards-Compatible: Parsers that don't understand the new properties still see a valid JSON type (`\"number\"` or `\"string\"`).\n * Explicit Storage: Clearly separates the logical numeric type from its physical storage in the JSON document.\n * Unambiguous Deserialization: A consumer knows whether to parse a value from a string or use the native number, and knows what precise data type (e.g., `Decimal`, `BigInt`) to deserialize it into.\n * Extensible: Unifies all numeric types (current and future) under one flexible system.",
       "createdAt": "2025-11-09T15:55:22Z",
-      "updatedAt": "2025-11-09T15:55:22Z",
+      "updatedAt": "2025-11-28T07:37:16Z",
       "closedAt": null,
+      "comments": [
+        {
+          "author": "clemensv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@ThyMYthOS thank you for the proposal. I agree this is more factored than the more fixed model that exists at present. To upside of the fixed model is that it's easier to implement and validate than the infinite combinations you can create with these composable settings. I'm not sure that a \"uint10\" sensor reading is a thing. Ultimately, the vast majority of stuff works on byte boundaries.\n\nIf we go so far that we create 10 bit integers, I wonder what happens to the other 6 bits in those two bytes?\n\nIt might be worth exploring a bitfield complex type that is similar to tuple and declares the bitwise components inside a word.",
+          "createdAt": "2025-11-27T22:38:17Z",
+          "updatedAt": "2025-11-28T07:37:16Z"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "I_kwDOONqYn87a8BHB",
+      "title": "Companion Spec: Relations and Identity",
+      "url": "https://github.com/json-structure/core/issues/17",
+      "state": "OPEN",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "## Summary\n\nBased on the discussion in PR #8, propose a companion specification for modeling relationships/associations between objects in JSON Structure.\n\n## Proposal\n\nFor objects and tuples, add a new keyword `relations` that is similar to `properties` but specifically defines relationship properties. `relations` and `properties` share a namespace, so they can't define conflicting names.\n\nThe `relations` declarations are not modeled as types, because they must be able to cross-reference properties within the same tuple/object. They are similar to properties in that they are represented just like properties in the instances.\n\nA `relation` is a named object (via the `relations` map) that has two properties:\n\n- `targettype` - declares the target type that the relation refers to\n- `cardinality` - declares whether the relationship points to one or more targets (`single` or `multiple`)\n\nThe targettype's `identity` declaration functions like the `tuple` keyword for establishing the type of references, meaning that if the target's `identity` clause references two properties, the reference value in the relation source is a tuple-encoded list of values matching that identity.\n\n### Relation Instance Structure\n\nAn instance of a single relation is an object with the following properties:\n\n- `ref` - a JSON pointer to the target object\n- `identity` - a tuple that reflects the target object identity values\n\nA relationship MAY be established either through a direct link (ref) or through an `identity` match against all known instances of the target type.\n\n### Qualifier Support\n\nRelations can also support qualifiers (like link properties in a graph):\n\n- `qualifiertype` - defines/references a type to qualify the relationship further\n\n## Example Schema\n\n```json\n{\n  \"definitions\": {\n    \"Library\": {\n      \"Author\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"id\":   { \"type\": \"uuid\" },\n          \"name\": { \"type\": \"string\" }\n        },\n        \"required\": [\"id\", \"name\"],\n        \"identity\": [\"id\"]\n      },\n      \"Book\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"isbn\":  { \"type\": \"string\" },\n          \"title\": { \"type\": \"string\" }\n        },\n        \"required\": [\"isbn\", \"title\"],\n        \"identity\": [\"isbn\"],\n        \"relations\": {\n          \"authors\": {\n            \"cardinality\": \"multiple\",\n            \"targettype\":  { \"$ref\": \"#/definitions/Library/Author\" }\n          }\n        }\n      }\n    }\n  }\n}\n```\n\n## References\n\n- PR #8: https://github.com/json-structure/core/pull/8\n- Issue #4: https://github.com/json-structure/core/issues/4\n- Discussion: https://github.com/json-structure/core/pull/8#discussion_r2179789408\n\ncc @Fannon",
+      "createdAt": "2025-11-27T22:46:17Z",
+      "updatedAt": "2025-11-27T22:46:17Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOONqYn87bJpSk",
+      "title": "Allow \\ to accept an array of JSON Pointers for multiple inheritance",
+      "url": "https://github.com/json-structure/core/issues/18",
+      "state": "CLOSED",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "## Summary\r\n\r\nCurrently, the `$extends` keyword only accepts a single JSON Pointer to an abstract type (Section 3.10.2):\r\n\r\n> **Value:** A JSON Pointer to an abstract type.\r\n\r\nThis proposal suggests extending `$extends` to also accept an array of JSON Pointers, enabling multiple inheritance from several abstract base types.\r\n\r\n## Motivation\r\n\r\nWhen converting from other schema languages (e.g., CDDL with its unwrap operator `~`), it's common to compose types from multiple base groups:\r\n\r\n```cddl\r\nbase-header = (\r\n    version: uint,\r\n    timestamp: uint\r\n)\r\n\r\nmetadata = (\r\n    created: uint,\r\n    modified: uint\r\n)\r\n\r\nfull-record = {\r\n    ~base-header,\r\n    ~metadata,\r\n    data: bstr\r\n}\r\n```\r\n\r\nCurrently, JSON Structure cannot directly represent this pattern. The converter must either:\r\n1. Only use the first base type and lose information\r\n2. Inline all properties from additional base types (losing the inheritance relationship)\r\n\r\n## Proposed Change\r\n\r\nAllow `$extends` to accept either:\r\n- A single JSON Pointer (current behavior): `\"$extends\": \"#/definitions/BaseType\"`\r\n- An array of JSON Pointers: `\"$extends\": [\"#/definitions/BaseType1\", \"#/definitions/BaseType2\"]`\r\n\r\nExample:\r\n```json\r\n{\r\n  \"type\": \"object\",\r\n  \"name\": \"FullRecord\",\r\n  \"$extends\": [\"#/definitions/BaseHeader\", \"#/definitions/Metadata\"],\r\n  \"properties\": {\r\n    \"data\": { \"type\": \"binary\" }\r\n  }\r\n}\r\n```\r\n\r\n## Collision Resolution\r\n\r\nWhen multiple base types define properties with the same name, a resolution rule is needed. Suggested approach:\r\n\r\n1. **First-wins**: Properties from earlier types in the array take precedence (simple, predictable)\r\n2. **Last-wins**: Properties from later types override earlier ones (similar to many OOP languages)\r\n3. **Error**: Require explicit redefinition in the extending type to resolve conflicts\r\n\r\nRecommendation: **First-wins** for simplicity and consistency with the existing union type matching rule (\"the first matching type\").\r\n\r\n## Compatibility\r\n\r\nThis is a backward-compatible extension:\r\n- Existing schemas with single `$extends` values continue to work unchanged\r\n- Only schemas explicitly using array syntax would leverage the new behavior\r\n\r\n## Related\r\n\r\nThis issue was identified while implementing CDDL-to-JSON-Structure conversion in [avrotize](https://github.com/clemensv/avrotize/pull/114).\r\n",
+      "createdAt": "2025-11-29T13:01:38Z",
+      "updatedAt": "2025-11-29T16:59:06Z",
+      "closedAt": "2025-11-29T16:59:06Z",
       "comments": []
     }
   ],
@@ -670,6 +747,88 @@
       "mergedBy": "clemensv",
       "mergeCommit": {
         "oid": "4aeb7e24ee63935d52e768631e4f6c892851c19f"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOONqYn861yhYq",
+      "title": "Add integer type as alias for int32 (JSON Schema compatibility)",
+      "url": "https://github.com/json-structure/core/pull/16",
+      "state": "MERGED",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "## Summary\n\nThis PR adds the `integer` type to the JSON Structure Core specification as an alias for `int32`.\n\n### Changes\n\n- Added `integer` type definition in the JSON Primitives section (after `number`)\n- The type is defined as an alias for `int32` with identical constraints\n- Updated the Type System Rules summary to include `integer` in the JSON Primitives list\n\n### Rationale\n\nThis addition provides compatibility with JSON Schema, which uses `integer` as a common type name. Having this alias allows easier migration from JSON Schema to JSON Structure.",
+      "createdAt": "2025-11-27T07:28:33Z",
+      "updatedAt": "2025-11-27T19:21:58Z",
+      "baseRepository": "json-structure/core",
+      "baseRefName": "main",
+      "baseRefOid": "5c84ab7eb5eebe6908fc41104419f82d10f4b60b",
+      "headRepository": "json-structure/core",
+      "headRefName": "add-integer-type",
+      "headRefOid": "05b5b7d38a65038fb8c86cd659d0581415a06b16",
+      "closedAt": "2025-11-27T19:21:52Z",
+      "mergedAt": "2025-11-27T19:21:52Z",
+      "mergedBy": "clemensv",
+      "mergeCommit": {
+        "oid": "b2db20efe006d6724d2af804152a632c53005359"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 19,
+      "id": "PR_kwDOONqYn862IlIK",
+      "title": "Add uuidEncoding keyword for UUID encoding format selection",
+      "url": "https://github.com/json-structure/core/pull/19",
+      "state": "OPEN",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR adds a new uuidEncoding type annotation keyword for the uuid type that allows specifying alternate UUID encoding formats.\n\n## Changes\n\n1. **Updated the uuid type definition** (Section 3.2.2.20) to reference the new uuidEncoding keyword for alternate encodings.\n\n2. **Added the uuidEncoding Keyword section** with the following permitted values:\n   - rfc9562: Standard RFC 9562 UUID format (default)\n   - base32hex: 26-character unpadded base32hex encoding (RFC 4648)\n   - base64: Base64 encoding (RFC 4648)\n   - base64url: Base64url encoding (RFC 4648)\n\n## Background\n\nAs discussed in #14, this implements a type qualifier approach to select the UUID encoding format, allowing for compact representations like base32hex while maintaining backward compatibility with the standard RFC 9562 format as the default.\n\nFixes #14",
+      "createdAt": "2025-11-29T15:34:31Z",
+      "updatedAt": "2025-11-29T15:44:50Z",
+      "baseRepository": "json-structure/core",
+      "baseRefName": "main",
+      "baseRefOid": "b2db20efe006d6724d2af804152a632c53005359",
+      "headRepository": "json-structure/core",
+      "headRefName": "issue-14-uuid-encoding",
+      "headRefOid": "2fda3ba92773dc23b18920967252e6a07aa924d4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOONqYn862InkN",
+      "title": "Allow $extends to accept an array of JSON Pointers for multiple inheritance",
+      "url": "https://github.com/json-structure/core/pull/20",
+      "state": "MERGED",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR extends the `\\$extends\\` keyword to support multiple inheritance by accepting an array of JSON Pointers.\r\n\r\n## Changes\r\n\r\n1. **Updated the `$extends` keyword value** to accept either:\r\n   - A single JSON Pointer (current behavior)\r\n   - An array of JSON Pointers (new)\r\n\r\n2. **Added collision resolution rule**: When multiple base types define properties with the same name, the property from the first base type in the array takes precedence (first-wins).\r\n\r\n3. **Added example** demonstrating multiple inheritance with \\\\\\BaseHeader\\\\\\ and \\\\\\Metadata\\\\\\ abstract types.\r\n\r\n## Motivation\r\n\r\nThis enables composition patterns common in other schema languages like CDDL, where types can be composed from multiple base groups using the unwrap operator (\\\\\\~\\\\\\).\r\n\r\n## Compatibility\r\n\r\nThis is backward-compatible:\r\n- Existing schemas with single \\\\\\\\\\\\\\ values continue to work unchanged\r\n- Only schemas explicitly using array syntax leverage the new behavior\r\n\r\nFixes #18",
+      "createdAt": "2025-11-29T15:52:32Z",
+      "updatedAt": "2025-11-29T16:59:12Z",
+      "baseRepository": "json-structure/core",
+      "baseRefName": "main",
+      "baseRefOid": "b2db20efe006d6724d2af804152a632c53005359",
+      "headRepository": "json-structure/core",
+      "headRefName": "issue-18-extends-array",
+      "headRefOid": "10fdabf87bd5575d04af04d72f81ed2d46295d02",
+      "closedAt": "2025-11-29T16:59:05Z",
+      "mergedAt": "2025-11-29T16:59:05Z",
+      "mergedBy": "clemensv",
+      "mergeCommit": {
+        "oid": "4b574796f054488d11e4ed8fed136697111afa01"
       },
       "comments": [],
       "reviews": []
