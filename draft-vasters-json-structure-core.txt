@@ -130,6 +130,7 @@ Table of Contents
    10. References
      10.1.  Normative References
      10.2.  Informative References
+   Changes from draft-vasters-json-structure-core-00
    Acknowledgments
    Author's Address
 
@@ -2116,6 +2117,17 @@ Table of Contents
    [RFC7932]  Alakuijala, J. and Z. Szabadka, "Brotli Compressed Data
               Format", RFC 7932, DOI 10.17487/RFC7932, July 2016,
               <https://www.rfc-editor.org/rfc/rfc7932>.
+
+Changes from draft-vasters-json-structure-core-00
+
+   *  Added integer as an alias for int32 to improve compatibility with
+      simple JSON Schema definitions and user habits.
+
+   *  Updated the $extends keyword to accept either a single JSON
+      Pointer or an array of JSON Pointers, enabling multiple
+      inheritance for object and tuple types.
+
+   *  Fixed inconsistent $ref usage in examples throughout the document.
 
 Acknowledgments
 
