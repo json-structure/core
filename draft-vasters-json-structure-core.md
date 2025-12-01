@@ -577,7 +577,7 @@ Example:
 ~~~ json
 {
   "type": "set",
-  "items": { "$ref": "#/Namespace/TypeName" }
+  "items": { "type": { "$ref": "#/Namespace/TypeName" } }
 }
 ~~~
 
@@ -603,7 +603,7 @@ Example:
 ~~~ json
 {
   "type": "map",
-  "values": { "$ref": "#/StringType" }
+  "values": { "type": { "$ref": "#/StringType" } }
 }
 ~~~
 
@@ -735,8 +735,8 @@ Example:
   "$extends": "#/definitions/Address",
   "selector": "addressType",
   "choices": {
-    "StreetAddress": { "$ref": "#/definitions/StreetAddress" },
-    "PostOfficeBoxAddress": { "$ref": "#/definitions/PostOfficeBoxAddress" }
+    "StreetAddress": { "type": { "$ref": "#/definitions/StreetAddress" } },
+    "PostOfficeBoxAddress": { "type": { "$ref": "#/definitions/PostOfficeBoxAddress" } }
   },
   "definitions" : {
     "Address": {
