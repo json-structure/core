@@ -1838,6 +1838,16 @@ registry.
 
 --- back
 
+# Changes from draft-vasters-json-structure-core-00
+{:numbered="false"}
+
+- Added `integer` as an alias for `int32` to improve compatibility with
+  simple JSON Schema definitions and user habits.
+- Updated the `$extends` keyword to accept either a single JSON Pointer
+  or an array of JSON Pointers, enabling multiple inheritance for object
+  and tuple types.
+- Fixed inconsistent `$ref` usage in examples throughout the document.
+
 # Acknowledgments
 {:numbered="false"}
 
