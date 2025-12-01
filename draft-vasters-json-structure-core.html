@@ -2282,7 +2282,7 @@ type or a locally declared compound type.<a href="#section-3.2.3.3-2" class="pil
 <pre>
 {
   "type": "set",
-  "items": { "$ref": "#/Namespace/TypeName" }
+  "items": { "type": { "$ref": "#/Namespace/TypeName" } }
 }
 </pre><a href="#section-3.2.3.3-4" class="pilcrow">¶</a>
 </div>
@@ -2311,7 +2311,7 @@ type or a locally declared compound type.<a href="#section-3.2.3.4-3" class="pil
 <pre>
 {
   "type": "map",
-  "values": { "$ref": "#/StringType" }
+  "values": { "type": { "$ref": "#/StringType" } }
 }
 </pre><a href="#section-3.2.3.4-5" class="pilcrow">¶</a>
 </div>
@@ -2460,8 +2460,8 @@ options in the <code>choices</code> map.<a href="#section-3.2.3.7.2-4" class="pi
   "$extends": "#/definitions/Address",
   "selector": "addressType",
   "choices": {
-    "StreetAddress": { "$ref": "#/definitions/StreetAddress" },
-    "PostOfficeBoxAddress": { "$ref": "#/definitions/PostOfficeBoxAddress" }
+    "StreetAddress": { "type": { "$ref": "#/definitions/StreetAddress" } },
+    "PostOfficeBoxAddress": { "type": { "$ref": "#/definitions/PostOfficeBoxAddress" } }
   },
   "definitions" : {
     "Address": {

@@ -724,7 +724,7 @@ Table of Contents
 
    {
      "type": "set",
-     "items": { "$ref": "#/Namespace/TypeName" }
+     "items": { "type": { "$ref": "#/Namespace/TypeName" } }
    }
 
    {
@@ -747,7 +747,7 @@ Table of Contents
 
    {
      "type": "map",
-     "values": { "$ref": "#/StringType" }
+     "values": { "type": { "$ref": "#/StringType" } }
    }
 
 3.2.3.5.  tuple
@@ -872,8 +872,8 @@ Table of Contents
      "$extends": "#/definitions/Address",
      "selector": "addressType",
      "choices": {
-       "StreetAddress": { "$ref": "#/definitions/StreetAddress" },
-       "PostOfficeBoxAddress": { "$ref": "#/definitions/PostOfficeBoxAddress" }
+       "StreetAddress": { "type": { "$ref": "#/definitions/StreetAddress" } },
+       "PostOfficeBoxAddress": { "type": { "$ref": "#/definitions/PostOfficeBoxAddress" } }
      },
      "definitions" : {
        "Address": {
