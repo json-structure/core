@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-30T00:52:01.595595+00:00",
+  "timestamp": "2025-12-02T00:45:45.254980+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -347,6 +347,22 @@
       "createdAt": "2025-11-29T13:01:38Z",
       "updatedAt": "2025-11-29T16:59:06Z",
       "closedAt": "2025-11-29T16:59:06Z",
+      "comments": []
+    },
+    {
+      "number": 21,
+      "id": "I_kwDOONqYn87bUYoO",
+      "title": "Spec Bug: Inconsistent $ref usage rules in examples",
+      "url": "https://github.com/json-structure/core/issues/21",
+      "state": "CLOSED",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "## Summary\n\nThe spec contains contradictory guidance on where `$ref` is permitted. Section 3.4.1 states `$ref` is **only** permitted inside the `type` attribute, but examples throughout the spec show bare `$ref` usage in `items`, `values`, and `choices`.\n\n## The Rule (Section 3.4.1 - $ref Keyword)\n\n> \"The $ref keyword is only permitted inside the \\type\\ attribute value of a schema definition, including in type unions.\"\n> \"$ref is NOT permitted in other attributes...\"\n\n## Contradicting Examples in the Spec\n\n### 1. Array `items` - CONSISTENT \n~~~json\n{\n  \"type\": \"array\",\n  \"items\": { \"type\": { \"$ref\": \"#/Namespace/TypeName\" } }\n}\n~~~\n\n### 2. Set `items` - INCONSISTENT \n~~~json\n{\n  \"type\": \"set\",\n  \"items\": { \"$ref\": \"#/Namespace/TypeName\" }\n}\n~~~\nShould be: `\"items\": { \"type\": { \"\\\": \"#/Namespace/TypeName\" } }`\n\n### 3. Map `values` - INCONSISTENT \n~~~json\n{\n  \"type\": \"map\",\n  \"values\": { \"$ref\": \"#/StringType\" }\n}\n~~~\nShould be: `\"values\": { \"type\": { \"\\\": \"#/StringType\" } }`\n\n### 4. Choice `choices` - INCONSISTENT \n~~~json\n{\n  \"type\": \"choice\",\n  \"choices\": {\n    \"StreetAddress\": { \"$ref\": \"#/definitions/StreetAddress\" },\n    \"PostOfficeBoxAddress\": { \"$ref\": \"#/definitions/PostOfficeBoxAddress\" }\n  }\n}\n~~~\nShould be: `\"StreetAddress\": { \"type\": { \"$ref\": \"#/definitions/StreetAddress\" } }`\n\n## Affected Spec Sections\n\n- Line 580: `set` example with bare $ref\n- Line 606: `map` example with bare $ref\n- Lines 738-739: `choice` example with bare $ref\n\n## Recommendation\n\nEither:\n\n1. **Update the rule** to explicitly allow bare ~~~ in `items`, `values`, and `choices` as a shorthand, OR\n2. **Update all examples** to use `{ \"type\": { \"$ref\": \"...\" } }` consistently\n\nOption 1 seems more ergonomic since these contexts unambiguously expect a type reference.\n\n## Impact\n\nSDK implementations are confused about whether to accept bare $ref in these contexts.",
+      "createdAt": "2025-12-01T06:59:22Z",
+      "updatedAt": "2025-12-01T07:35:25Z",
+      "closedAt": "2025-12-01T07:35:25Z",
       "comments": []
     }
   ],
@@ -829,6 +845,34 @@
       "mergedBy": "clemensv",
       "mergeCommit": {
         "oid": "4b574796f054488d11e4ed8fed136697111afa01"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 22,
+      "id": "PR_kwDOONqYn862RoUt",
+      "title": "Fix inconsistent  usage in examples (fixes #21)",
+      "url": "https://github.com/json-structure/core/pull/22",
+      "state": "MERGED",
+      "author": "clemensv",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "## Summary\n\nThis PR fixes the inconsistent usage of $ref in examples throughout the spec, ensuring all examples comply with the rule stated in Section 3.4.1.\n\n## Changes\n\nUpdated examples to consistently use $ref only inside the \type attribute:\n\n1. **Set items example (line 580)**: Changed from bare $ref to { \"type\": { \"\": ... } }\n2. **Map values example (line 606)**: Changed from bare $ref to { \"type\": { \"\": ... } }\n3. **Choice choices examples (lines 738-739)**: Changed from bare $ref to { \"type\": { \"\": ... } }\n\n## Rationale\n\nSection 3.4.1 explicitly states:\n> \"The  keyword is only permitted inside the 'type' attribute value of a schema definition, including in type unions.\"\n> \" is NOT permitted in other attributes...\"\n\nThese changes ensure all examples follow this rule consistently.\n\nFixes #21\r\n",
+      "createdAt": "2025-12-01T07:33:10Z",
+      "updatedAt": "2025-12-01T07:35:29Z",
+      "baseRepository": "json-structure/core",
+      "baseRefName": "main",
+      "baseRefOid": "4b574796f054488d11e4ed8fed136697111afa01",
+      "headRepository": "json-structure/core",
+      "headRefName": "fix/issue-21-ref-consistency",
+      "headRefOid": "903969c397916945bbd55fc0291b3ac9f4a19304",
+      "closedAt": "2025-12-01T07:35:24Z",
+      "mergedAt": "2025-12-01T07:35:24Z",
+      "mergedBy": "clemensv",
+      "mergeCommit": {
+        "oid": "abefe4bc54a7cdfbf6b604b2cbcce428844f4608"
       },
       "comments": [],
       "reviews": []
