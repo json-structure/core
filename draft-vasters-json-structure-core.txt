@@ -4,8 +4,8 @@
 
 Building Blocks for HTTP APIs                                 C. Vasters
 Internet-Draft                                     Microsoft Corporation
-Intended status: Standards Track                             2 July 2025
-Expires: 3 January 2026
+Intended status: Standards Track                         4 December 2025
+Expires: 7 June 2026
 
 
                           JSON Structure: Core
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 January 2026.
+   This Internet-Draft will expire on 7 June 2026.
 
 Copyright Notice
 
@@ -130,6 +130,7 @@ Table of Contents
    10. References
      10.1.  Normative References
      10.2.  Informative References
+   Changes from draft-vasters-json-structure-core-01
    Changes from draft-vasters-json-structure-core-00
    Acknowledgments
    Author's Address
@@ -704,7 +705,7 @@ Table of Contents
 
    {
      "type": "array",
-     "items": { "type": { "$ref": "#/Namespace/TypeName" } }
+     "items": { "type": { "$ref": "#/definitions/Namespace/TypeName" } }
    }
 
    {
@@ -725,7 +726,7 @@ Table of Contents
 
    {
      "type": "set",
-     "items": { "type": { "$ref": "#/Namespace/TypeName" } }
+     "items": { "type": { "$ref": "#/definitions/Namespace/TypeName" } }
    }
 
    {
@@ -748,7 +749,7 @@ Table of Contents
 
    {
      "type": "map",
-     "values": { "type": { "$ref": "#/StringType" } }
+     "values": { "type": { "$ref": "#/definitions/StringType" } }
    }
 
 3.2.3.5.  tuple
@@ -1283,7 +1284,7 @@ Table of Contents
    Union of a string and a compound type:
 
    {
-     "type": ["string", { "$ref": "#/Namespace/TypeName" } ]
+     "type": ["string", { "$ref": "#/definitions/Namespace/TypeName" } ]
    }
 
    Union of a string and an int32:
@@ -1408,7 +1409,7 @@ Table of Contents
 
    {
      "type": "array",
-     "items": { "type": { "$ref": "#/Namespace/TypeName" }}
+     "items": { "type": { "$ref": "#/definitions/Namespace/TypeName" }}
    }
 
    {
@@ -2117,6 +2118,11 @@ Table of Contents
    [RFC7932]  Alakuijala, J. and Z. Szabadka, "Brotli Compressed Data
               Format", RFC 7932, DOI 10.17487/RFC7932, July 2016,
               <https://www.rfc-editor.org/rfc/rfc7932>.
+
+Changes from draft-vasters-json-structure-core-01
+
+   *  Fixed $ref paths in examples to correctly include #/definitions/
+      prefix for types defined in the definitions section.
 
 Changes from draft-vasters-json-structure-core-00
 

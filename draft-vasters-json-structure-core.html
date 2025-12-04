@@ -1046,11 +1046,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">JSON Structure: Core</td>
-<td class="right">July 2025</td>
+<td class="right">December 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Vasters</td>
-<td class="center">Expires 3 January 2026</td>
+<td class="center">Expires 7 June 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1063,12 +1063,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-vasters-json-structure-core-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-02" class="published">2 July 2025</time>
+<time datetime="2025-12-04" class="published">4 December 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-03">3 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-06-07">7 June 2026</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1117,7 +1117,7 @@ and databases and other data formats is straightforward.<a href="#section-abstra
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 3 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 June 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1366,13 +1366,16 @@ and databases and other data formats is straightforward.<a href="#section-abstra
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-changes-from-draft-vasters-" class="internal xref">Changes from draft-vasters-json-structure-core-00</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-changes-from-draft-vasters-" class="internal xref">Changes from draft-vasters-json-structure-core-01</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-changes-from-draft-vasters-j" class="internal xref">Changes from draft-vasters-json-structure-core-00</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -2257,7 +2260,7 @@ type or a locally declared compound type.<a href="#section-3.2.3.2-2" class="pil
 <pre>
 {
   "type": "array",
-  "items": { "type": { "$ref": "#/Namespace/TypeName" } }
+  "items": { "type": { "$ref": "#/definitions/Namespace/TypeName" } }
 }
 </pre><a href="#section-3.2.3.2-4" class="pilcrow">¶</a>
 </div>
@@ -2285,7 +2288,7 @@ type or a locally declared compound type.<a href="#section-3.2.3.3-2" class="pil
 <pre>
 {
   "type": "set",
-  "items": { "type": { "$ref": "#/Namespace/TypeName" } }
+  "items": { "type": { "$ref": "#/definitions/Namespace/TypeName" } }
 }
 </pre><a href="#section-3.2.3.3-4" class="pilcrow">¶</a>
 </div>
@@ -2314,7 +2317,7 @@ type or a locally declared compound type.<a href="#section-3.2.3.4-3" class="pil
 <pre>
 {
   "type": "map",
-  "values": { "type": { "$ref": "#/StringType" } }
+  "values": { "type": { "$ref": "#/definitions/StringType" } }
 }
 </pre><a href="#section-3.2.3.4-5" class="pilcrow">¶</a>
 </div>
@@ -2978,7 +2981,7 @@ matching type in the union.<a href="#section-3.5.1-1.4.1" class="pilcrow">¶</a>
 <div class="lang-json sourcecode" id="section-3.5.1-4">
 <pre>
 {
-  "type": ["string", { "$ref": "#/Namespace/TypeName" } ]
+  "type": ["string", { "$ref": "#/definitions/Namespace/TypeName" } ]
 }
 </pre><a href="#section-3.5.1-4" class="pilcrow">¶</a>
 </div>
@@ -3143,7 +3146,7 @@ reference or a primitive type name or a locally declared compound type.<a href="
 <pre>
 {
   "type": "array",
-  "items": { "type": { "$ref": "#/Namespace/TypeName" }}
+  "items": { "type": { "$ref": "#/definitions/Namespace/TypeName" }}
 }
 </pre><a href="#section-3.7.4-3" class="pilcrow">¶</a>
 </div>
@@ -4067,37 +4070,50 @@ registry.<a href="#section-9-2" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
-<div id="changes-from-draft-vasters-json-structure-core-00">
+<div id="changes-from-draft-vasters-json-structure-core-01">
 <section id="appendix-A">
       <h2 id="name-changes-from-draft-vasters-">
-<a href="#name-changes-from-draft-vasters-" class="section-name selfRef">Changes from draft-vasters-json-structure-core-00</a>
+<a href="#name-changes-from-draft-vasters-" class="section-name selfRef">Changes from draft-vasters-json-structure-core-01</a>
       </h2>
 <ul class="normal">
 <li class="normal" id="appendix-A-1.1">
-          <p id="appendix-A-1.1.1">Added <code>integer</code> as an alias for <code>int32</code> to improve compatibility with
-simple JSON Schema definitions and user habits.<a href="#appendix-A-1.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-1.1.1">Fixed <code>$ref</code> paths in examples to correctly include <code>#/definitions/</code> prefix
+for types defined in the definitions section.<a href="#appendix-A-1.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-1.2">
-          <p id="appendix-A-1.2.1">Updated the <code>$extends</code> keyword to accept either a single JSON Pointer
+      </ul>
+</section>
+</div>
+<div id="changes-from-draft-vasters-json-structure-core-00">
+<section id="appendix-B">
+      <h2 id="name-changes-from-draft-vasters-j">
+<a href="#name-changes-from-draft-vasters-j" class="section-name selfRef">Changes from draft-vasters-json-structure-core-00</a>
+      </h2>
+<ul class="normal">
+<li class="normal" id="appendix-B-1.1">
+          <p id="appendix-B-1.1.1">Added <code>integer</code> as an alias for <code>int32</code> to improve compatibility with
+simple JSON Schema definitions and user habits.<a href="#appendix-B-1.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-1.2">
+          <p id="appendix-B-1.2.1">Updated the <code>$extends</code> keyword to accept either a single JSON Pointer
 or an array of JSON Pointers, enabling multiple inheritance for object
-and tuple types.<a href="#appendix-A-1.2.1" class="pilcrow">¶</a></p>
+and tuple types.<a href="#appendix-B-1.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-A-1.3">
-          <p id="appendix-A-1.3.1">Fixed inconsistent <code>$ref</code> usage in examples throughout the document.<a href="#appendix-A-1.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-1.3">
+          <p id="appendix-B-1.3.1">Fixed inconsistent <code>$ref</code> usage in examples throughout the document.<a href="#appendix-B-1.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
 </div>
 <div id="acknowledgments">
-<section id="appendix-B">
+<section id="appendix-C">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-B-1">TODO acknowledge.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">TODO acknowledge.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-C">
+<section id="appendix-D">
       <h2 id="name-authors-address">
 <a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
       </h2>
