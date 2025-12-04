@@ -5,7 +5,7 @@ category: std
 docname: draft-vasters-json-structure-core-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
-date: 2025-12-02
+date: 2025-12-04
 consensus: true
 v: 3
 area: Web and Internet Transport
@@ -553,7 +553,7 @@ type or a locally declared compound type.
 ~~~ json
 {
   "type": "array",
-  "items": { "type": { "$ref": "#/Namespace/TypeName" } }
+  "items": { "type": { "$ref": "#/definitions/Namespace/TypeName" } }
 }
 ~~~
 
@@ -577,7 +577,7 @@ Example:
 ~~~ json
 {
   "type": "set",
-  "items": { "type": { "$ref": "#/Namespace/TypeName" } }
+  "items": { "type": { "$ref": "#/definitions/Namespace/TypeName" } }
 }
 ~~~
 
@@ -603,7 +603,7 @@ Example:
 ~~~ json
 {
   "type": "map",
-  "values": { "type": { "$ref": "#/StringType" } }
+  "values": { "type": { "$ref": "#/definitions/StringType" } }
 }
 ~~~
 
@@ -1132,7 +1132,7 @@ Union of a string and a compound type:
 
 ~~~ json
 {
-  "type": ["string", { "$ref": "#/Namespace/TypeName" } ]
+  "type": ["string", { "$ref": "#/definitions/Namespace/TypeName" } ]
 }
 ~~~
 
@@ -1269,7 +1269,7 @@ Examples:
 ~~~ json
 {
   "type": "array",
-  "items": { "type": { "$ref": "#/Namespace/TypeName" }}
+  "items": { "type": { "$ref": "#/definitions/Namespace/TypeName" }}
 }
 ~~~
 
@@ -1837,6 +1837,12 @@ IANA shall be requested to register the parameter `schema` for the
 registry.
 
 --- back
+
+# Changes from draft-vasters-json-structure-core-01
+{:numbered="false"}
+
+- Fixed `$ref` paths in examples to correctly include `#/definitions/` prefix
+  for types defined in the definitions section.
 
 # Changes from draft-vasters-json-structure-core-00
 {:numbered="false"}
