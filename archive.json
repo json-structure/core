@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-12-02T00:45:45.254980+00:00",
+  "timestamp": "2025-12-18T00:43:33.673378+00:00",
   "repo": "json-structure/core",
   "labels": [
     {
@@ -329,9 +329,17 @@
       "labels": [],
       "body": "## Summary\n\nBased on the discussion in PR #8, propose a companion specification for modeling relationships/associations between objects in JSON Structure.\n\n## Proposal\n\nFor objects and tuples, add a new keyword `relations` that is similar to `properties` but specifically defines relationship properties. `relations` and `properties` share a namespace, so they can't define conflicting names.\n\nThe `relations` declarations are not modeled as types, because they must be able to cross-reference properties within the same tuple/object. They are similar to properties in that they are represented just like properties in the instances.\n\nA `relation` is a named object (via the `relations` map) that has two properties:\n\n- `targettype` - declares the target type that the relation refers to\n- `cardinality` - declares whether the relationship points to one or more targets (`single` or `multiple`)\n\nThe targettype's `identity` declaration functions like the `tuple` keyword for establishing the type of references, meaning that if the target's `identity` clause references two properties, the reference value in the relation source is a tuple-encoded list of values matching that identity.\n\n### Relation Instance Structure\n\nAn instance of a single relation is an object with the following properties:\n\n- `ref` - a JSON pointer to the target object\n- `identity` - a tuple that reflects the target object identity values\n\nA relationship MAY be established either through a direct link (ref) or through an `identity` match against all known instances of the target type.\n\n### Qualifier Support\n\nRelations can also support qualifiers (like link properties in a graph):\n\n- `qualifiertype` - defines/references a type to qualify the relationship further\n\n## Example Schema\n\n```json\n{\n  \"definitions\": {\n    \"Library\": {\n      \"Author\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"id\":   { \"type\": \"uuid\" },\n          \"name\": { \"type\": \"string\" }\n        },\n        \"required\": [\"id\", \"name\"],\n        \"identity\": [\"id\"]\n      },\n      \"Book\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"isbn\":  { \"type\": \"string\" },\n          \"title\": { \"type\": \"string\" }\n        },\n        \"required\": [\"isbn\", \"title\"],\n        \"identity\": [\"isbn\"],\n        \"relations\": {\n          \"authors\": {\n            \"cardinality\": \"multiple\",\n            \"targettype\":  { \"$ref\": \"#/definitions/Library/Author\" }\n          }\n        }\n      }\n    }\n  }\n}\n```\n\n## References\n\n- PR #8: https://github.com/json-structure/core/pull/8\n- Issue #4: https://github.com/json-structure/core/issues/4\n- Discussion: https://github.com/json-structure/core/pull/8#discussion_r2179789408\n\ncc @Fannon",
       "createdAt": "2025-11-27T22:46:17Z",
-      "updatedAt": "2025-11-27T22:46:17Z",
+      "updatedAt": "2025-12-16T09:09:44Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "Fannon",
+          "authorAssociation": "NONE",
+          "body": "@clemensv Thank you very much for creating this. \n\nI'm looking now at https://github.com/json-structure/relations/blob/main/draft-vasters-json-structure-relations.md \n\nWhere I'm not sure: Should we really use `$ref` to point to the `targettype`? When a $ref resolver runs, it would inline the target here, but actually we just want to point to it - it's not a composition, which $ref usually implies. \n\nWouldn't it be simpler to just have it like this:\n\n~~~ json\n{\n  \"relations\": {\n    \"customer\": {\n      \"cardinality\": \"single\",\n      \"targettype\": \"#/definitions/Customer\"\n    }\n  }\n}\n~~~\n\nOr maybe if we want to keep it flexible as an object, use \"ref\" or \"target\" as the key:\n\n~~~ json\n{\n  \"relations\": {\n    \"customer\": {\n      \"cardinality\": \"single\",\n      \"targettype\": { \"ref\": \"#/definitions/Customer\" }\n    }\n  }\n}\n~~~",
+          "createdAt": "2025-12-16T09:09:44Z",
+          "updatedAt": "2025-12-16T09:09:44Z"
+        }
+      ]
     },
     {
       "number": 18,
