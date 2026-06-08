@@ -175,6 +175,9 @@ Table of Contents
    *  _JSON Structure: Composition_ [JSTRUCT-COMPOSITION]: Defines a set
       of conditional composition rules for evaluating schemas.
 
+   *  _JSON Structure: Relations_ [JSTRUCT-RELATIONS]: Declares identity
+      constraints and inter-type relationships for objects and tuples.
+
    These extension specifications are enabled by the extensibility
    (Section 3.10) features and can be applied to meta-schemas, schemas,
    and JSON document instances.
@@ -2093,6 +2096,10 @@ Table of Contents
    [JSTRUCT-IMPORT]
               Vasters, C., "JSON Structure Import", n.d.,
               <https://json-structure.github.io/import>.
+
+   [JSTRUCT-RELATIONS]
+              Vasters, C., "JSON Structure Relations", n.d.,
+              <https://json-structure.github.io/relations>.
 
    [JSTRUCT-UNITS]
               Vasters, C., "JSON Structure Units", n.d.,
