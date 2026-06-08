@@ -1845,6 +1845,14 @@ registry.
 
 --- back
 
+# Changes from draft-vasters-json-structure-core-02
+{:numbered="false"}
+
+- Fixed grammar error ("an valid" → "a valid") in tuple example.
+- Fixed awkward phrasing ("require for all" → "require all") in inline unions.
+- Corrected RFC 3339 production name from `time` to `full-time`.
+- Added JSON Structure Relations to companion specification references.
+
 # Changes from draft-vasters-json-structure-core-01
 {:numbered="false"}
 
