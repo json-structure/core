@@ -62,6 +62,11 @@ informative:
     author:
       - fullname: Clemens Vasters
     target: https://json-structure.github.io/validation
+  JSTRUCT-RELATIONS:
+    title: "JSON Structure Relations"
+    author:
+      - fullname: Clemens Vasters
+    target: https://json-structure.github.io/relations
 
 --- abstract
 
@@ -103,6 +108,8 @@ the core schema language with additional, OPTIONAL features:
   have no structural impact on the schema.
 - _JSON Structure: Composition_ {{JSTRUCT-COMPOSITION}}: Defines a set of
   conditional composition rules for evaluating schemas.
+- _JSON Structure: Relations_ {{JSTRUCT-RELATIONS}}: Declares identity
+  constraints and inter-type relationships for objects and tuples.
 
 
 These extension specifications are enabled by the extensibility
