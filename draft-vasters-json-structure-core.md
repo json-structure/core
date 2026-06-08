@@ -5,7 +5,7 @@ category: std
 docname: draft-vasters-json-structure-core-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
-date: 2025-12-04
+date: 2026-06-08
 consensus: true
 v: 3
 area: Web and Internet Transport
