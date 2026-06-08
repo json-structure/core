@@ -1366,16 +1366,19 @@ and databases and other data formats is straightforward.<a href="#section-abstra
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-changes-from-draft-vasters-" class="internal xref">Changes from draft-vasters-json-structure-core-01</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-changes-from-draft-vasters-" class="internal xref">Changes from draft-vasters-json-structure-core-02</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-changes-from-draft-vasters-j" class="internal xref">Changes from draft-vasters-json-structure-core-00</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-changes-from-draft-vasters-j" class="internal xref">Changes from draft-vasters-json-structure-core-01</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-changes-from-draft-vasters-js" class="internal xref">Changes from draft-vasters-json-structure-core-00</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.14.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
+            <p id="section-toc.1-1.15.1"><a href="#appendix-E" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -4078,50 +4081,71 @@ registry.<a href="#section-9-2" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
-<div id="changes-from-draft-vasters-json-structure-core-01">
+<div id="changes-from-draft-vasters-json-structure-core-02">
 <section id="appendix-A">
       <h2 id="name-changes-from-draft-vasters-">
-<a href="#name-changes-from-draft-vasters-" class="section-name selfRef">Changes from draft-vasters-json-structure-core-01</a>
+<a href="#name-changes-from-draft-vasters-" class="section-name selfRef">Changes from draft-vasters-json-structure-core-02</a>
       </h2>
 <ul class="normal">
 <li class="normal" id="appendix-A-1.1">
-          <p id="appendix-A-1.1.1">Fixed <code>$ref</code> paths in examples to correctly include <code>#/definitions/</code> prefix
-for types defined in the definitions section.<a href="#appendix-A-1.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-A-1.1.1">Fixed grammar error ("an valid" → "a valid") in tuple example.<a href="#appendix-A-1.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-1.2">
+          <p id="appendix-A-1.2.1">Fixed awkward phrasing ("require for all" → "require all") in inline unions.<a href="#appendix-A-1.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-1.3">
+          <p id="appendix-A-1.3.1">Corrected RFC 3339 production name from <code>time</code> to <code>full-time</code>.<a href="#appendix-A-1.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-A-1.4">
+          <p id="appendix-A-1.4.1">Added JSON Structure Relations to companion specification references.<a href="#appendix-A-1.4.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="changes-from-draft-vasters-json-structure-core-01">
+<section id="appendix-B">
+      <h2 id="name-changes-from-draft-vasters-j">
+<a href="#name-changes-from-draft-vasters-j" class="section-name selfRef">Changes from draft-vasters-json-structure-core-01</a>
+      </h2>
+<ul class="normal">
+<li class="normal" id="appendix-B-1.1">
+          <p id="appendix-B-1.1.1">Fixed <code>$ref</code> paths in examples to correctly include <code>#/definitions/</code> prefix
+for types defined in the definitions section.<a href="#appendix-B-1.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
 </div>
 <div id="changes-from-draft-vasters-json-structure-core-00">
-<section id="appendix-B">
-      <h2 id="name-changes-from-draft-vasters-j">
-<a href="#name-changes-from-draft-vasters-j" class="section-name selfRef">Changes from draft-vasters-json-structure-core-00</a>
+<section id="appendix-C">
+      <h2 id="name-changes-from-draft-vasters-js">
+<a href="#name-changes-from-draft-vasters-js" class="section-name selfRef">Changes from draft-vasters-json-structure-core-00</a>
       </h2>
 <ul class="normal">
-<li class="normal" id="appendix-B-1.1">
-          <p id="appendix-B-1.1.1">Added <code>integer</code> as an alias for <code>int32</code> to improve compatibility with
-simple JSON Schema definitions and user habits.<a href="#appendix-B-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-C-1.1">
+          <p id="appendix-C-1.1.1">Added <code>integer</code> as an alias for <code>int32</code> to improve compatibility with
+simple JSON Schema definitions and user habits.<a href="#appendix-C-1.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-1.2">
-          <p id="appendix-B-1.2.1">Updated the <code>$extends</code> keyword to accept either a single JSON Pointer
+        <li class="normal" id="appendix-C-1.2">
+          <p id="appendix-C-1.2.1">Updated the <code>$extends</code> keyword to accept either a single JSON Pointer
 or an array of JSON Pointers, enabling multiple inheritance for object
-and tuple types.<a href="#appendix-B-1.2.1" class="pilcrow">¶</a></p>
+and tuple types.<a href="#appendix-C-1.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-1.3">
-          <p id="appendix-B-1.3.1">Fixed inconsistent <code>$ref</code> usage in examples throughout the document.<a href="#appendix-B-1.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-C-1.3">
+          <p id="appendix-C-1.3.1">Fixed inconsistent <code>$ref</code> usage in examples throughout the document.<a href="#appendix-C-1.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
 </div>
 <div id="acknowledgments">
-<section id="appendix-C">
+<section id="appendix-D">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-C-1">TODO acknowledge.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-D-1">TODO acknowledge.<a href="#appendix-D-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-D">
+<section id="appendix-E">
       <h2 id="name-authors-address">
 <a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
       </h2>

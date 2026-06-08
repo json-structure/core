@@ -130,6 +130,7 @@ Table of Contents
    10. References
      10.1.  Normative References
      10.2.  Informative References
+   Changes from draft-vasters-json-structure-core-02
    Changes from draft-vasters-json-structure-core-01
    Changes from draft-vasters-json-structure-core-00
    Acknowledgments
@@ -2125,6 +2126,18 @@ Table of Contents
    [RFC7932]  Alakuijala, J. and Z. Szabadka, "Brotli Compressed Data
               Format", RFC 7932, DOI 10.17487/RFC7932, July 2016,
               <https://www.rfc-editor.org/rfc/rfc7932>.
+
+Changes from draft-vasters-json-structure-core-02
+
+   *  Fixed grammar error ("an valid" → "a valid") in tuple example.
+
+   *  Fixed awkward phrasing ("require for all" → "require all") in
+      inline unions.
+
+   *  Corrected RFC 3339 production name from time to full-time.
+
+   *  Added JSON Structure Relations to companion specification
+      references.
 
 Changes from draft-vasters-json-structure-core-01
 
