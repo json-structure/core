@@ -466,7 +466,7 @@ A time-of-day value.
 
 - Base type: `string`
 - Constraints:
-  - The string value MUST conform to the {{RFC3339}} `time` format.
+  - The string value MUST conform to the {{RFC3339}} `full-time` format.
 
 #### `duration` {#duration}
 
@@ -641,7 +641,7 @@ Example:
 }
 ~~~
 
-The following JSON node is an valid instance of the `tuple` type defined above:
+The following JSON node is a valid instance of the `tuple` type defined above:
 
 ~~~ json
 ["Alice", 42]
@@ -709,7 +709,7 @@ or:
 
 ##### Inline Unions {#inline-unions}
 
-Inline unions require for all type choices to extend a common base type.
+Inline unions require all type choices to extend a common base type.
 
 This is expressed by using the `$extends` ({{extends-keyword}}) keyword in the
 `choice` declaration. The `$extends` keyword MUST refer to a schema that defines
