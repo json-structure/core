@@ -1,0 +1,39 @@
+name: "Check Front Matter Date"
+
+on:
+  push:
+    paths:
+    - "draft-*.md"
+  pull_request:
+    paths:
+    - "draft-*.md"
+
+jobs:
+  check-date:
+    name: "Validate Document Date"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Check date is recent
+      run: |
+        for f in draft-*.md; do
+          [ -f "$f" ] || continue
+          doc_date=$(grep -m1 '^date:' "$f" | sed 's/date:[[:space:]]*//')
+          if [ -z "$doc_date" ]; then
+            echo "::error file=$f::No date field found in front matter"
+            exit 1
+          fi
+          doc_ts=$(date -d "$doc_date" +%s 2>/dev/null)
+          if [ -z "$doc_ts" ]; then
+            echo "::error file=$f::Cannot parse date: $doc_date"
+            exit 1
+          fi
+          min_ts=$(date -d "7 days ago" +%s)
+          max_ts=$(date -d "tomorrow" +%s)
+          if [ "$doc_ts" -lt "$min_ts" ] || [ "$doc_ts" -gt "$max_ts" ]; then
+            echo "::error file=$f::Document date '$doc_date' is not within the allowed range (last 7 days to tomorrow). Please update the date field."
+            exit 1
+          fi
+          echo "$f: date '$doc_date' OK"
+        done
