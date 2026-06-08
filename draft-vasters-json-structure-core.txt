@@ -609,7 +609,8 @@ Table of Contents
 
    *  Constraints:
 
-      -  The string value MUST conform to the [RFC3339] time format.
+      -  The string value MUST conform to the [RFC3339] full-time
+         format.
 
 3.2.2.19.  duration
 
@@ -784,8 +785,8 @@ Table of Contents
      "tuple": ["name", "age"]
    }
 
-   The following JSON node is an valid instance of the tuple type
-   defined above:
+   The following JSON node is a valid instance of the tuple type defined
+   above:
 
    ["Alice", 42]
 
@@ -848,8 +849,7 @@ Table of Contents
 
 3.2.3.7.2.  Inline Unions
 
-   Inline unions require for all type choices to extend a common base
-   type.
+   Inline unions require all type choices to extend a common base type.
 
    This is expressed by using the $extends (Section 3.10.2) keyword in
    the choice declaration.  The $extends keyword MUST refer to a schema
